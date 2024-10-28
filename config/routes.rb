@@ -8,6 +8,10 @@ Rails.application.routes.draw do
   # Defines the root path route ("/")
   # root "articles#index"
   root 'home#index'
-  resources :clients, only: [:index ] 
-  resources :admins, only: [:index ] 
+  constraints(ClientDomainConstraint.new) do
+    resources :clients, only: [:index ]
+  end
+  constraints(AdminDomainConstraint.new) do
+    resources :admins, only: [:index]
+  end
 end
