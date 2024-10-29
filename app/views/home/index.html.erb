@@ -4,4 +4,5 @@
   <%= button_to 'Sign out', destroy_user_session_path, method: :delete %>
 <% else %>
   <%= link_to 'Admin Sign in', new_admin_session_path %>
+  <%= link_to 'Client Sign in', new_client_session_path %>
 <% end %>

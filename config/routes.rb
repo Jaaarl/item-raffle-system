@@ -8,6 +8,12 @@ Rails.application.routes.draw do
     post 'admin/login', to: 'admin/sessions#create', as: :admin_session
     delete 'admin/logout', to: 'admin/sessions#destroy', as: :destroy_admin_session
   end
+
+  devise_scope :user do
+    get 'client/login', to: 'client/sessions#new', as: :new_client_session
+    post 'client/login', to: 'client/sessions#create', as: :client_session
+    delete 'client/logout', to: 'client/sessions#destroy', as: :destroy_client_session
+  end
   # Define your application routes per the DSL in https://guides.rubyonrails.org/routing.html
 
   # Defines the root path route ("/")
