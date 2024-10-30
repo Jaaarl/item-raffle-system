@@ -1,13 +1,8 @@
 class Client::SessionsController < Devise::SessionsController
-  def new
-    super
+  def after_sign_in_path_for(resource)
+    clients_path
   end
-
-  def create
-    super
-  end
-
-  def destroy
-    super
+  def after_sign_out_path_for(resource)
+    new_client_user_session_path
   end
 end

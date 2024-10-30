@@ -11,7 +11,7 @@
          aria-controls="pills-register" aria-selected="false">Register</a>
     </li>
   </ul>
-  <%= form_for(resource, as: resource_name, url: session_path(resource_name)) do |f| %>
+  <%= form_for(resource, as: resource_name, url: client_user_session_path(resource)) do |f| %>
     <div class="tab-content">
       <div class="tab-pane fade show active" id="pills-login" role="tabpanel" aria-labelledby="tab-login">
         <form>

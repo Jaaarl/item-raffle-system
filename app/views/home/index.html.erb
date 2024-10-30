@@ -1,8 +1,3 @@
 <h1 class="bg-dark text-white">home page</h1>
-<% if user_signed_in? %>
-  <h2> Hello <%= current_user.email %> </h2>
-  <%= button_to 'Sign out', destroy_user_session_path, method: :delete %>
-<% else %>
-  <%= link_to 'Admin Sign in', new_admin_session_path %>
-  <%= link_to 'Client Sign in', new_client_session_path %>
-<% end %>
+<%= link_to 'Go to Client', 'http://client.com:3000/clients' %>
+<%= link_to 'Go to Admin', 'http://admin.com:3000/admins' %>
