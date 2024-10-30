@@ -1,25 +1,38 @@
-<h2>Client Login</h2>
+<%= render 'client/shared/navbar' %>
 
-<%= form_for(resource, as: resource_name, url: session_path(resource_name)) do |f| %>
-  <div class="field">
-    <%= f.label :email %><br/>
-    <%= f.email_field :email, autofocus: true, autocomplete: "email" %>
-  </div>
-
-  <div class="field">
-    <%= f.label :password %><br/>
-    <%= f.password_field :password, autocomplete: "current-password" %>
-  </div>
-
-  <% if devise_mapping.rememberable? %>
-    <div class="field">
-      <%= f.check_box :remember_me %>
-      <%= f.label :remember_me %>
+<div class="container mt-4">
+  <ul class="nav nav-pills nav-justified mb-3" id="ex1" role="tablist">
+    <li class="nav-item" role="presentation">
+      <a class="nav-link active border border-white" id="tab-login" data-mdb-pill-init href="#pills-login" role="tab"
+         aria-controls="pills-login" aria-selected="true">Login</a>
+    </li>
+    <li class="nav-item" role="presentation">
+      <a class="nav-link border border-black" id="tab-register" data-mdb-pill-init href="#pills-register" role="tab"
+         aria-controls="pills-register" aria-selected="false">Register</a>
+    </li>
+  </ul>
+  <%= form_for(resource, as: resource_name, url: session_path(resource_name)) do |f| %>
+    <div class="tab-content">
+      <div class="tab-pane fade show active" id="pills-login" role="tabpanel" aria-labelledby="tab-login">
+        <form>
+          <div data-mdb-input-init class="form-outline mb-4">
+            <%= f.email_field :email, autofocus: true, autocomplete: "email", class: 'form-control' %>
+            <label class="form-label" for="loginName">Email</label>
+          </div>
+          <div data-mdb-input-init class="form-outline mb-4">
+            <%= f.password_field :password, autocomplete: "current-password", class: 'form-control'%>
+            <label class="form-label" for="loginPassword">Password</label>
+          </div>
+          <div class="row mb-4">
+            <div class="col-md-6 d-flex justify-content-center">
+            </div>
+            <%= f.submit "Log in", class: 'btn btn-primary btn-block mb-4'%>
+          </div>
+        </form>
+      </div>
+    </div>
     </div>
   <% end %>
 
-  <div class="actions">
-    <%= f.submit "Log in" %>
-  </div>
-<% end %>
-<%= link_to "Sign up", new_client_registration_path %><br />
+  <%= render 'client/shared/footer' %>
+<!--  </body>-->
