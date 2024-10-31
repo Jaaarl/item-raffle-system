@@ -4,7 +4,7 @@ Rails.application.routes.draw do
     resources :clients, only: [:index]
     devise_for :users, controllers: {
       sessions: 'client/sessions',
-      sessions: 'client/registrations',
+      registrations: 'client/registrations',
     }, as: :client
   end
   constraints(AdminDomainConstraint.new) do
