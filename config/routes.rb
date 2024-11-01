@@ -18,5 +18,8 @@ Rails.application.routes.draw do
     devise_for :users, controllers: {
       sessions: 'admin/sessions',
     }, as: :admin
+    namespace :admin do
+      resources :dashboard, only: [:index]
+    end
   end
 end
