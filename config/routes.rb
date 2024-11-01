@@ -4,14 +4,13 @@ Rails.application.routes.draw do
     resources :clients, only: [:index]
     namespace :client do
       resources :homepage, only: [:index]
+      resources :menu, only: [:index]
+      resources :me, only: [:index]
     end
     devise_for :users, controllers: {
       sessions: 'client/sessions',
       registrations: 'client/registrations',
     }, as: :client
-    namespace :client do
-      resources :menu, only: [:index]
-    end
   end
   constraints(AdminDomainConstraint.new) do
     resources :admins, only: [:index]

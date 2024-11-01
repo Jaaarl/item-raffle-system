@@ -15,7 +15,7 @@
       </div>
       <% if client_user_signed_in? %>
       <div class="col">
-        <a href="#" class="footer-link">Me</a>
+        <%= link_to 'Me',client_me_index_path ,class: 'footer-link'%>
       </div>
       <% end %>
     </div>
