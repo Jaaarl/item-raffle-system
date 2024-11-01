@@ -9,6 +9,9 @@ Rails.application.routes.draw do
       sessions: 'client/sessions',
       registrations: 'client/registrations',
     }, as: :client
+    namespace :client do
+      resources :menu, only: [:index]
+    end
   end
   constraints(AdminDomainConstraint.new) do
     resources :admins, only: [:index]

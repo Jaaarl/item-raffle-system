@@ -1,0 +1,33 @@
+<div class="container mt-5">
+  <div class="card shadow-sm p-4">
+    <div class="row align-items-center">
+      <div class="col-md-2 text-center">
+        <img src="https://via.placeholder.com/60" class="rounded-circle border" alt="Profile Picture">
+      </div>
+      <div class="col-md-10">
+        <h5><strong>Username:</strong> <span id="username">User123</span></h5>
+        <p class="mb-1"><strong>Email:</strong> <span id="email">user@example.com</span></p>
+        <p><strong>Coins:</strong> <span id="coins">100</span></p>
+      </div>
+    </div>
+
+    <div class="text-center mt-4">
+      <button class="btn btn-success btn-lg w-100">Cash In Now</button>
+    </div>
+  </div>
+
+  <div class="card mt-4 shadow-sm">
+    <ul class="list-group list-group-flush">
+      <li class="list-group-item">
+        <a href="/contact" class="btn btn-link text-decoration-none text-dark">Contact Us</a>
+      </li>
+      <li class="list-group-item">
+        <a href="/profile" class="btn btn-link text-decoration-none text-dark">My Profile</a>
+      </li>
+      <li class="list-group-item">
+        <%= button_to 'Sign out', destroy_client_user_session_path, method: :delete, class: 'btn btn-link text-decoration-none text-dark' %>
+      </li>
+    </ul>
+  </div>
+</div>
+<%= render 'client/shared/footer' %>
