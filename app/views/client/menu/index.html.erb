@@ -5,9 +5,9 @@
         <img src="https://via.placeholder.com/60" class="rounded-circle border" alt="Profile Picture">
       </div>
       <div class="col-md-10">
-        <h5><strong>Username:</strong> <span id="username">User123</span></h5>
-        <p class="mb-1"><strong>Email:</strong> <span id="email">user@example.com</span></p>
-        <p><strong>Coins:</strong> <span id="coins">100</span></p>
+        <h5><strong>Username:</strong> <span id="username"><%= current_client_user&.username %></span></h5>
+        <p class="mb-1"><strong>Email:</strong> <span id="email"> <%= current_client_user.email %></span></p>
+        <p><strong>Coins:</strong> <span id="coins"><%= current_client_user.coins || 0 %></span></p>
       </div>
     </div>
 
