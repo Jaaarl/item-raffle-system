@@ -2,7 +2,10 @@
   <div class="card shadow-sm p-4">
     <div class="row align-items-center">
       <div class="col-md-2 text-center">
-        <img src="https://via.placeholder.com/60" class="rounded-circle border" alt="Profile Picture">
+        <%= image_tag resource.image.url, class: "rounded-circle border", alt: "Profile Picture" , size: "60x60" if resource.image.present? %>
+        <% unless resource.image.present? %>
+          <img src="https://via.placeholder.com/60" class="rounded-circle border" alt="Profile Picture">
+        <% end %>
       </div>
       <div class="col-md-10">
         <%= form_for(resource, as: resource_name, url: client_user_registration_path(resource), html: { method: :put, format: :html, class: "needs-validation", novalidate: true }) do |f| %>
@@ -32,6 +35,11 @@
           <div class="mb-3">
             <%= f.label :password_confirmation, class: "form-label" %>
             <%= f.password_field :password_confirmation, autocomplete: "new-password", class: "form-control" %>
+          </div>
+
+          <div class="mb-3">
+            <%= f.label :Upload_Profile_Picture, class: "form-label" %>
+            <%= f.file_field :image, class: "form-control" %>
           </div>
 
           <div class="mb-3">

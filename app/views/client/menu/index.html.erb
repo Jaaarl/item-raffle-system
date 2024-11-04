@@ -2,7 +2,10 @@
   <div class="card shadow-sm p-4">
     <div class="row align-items-center">
       <div class="col-md-2 text-center">
-        <img src="https://via.placeholder.com/60" class="rounded-circle border" alt="Profile Picture">
+        <%= image_tag current_client_user.image.url, class: "rounded-circle border", alt: "Profile Picture" , size: "60x60" if current_client_user.image.present? %>
+        <% unless current_client_user.image.present? %>
+          <img src="https://via.placeholder.com/60" class="rounded-circle border" alt="Profile Picture">
+        <% end %>
       </div>
       <div class="col-md-10">
         <h5><strong>Username:</strong> <span id="username"><%= current_client_user&.username %></span></h5>

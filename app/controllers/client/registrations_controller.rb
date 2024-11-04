@@ -33,6 +33,6 @@ class Client::RegistrationsController < Devise::RegistrationsController
   end
 
   def configure_account_update_params
-    devise_parameter_sanitizer.permit(:account_update, keys: [:phone, :username])
+    devise_parameter_sanitizer.permit(:account_update, keys: [:phone, :username, :image])
   end
 end
