@@ -11,7 +11,7 @@
         <%= form_for(resource, as: resource_name, url: client_user_registration_path(resource), html: { method: :put, format: :html, class: "needs-validation", novalidate: true }) do |f| %>
           <div class="mb-3">
             <%= f.label :email, class: "form-label" %>
-            <%= f.email_field :email, autofocus: true, autocomplete: "email", class: "form-control" %>
+            <div class="form-control" style="pointer-events: none; background-color: #e9ecef; opacity: 0.5;" ><%= resource.email %></div>
           </div>
 
           <div class="mb-3">
