@@ -22,7 +22,10 @@ class Client::RegistrationsController < Devise::RegistrationsController
     else
       clean_up_passwords resource
       set_minimum_password_length
-      flash[:alert] = 'There was a problem editing your profile. Please check your fields and try again.'
+      if resource.errors.any?
+        flash[:alert] = resource.errors.full_messages.to_sentence
+      end
+      
       redirect_to edit_client_user_registration_path
     end
   end

@@ -48,6 +48,11 @@
           </div>
 
           <div class="d-grid">
+            <% if flash[:alert].present? %>
+              <div class="text-danger mb-1">
+                <%= flash[:alert] %>
+              </div>
+            <% end %>
             <%= f.submit "Update", class: "btn btn-primary" %>
           </div>
         <% end %>
