@@ -17,7 +17,7 @@ class Client::PlaceController < ApplicationController
     @place = Place.new(place_params)
     @place.user = User.first
     if @place.save
-      redirect_to @place, notice: 'Place was successfully created.'
+      redirect_to client_place_index_path, notice: 'Place was successfully created.'
     else
       render :new
     end
@@ -28,7 +28,7 @@ class Client::PlaceController < ApplicationController
 
   def update
     if @place.update(place_params)
-      redirect_to @place, notice: 'Place was successfully updated.'
+      redirect_to client_place_index_path, notice: 'Place was successfully updated.'
     else
       render :edit
     end
@@ -36,7 +36,7 @@ class Client::PlaceController < ApplicationController
 
   def destroy
     @place.destroy
-    redirect_to places_url, notice: 'Place was successfully destroyed.'
+    redirect_to client_place_index_path, notice: 'Place was successfully destroyed.'
   end
 
   private
