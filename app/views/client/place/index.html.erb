@@ -1,6 +1,8 @@
 <%= render 'client/shared/navbar' %>
 <h1 class="text-center my-4"><%= current_client_user.username.present? ? current_client_user.username : current_client_user.email %> Address List</h1>
-
+<% if @places.count < 5%>
+    <%= link_to 'Add Address', new_client_place_path, class: 'btn btn-primary'%>
+<% end %>
 <table class="table table-striped table-bordered table-hover">
   <thead class="thead-dark">
     <tr>
