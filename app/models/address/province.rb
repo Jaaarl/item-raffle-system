@@ -5,5 +5,5 @@ class Address::Province < ApplicationRecord
   belongs_to :region
   has_many :cities
 
-  has_many :Place, class_name: 'Place', foreign_key: 'address_province_id'
+  has_many :Places, class_name: 'Place', foreign_key: 'address_province_id'
 end
