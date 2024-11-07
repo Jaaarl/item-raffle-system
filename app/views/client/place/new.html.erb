@@ -1,3 +1,4 @@
+<%= render 'client/shared/navbar' %>
 <%= form_with model: @place, url: client_place_index_path, data: { controller: :location } do |form| %>
   <% if @place.errors.any? %>
     <div class="error-summary">
@@ -67,3 +68,4 @@
   </div>
   <%= form.submit %>
 <% end %>
+<%= render 'client/shared/footer' %>
