@@ -3,7 +3,7 @@ class Client::PlaceController < ApplicationController
   before_action :set_place, only: [:show, :edit, :update, :destroy]
 
   def index
-    @places = Place.all
+    @places = Place.where(user_id: current_client_user.id)
   end
 
   def show
