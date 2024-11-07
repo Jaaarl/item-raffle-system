@@ -3,7 +3,7 @@ class User < ApplicationRecord
   # :confirmable, :lockable, :timeoutable, :trackable and :omniauthable
   devise :database_authenticatable, :registerable,
          :recoverable, :rememberable, :validatable
-
+  has_many :places
   enum role: { client: 0, admin: 1 }
   mount_uploader :image, ImageUploader
   validates :phone, phone: true, allow_blank: true

@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema[7.0].define(version: 2024_11_04_115718) do
+ActiveRecord::Schema[7.0].define(version: 2024_11_07_024157) do
   create_table "address_barangays", charset: "utf8mb4", force: :cascade do |t|
     t.bigint "city_id"
     t.string "code"
@@ -45,6 +45,44 @@ ActiveRecord::Schema[7.0].define(version: 2024_11_04_115718) do
     t.datetime "updated_at", null: false
   end
 
+  create_table "addresses", charset: "utf8mb4", force: :cascade do |t|
+    t.string "genre", default: "0", null: false
+    t.string "name"
+    t.string "street_address"
+    t.string "phone_number"
+    t.text "remark"
+    t.boolean "is_default", default: false
+    t.bigint "user_id", null: false
+    t.bigint "region_id", null: false
+    t.bigint "province_id", null: false
+    t.bigint "city_id", null: false
+    t.bigint "barangay_id", null: false
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+    t.index ["user_id"], name: "fk_rails_48c9e0c5a2"
+  end
+
+  create_table "places", charset: "utf8mb4", force: :cascade do |t|
+    t.integer "genre", default: 0, null: false
+    t.string "name"
+    t.string "street_address"
+    t.string "phone_number"
+    t.text "remark"
+    t.boolean "is_default", default: false, null: false
+    t.bigint "user_id", null: false
+    t.bigint "address_region_id", null: false
+    t.bigint "address_province_id", null: false
+    t.bigint "address_city_id", null: false
+    t.bigint "address_barangay_id", null: false
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+    t.index ["address_barangay_id"], name: "index_places_on_address_barangay_id"
+    t.index ["address_city_id"], name: "index_places_on_address_city_id"
+    t.index ["address_province_id"], name: "index_places_on_address_province_id"
+    t.index ["address_region_id"], name: "index_places_on_address_region_id"
+    t.index ["user_id"], name: "index_places_on_user_id"
+  end
+
   create_table "users", charset: "utf8mb4", force: :cascade do |t|
     t.string "email", default: "", null: false
     t.string "encrypted_password", default: "", null: false
@@ -64,4 +102,10 @@ ActiveRecord::Schema[7.0].define(version: 2024_11_04_115718) do
     t.index ["reset_password_token"], name: "index_users_on_reset_password_token", unique: true
   end
 
+  add_foreign_key "addresses", "users"
+  add_foreign_key "places", "address_barangays"
+  add_foreign_key "places", "address_cities"
+  add_foreign_key "places", "address_provinces"
+  add_foreign_key "places", "address_regions"
+  add_foreign_key "places", "users"
 end
