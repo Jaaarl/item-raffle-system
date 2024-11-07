@@ -10,6 +10,30 @@
     </div>
   <% end %>
   <div>
+  <div class="field">
+    <%= form.label :name %>
+    <%= form.text_field :name, id: :place_name %>
+  </div>
+
+  <div class="field">
+    <%= form.label :phone_number %>
+    <%= form.text_field :phone_number, id: :place_phone_number %>
+  </div>
+
+  <div class="field">
+    <%= form.label :remark %>
+    <%= form.text_area :remark, id: :place_remark %>
+  </div>
+
+  <div class="field">
+    <%= form.label :genre %>
+    <%= form.select :genre, options_for_select([['Home', :Home], ['Work', :Work]], @place.genre), prompt: "Select a genre" %>
+  </div>
+
+  <div class="field">
+    <%= form.label :is_default %>
+    <%= form.check_box :is_default %>
+  </div>
     <%= form.label :address_region_id %>
     <%= form.collection_select :address_region_id,
                                Address::Region.all, :id, :name,
@@ -36,6 +60,10 @@
                                [], nil, nil,
                                { prompt: 'Please select city' },
                                data: { location_target: 'selectedBarangayId' } %>
+  </div>
+  <div class="field">
+    <%= form.label :street_address %>
+    <%= form.text_field :street_address, id: :place_street_address %>
   </div>
   <%= form.submit %>
 <% end %>

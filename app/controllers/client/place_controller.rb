@@ -15,7 +15,7 @@ class Client::PlaceController < ApplicationController
 
   def create
     @place = Place.new(place_params)
-    @place.user = User.first
+    @place.user = current_client_user
     if @place.save
       redirect_to client_place_index_path, notice: 'Place was successfully created.'
     else
