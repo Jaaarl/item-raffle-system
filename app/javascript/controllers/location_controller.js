@@ -5,6 +5,8 @@ export default class extends Controller {
   
     fetchProvinces(){
         let target = this.selectProvinceIdTarget
+        $(target).empty();
+
         $.ajax({
         type: 'GET',
         url: '/api/v1/regions/' + this.selectedRegionIdTarget.value + '/provinces',

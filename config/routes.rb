@@ -6,6 +6,7 @@ Rails.application.routes.draw do
       resources :homepage, only: [:index]
       resources :menu, only: [:index]
       resources :me, only: [:index]
+      resources :place
     end
     devise_for :users, controllers: {
       sessions: 'client/sessions',
