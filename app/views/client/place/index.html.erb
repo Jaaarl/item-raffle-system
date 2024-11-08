@@ -35,6 +35,7 @@
           <button>Make default</button>
         <% end %>
         <%= button_to 'Delete', client_place_path(place), method: :delete %>
+        <%= link_to 'Edit', edit_client_place_path(place), class: 'btn btn-info btn-sm' %>
         </td>
       </tr>
     <% end %>
