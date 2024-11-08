@@ -7,6 +7,7 @@ Rails.application.routes.draw do
       resources :menu, only: [:index]
       resources :me, only: [:index]
       resources :place
+      resources :invite, only: [:index]
     end
     devise_for :users, controllers: {
       sessions: 'client/sessions',
