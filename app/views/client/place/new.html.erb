@@ -28,7 +28,7 @@
 
   <div class="field">
     <%= form.label :genre %>
-    <%= form.select :genre, options_for_select([['Home', :Home], ['Work', :Work]], @place.genre), prompt: "Select a genre" %>
+    <%= form.select :genre, options_for_select([['Home', :home], ['Work', :work]], @place.genre), prompt: "Select a genre" %>
   </div>
 
   <div class="field">

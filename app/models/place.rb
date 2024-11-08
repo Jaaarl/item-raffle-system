@@ -1,5 +1,5 @@
 class Place < ApplicationRecord
-  enum genre: { Home: 0, Work: 1 }
+  enum genre: { home: 0, work: 1 }
 
   belongs_to :user
   belongs_to :region, class_name: 'Address::Region', foreign_key: 'address_region_id'
