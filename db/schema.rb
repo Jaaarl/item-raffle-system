@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema[7.0].define(version: 2024_11_07_024157) do
+ActiveRecord::Schema[7.0].define(version: 2024_11_09_160952) do
   create_table "address_barangays", charset: "utf8mb4", force: :cascade do |t|
     t.bigint "city_id"
     t.string "code"
@@ -43,6 +43,27 @@ ActiveRecord::Schema[7.0].define(version: 2024_11_07_024157) do
     t.string "name"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
+  end
+
+  create_table "locations", charset: "utf8mb4", force: :cascade do |t|
+    t.integer "genre", default: 0, null: false
+    t.string "name"
+    t.string "street_address"
+    t.string "phone_number"
+    t.text "remark"
+    t.boolean "is_default", default: false
+    t.bigint "user_id", null: false
+    t.bigint "region_id"
+    t.bigint "province_id"
+    t.bigint "city_id"
+    t.bigint "barangay_id"
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+    t.index ["barangay_id"], name: "index_locations_on_barangay_id"
+    t.index ["city_id"], name: "index_locations_on_city_id"
+    t.index ["province_id"], name: "index_locations_on_province_id"
+    t.index ["region_id"], name: "index_locations_on_region_id"
+    t.index ["user_id"], name: "index_locations_on_user_id"
   end
 
   create_table "places", charset: "utf8mb4", force: :cascade do |t|
@@ -81,6 +102,7 @@ ActiveRecord::Schema[7.0].define(version: 2024_11_07_024157) do
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
     t.string "image"
+    t.string "parent_id"
     t.index ["email"], name: "index_users_on_email", unique: true
     t.index ["reset_password_token"], name: "index_users_on_reset_password_token", unique: true
   end
