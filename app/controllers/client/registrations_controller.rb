@@ -8,6 +8,11 @@ class Client::RegistrationsController < Devise::RegistrationsController
     client_homepage_index_path
   end
 
+  def new
+    cookies[:promoter] = params[:promoter]
+    super
+  end
+
   def update
     self.resource = resource_class.to_adapter.get!(send(:"current_#{resource_name}").to_key)
     prev_unconfirmed_email = resource.unconfirmed_email if resource.respond_to?(:unconfirmed_email)
@@ -32,7 +37,7 @@ class Client::RegistrationsController < Devise::RegistrationsController
   
   protected
   def configure_sign_up_params
-    devise_parameter_sanitizer.permit(:sign_up, keys: [:username])
+    devise_parameter_sanitizer.permit(:sign_up, keys: [:username, :parent_id])
   end
 
   def configure_account_update_params
