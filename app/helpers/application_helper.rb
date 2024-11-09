@@ -17,4 +17,11 @@ module ApplicationHelper
 
     svg.html_safe
   end
+
+  def invite_url_link(email)
+    base_url = request.base_url + new_client_user_registration_path
+    full_url = "#{base_url}?promoter=#{email}"
+
+    full_url
+  end
 end
