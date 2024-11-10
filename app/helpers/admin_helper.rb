@@ -4,4 +4,10 @@ module AdminHelper
     total_deposit = total_deposit.map(&:total_deposit).compact
     total_deposit.sum
   end
+
+  def total_used_coins(deposit, coins)
+    deposit ||= 0
+    coins ||= 0
+    total_deposit = (deposit - coins)
+  end
 end
