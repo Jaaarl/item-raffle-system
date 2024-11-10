@@ -16,14 +16,17 @@ class Client::RegistrationsController < Devise::RegistrationsController
   def create
     build_resource(sign_up_params)
     user = User.find_by(email: cookies[:promoter])
-    user.children_members ||= 0
-    user.children_members += 1
-    user.save if resource.save
+    if user
+      user.children_members ||= 0
+      user.children_members += 1      
+    end
+    resource.save
     yield resource if block_given?
     if resource.persisted?
       if resource.active_for_authentication?
         set_flash_message! :notice, :signed_up
         sign_up(resource_name, resource)
+        user.save if user
         respond_with resource, location: after_sign_up_path_for(resource)
       else
         set_flash_message! :notice, :"signed_up_but_#{resource.inactive_message}"
