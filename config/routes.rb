@@ -1,7 +1,6 @@
 Rails.application.routes.draw do
   constraints(ClientDomainConstraint.new) do
     root to: 'client/homepage#index', as: 'client_root'
-    resources :clients, only: [:index]
     namespace :client do
       resources :homepage, only: [:index]
       resources :menu, only: [:index]
@@ -16,7 +15,6 @@ Rails.application.routes.draw do
   end
   constraints(AdminDomainConstraint.new) do
     root to: 'admin/dashboard#index', as: 'admin_root'
-    resources :admins, only: [:index]
     devise_for :users, controllers: {
       sessions: 'admin/sessions',
     }, as: :admin
