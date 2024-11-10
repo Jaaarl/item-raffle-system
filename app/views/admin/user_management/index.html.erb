@@ -1,0 +1,103 @@
+<head>
+  <title>System Management</title>
+</head>
+<body>
+<div class="d-flex" id="wrapper">
+  <div class="bg-dark border-end" id="sidebar-wrapper">
+    <div class="sidebar-heading text-white py-4 px-3 h5">System Management</div>
+    <div class="list-group list-group-flush">
+      <a href="#" class="list-group-item list-group-item-action bg-dark text-white">Homepage</a>
+
+      <div class="list-group list-group-flush">
+        <a class="list-group-item list-group-item-action bg-dark text-white" data-bs-toggle="collapse" href="#collapseMemberManagement" role="button" aria-expanded="false" aria-controls="collapseMemberManagement">
+          Member Management <i class="bi bi-arrow-down-square float-end"></i>
+        </a>
+        <div class="collapse list-group-flush" id="collapseMemberManagement">
+          <%= link_to 'User list', admin_user_management_index_path, class: 'list-group-item list-group-item-action bg-dark text-white ps-5'%>
+          <a href="#" class="list-group-item list-group-item-action bg-dark text-white ps-5">Item List</a>
+        </div>
+      </div>
+
+      <div class="list-group list-group-flush">
+        <a class="list-group-item list-group-item-action bg-dark text-white" data-bs-toggle="collapse" href="#collapseAnotherManagement" role="button" aria-expanded="false" aria-controls="collapseAnotherManagement">
+          Another Management <i class="bi bi-arrow-down-square float-end"></i>
+        </a>
+        <div class="collapse list-group-flush" id="collapseAnotherManagement">
+          <a href="#" class="list-group-item list-group-item-action bg-dark text-white ps-5">Another User List</a>
+          <a href="#" class="list-group-item list-group-item-action bg-dark text-white ps-5">Another Item List</a>
+        </div>
+      </div>
+    </div>
+  </div>
+
+
+
+  <div id="page-content-wrapper" class="w-100">
+    <nav class="navbar navbar-expand-lg navbar-light bg-light border-bottom">
+      <div class="container-fluid">
+        <div class="ms-auto dropdown">
+          <a class="text-decoration-none text-dark btn border-black">
+            Change Language
+          </a>
+          <a class="text-decoration-none text-dark btn dropdown-toggle border-black" type="button" id="dropdownMenuButton" data-bs-toggle="dropdown" aria-expanded="false">
+            Username
+          </a>
+          <ul class="dropdown-menu dropdown-menu-end" aria-labelledby="dropdownMenuButton">
+            <li><a class="text-dark text-decoration-none btn btn-links" href="#">Profile</a></li>
+            <li><%= button_to 'Sign out', destroy_admin_user_session_path, method: :delete, class: "text-dark text-decoration-none btn btn-links" %></li>
+          </ul>
+        </div>
+      </div>
+    </nav>
+
+    <div class="container-fluid mt-4">
+        <div class="table-responsive">
+            <table class="table table-striped">
+            <thead>
+                <tr>
+                <th>Parent Email</th>
+                <th>Email</th>
+                <th>Total Deposit</th>
+                <th>Member Total Deposits</th>
+                <th>Coins</th>
+                <th>Total Used Coins</th>
+                <th>Children Members</th>
+                <th>Phone Number</th>
+                </tr>
+            </thead>
+            <tbody>
+                <% @clients.each do |client| %>
+                <tr>
+                    <td><%= client.parent_id.blank? ? "N/A" : client.parent_id %></td>
+                    <td><%= client.email %></td>
+                    <td><%= client.total_deposit %></td>
+                    <td><% 'client children total depost'%> </td> 
+                    <td><%= client.coins %></td>
+                    <td><% 'client children total depost'%> </td>
+                    <td><%= client.children_members %></td>
+                    <td><%= client.phone %></td>
+                </tr>
+                <% end %>
+            </tbody>
+            </table>
+        </div>
+    </div>
+
+<style>
+    #wrapper {
+        display: flex;
+        width: 100%;
+    }
+    #sidebar-wrapper {
+        min-height: 100vh;
+        min-width: 250px;
+        max-width: 250px;
+    }
+    #page-content-wrapper {
+        flex: 1;
+    }
+    .toggled #sidebar-wrapper {
+        margin-left: -250px;
+    }
+</style>
+</body>
