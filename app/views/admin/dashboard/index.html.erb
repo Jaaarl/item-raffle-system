@@ -2,35 +2,7 @@
   <title>System Management</title>
 </head>
 <body>
-<div class="d-flex" id="wrapper">
-  <div class="bg-dark border-end" id="sidebar-wrapper">
-    <div class="sidebar-heading text-white py-4 px-3 h5">System Management</div>
-    <div class="list-group list-group-flush">
-      <a href="#" class="list-group-item list-group-item-action bg-dark text-white">Homepage</a>
-
-      <div class="list-group list-group-flush">
-        <a class="list-group-item list-group-item-action bg-dark text-white" data-bs-toggle="collapse" href="#collapseMemberManagement" role="button" aria-expanded="false" aria-controls="collapseMemberManagement">
-          Member Management <i class="bi bi-arrow-down-square float-end"></i>
-        </a>
-        <div class="collapse list-group-flush" id="collapseMemberManagement">
-          <a href="#" class="list-group-item list-group-item-action bg-dark text-white ps-5">User List</a>
-          <a href="#" class="list-group-item list-group-item-action bg-dark text-white ps-5">Item List</a>
-        </div>
-      </div>
-
-      <div class="list-group list-group-flush">
-        <a class="list-group-item list-group-item-action bg-dark text-white" data-bs-toggle="collapse" href="#collapseAnotherManagement" role="button" aria-expanded="false" aria-controls="collapseAnotherManagement">
-          Another Management <i class="bi bi-arrow-down-square float-end"></i>
-        </a>
-        <div class="collapse list-group-flush" id="collapseAnotherManagement">
-          <a href="#" class="list-group-item list-group-item-action bg-dark text-white ps-5">Another User List</a>
-          <a href="#" class="list-group-item list-group-item-action bg-dark text-white ps-5">Another Item List</a>
-        </div>
-      </div>
-    </div>
-  </div>
-
-
+  <%= render 'admin/shared/sidebar'%>
 
   <div id="page-content-wrapper" class="w-100">
     <nav class="navbar navbar-expand-lg navbar-light bg-light border-bottom">
