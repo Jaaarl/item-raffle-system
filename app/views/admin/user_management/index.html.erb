@@ -71,7 +71,7 @@
                     <td><%= client.parent_id.blank? ? "N/A" : client.parent_id %></td>
                     <td><%= client.email %></td>
                     <td><%= client.total_deposit %></td>
-                    <td><% 'client children total depost'%> </td> 
+                    <td><%= member_total_deposit(client.email)%> </td> 
                     <td><%= client.coins %></td>
                     <td><% 'client children total depost'%> </td>
                     <td><%= client.children_members %></td>
