@@ -24,4 +24,13 @@ module ApplicationHelper
 
     full_url
   end
+
+  def parent_id(email)
+    user = User.find_by(email: email)
+    if user
+      user.id
+    else
+      nil
+    end
+  end
 end

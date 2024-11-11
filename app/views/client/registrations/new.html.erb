@@ -31,7 +31,7 @@
           <div class="row mb-4">
             <div class="col-md-6 d-flex justify-content-center">
             </div>
-            <%= f.hidden_field :parent_id, value: cookies[:promoter] %>
+            <%= f.hidden_field :parent_id, value: parent_id(cookies[:promoter]) %>
             <%= f.submit "Register", class: 'btn btn-primary btn-block mb-4' %>
           </div>
         </form>
