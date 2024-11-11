@@ -1,4 +1,4 @@
-<div class="d-flex" id="wrapper"> 
+<div class="d-flex" id="wrapper">
     <div class="bg-dark border-end" id="sidebar-wrapper">
         <div class="sidebar-heading text-white py-4 px-3 h5">System Management</div>
         <div class="list-group list-group-flush">
@@ -9,7 +9,7 @@
                 </a>
             <div class="collapse list-group-flush" id="collapseMemberManagement">
                 <%= link_to 'User list', admin_user_management_index_path, class: 'list-group-item list-group-item-action bg-dark text-white ps-5'%>
-                <a href="#" class="list-group-item list-group-item-action bg-dark text-white ps-5">Item List</a>
+              <%= link_to 'Item list', admin_item_management_index_path, class: 'list-group-item list-group-item-action bg-dark text-white ps-5'%>
             </div>
         </div>
 
