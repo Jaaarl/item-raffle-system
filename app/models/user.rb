@@ -5,7 +5,7 @@ class User < ApplicationRecord
          :recoverable, :rememberable, :validatable
   has_many :places
   has_many :children, class_name: 'User', foreign_key: 'parent_id', dependent: :nullify
-  belongs_to :parent, class_name: 'User', optional: true
+  belongs_to :parent, class_name: 'User', optional: true, counter_cache: :children_members
   enum role: { client: 0, admin: 1 }
   mount_uploader :image, ImageUploader
   validates :phone, phone: true, allow_blank: true
