@@ -37,6 +37,13 @@
       </div>
 
       <div class="form-group">
+        <strong>Categories:</strong>
+        <p>
+          <%= @item.categories.pluck(:name).join(', ').capitalize %>
+        </p>
+      </div>
+      
+      <div class="form-group">
         <strong>Quantity:</strong>
         <p><%= @item.quantity %></p>
       </div>
