@@ -48,6 +48,12 @@
     <%= form.label :image, class: 'form-label' %>
     <%= form.file_field :image, class: 'form-control-file' %>
   </div>
+  <div>
+    <%= form.collection_check_boxes :category_ids, Category.all, :id, :name do |b| %>
+      <%= b.check_box %>
+      <%= b.label %>
+    <% end %>
+  </div>
 
   <%= form.submit  class: 'btn btn-success my-2' %>
 <% end %>

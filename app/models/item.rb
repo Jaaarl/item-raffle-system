@@ -6,4 +6,6 @@ class Item < ApplicationRecord
   mount_uploader :image, ImageUploader
 
   belongs_to :category
+  has_many :item_category_ships
+  has_many :categories, through: :item_category_ships
 end

@@ -53,7 +53,8 @@ class Admin::ItemManagementController < Admin::BaseController
       :offline_at,
       :start_at,
       :status,
-      :image
+      :image,
+      category_ids: []
     )
   end
 end
