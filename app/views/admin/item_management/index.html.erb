@@ -25,7 +25,44 @@
   <div class="container-fluid mt-4">
     <div class="table-responsive">
       <table class="table table-striped">
+        <thead>
+          <tr>
+            <th>Name</th>
+            <th>Image</th>
+            <th>Quantity</th>
+            <th>Minimum Tickets</th>
+            <th>State</th>
+            <th>Batch Count</th>
+            <th>Online At</th>
+            <th>Offline At</th>
+            <th>Start At</th>
+            <th>Status</th>
+            <th>Action</th>
+          </tr>
+        </thead>
+        <tbody>
+        <% @items.each do |item| %>
+          <tr>
+            <td><%= item.name %></td>
+            <td><%= image_tag item.image.url, style: "max-width: 100px; max-height: 100px; object-fit: cover;" if item.image.present? %></td>
+            <td><%= item.quantity %></td>
+            <td><%= item.minimum_tickets %></td>
+            <td><%= item.state %></td>
+            <td><%= item.batch_count %></td>
+            <td><%= item.online_at&.strftime('%Y-%m-%d %H:%M') %></td>
+            <td><%= item.offline_at&.strftime('%Y-%m-%d %H:%M') %></td>
+            <td><%= item.start_at&.strftime('%Y-%m-%d %H:%M') %></td>
+            <td><%= item.status&.capitalize %></td>
+            <td>
+              <%= link_to 'Show',admin_item_management_path(item), class: 'btn btn-primary' %>
+              <%= link_to 'Edit',edit_admin_item_management_path(item), class: 'btn btn-primary' %>
+              <%= button_to 'Delete',admin_item_management_path(item),method: :delete, class: 'btn btn-primary' %>
+            </td>
+          </tr>
+        <% end %>
+        </tbody>
       </table>
+      <%= link_to 'Add Item',new_admin_item_management_path, class: 'btn btn-primary' %>
     </div>
   </div>
 </div>
