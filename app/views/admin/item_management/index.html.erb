@@ -37,6 +37,7 @@
             <th>Offline At</th>
             <th>Start At</th>
             <th>Status</th>
+            <th>Categories</th>
             <th>Action</th>
           </tr>
         </thead>
@@ -53,6 +54,13 @@
             <td><%= item.offline_at&.strftime('%Y-%m-%d %H:%M') %></td>
             <td><%= item.start_at&.strftime('%Y-%m-%d %H:%M') %></td>
             <td><%= item.status&.capitalize %></td>
+            <td class="text-wrap">
+              <ul>
+                <% item.categories.each do |category| %>
+                  <li><%= category.name %></li>
+                <% end %>
+              </ul>
+            </td>
             <td>
               <%= link_to 'Show',admin_item_management_path(item), class: 'btn btn-primary' %>
               <%= link_to 'Edit',edit_admin_item_management_path(item), class: 'btn btn-primary' %>
