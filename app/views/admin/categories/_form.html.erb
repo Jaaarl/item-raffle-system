@@ -1,0 +1,7 @@
+<%= form_with(model: @category, url: custom_url, local: true) do |form| %>
+  <div class="form-group">
+    <%= form.label :name %>
+    <%= form.text_field :name, class: 'form-control' %>
+  </div>
+  <%= form.submit  class: 'btn btn-success my-2' %>
+<% end %>

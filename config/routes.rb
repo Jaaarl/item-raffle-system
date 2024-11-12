@@ -22,6 +22,7 @@ Rails.application.routes.draw do
       resources :dashboard, only: [:index]
       resources :user_management, only: [:index]
       resources :item_management
+      resources :categories
     end
   end
   namespace :api do
