@@ -32,7 +32,7 @@ class Admin::ItemManagementController < Admin::BaseController
   end
 
   def destroy
-    @item.destroy
+    @item.update(deleted_at: Time.current)
     redirect_to admin_item_management_index_path, notice: 'Item was successfully deleted.'
   end
 
