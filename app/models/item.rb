@@ -18,7 +18,9 @@ class Item < ApplicationRecord
     state :starting, :paused, :ended, :cancelled
 
     event :start do
-      transitions from: [:pending, :paused, :ended, :cancelled], to: :starting, success: :update_value
+      transitions from: [:pending, :paused, :ended, :cancelled], to: :starting,
+                  guard: :can_start?,
+                  success: :update_value
     end
 
     event :pause do
@@ -37,5 +39,9 @@ class Item < ApplicationRecord
   def update_value
     self.update(quantity: self.quantity - 1)
     self.update(batch_count: self.batch_count + 1)
+  end
+
+  def can_start?
+    self.quantity > 0 && self.offline_at > Time.current && self.status == "active"
   end
 end
