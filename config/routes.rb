@@ -23,6 +23,14 @@ Rails.application.routes.draw do
       resources :user_management, only: [:index]
       resources :item_management
       resources :categories
+      resources :item_management do
+        member do
+          patch :start
+          patch :pause
+          patch :end
+          patch :cancel
+        end
+      end
     end
   end
   namespace :api do
