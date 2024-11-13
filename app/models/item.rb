@@ -18,7 +18,7 @@ class Item < ApplicationRecord
     state :starting, :paused, :ended, :cancelled
 
     event :start do
-      transitions from: [:pending, :paused, :ended, :cancelled], to: :starting
+      transitions from: [:pending, :paused, :ended, :cancelled], to: :starting, success: :update_value
     end
 
     event :pause do
@@ -34,4 +34,8 @@ class Item < ApplicationRecord
     end
   end
 
+  def update_value
+    self.update(quantity: self.quantity - 1)
+    self.update(batch_count: self.batch_count + 1)
+  end
 end
