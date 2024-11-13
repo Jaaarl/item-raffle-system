@@ -1,6 +1,9 @@
 class Item < ApplicationRecord
   default_scope { where(deleted_at: nil) }
-
+  validates :name, presence: true, length: { maximum: 255 }
+  validates :quantity, presence: true, numericality: { only_integer: true, greater_than_or_equal_to: 0 }
+  validates :batch_count, presence: true, numericality: { only_integer: true, greater_than_or_equal_to: 0 }
+  validates :minimum_tickets, presence: true, numericality: { only_integer: true, greater_than_or_equal_to: 0 }
   enum status: { active: 0, inactive: 1 }
 
   mount_uploader :image, ImageUploader
