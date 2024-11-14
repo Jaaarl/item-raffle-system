@@ -7,6 +7,7 @@ Rails.application.routes.draw do
       resources :me, only: [:index]
       resources :place
       resources :invite, only: [:index]
+      resources :lottery, only: [:index]
     end
     devise_for :users, controllers: {
       sessions: 'client/sessions',
