@@ -29,54 +29,34 @@
   </div>
 
   <div class="container mt-4">
-    <div class="d-flex justify-content-center mb-3">
-      <button class="btn btn-outline-primary me-2" data-filter="all">All</button>
-      <button class="btn btn-outline-primary me-2" data-filter="phone">Phone</button>
-      <button class="btn btn-outline-primary me-2" data-filter="tv">TV</button>
-      <button class="btn btn-outline-primary me-2" data-filter="perfume">Perfume</button>
-      <button class="btn btn-outline-primary" data-filter="electronics">Electronics</button>
+    <div class="mb-3">
+      <% @categories.each do |category| %>
+        <button class="btn btn-outline-primary me-2">
+          <%= category.name.capitalize %>
+        </button>
+      <% end %>
     </div>
-
     <div class="row" id="product-grid">
-      <div class="col-md-6 col-lg-3 mb-4 product-item">
-        <div class="card">
-          <div class="card-body">
-            <div class="card-img-top bg-light d-flex justify-content-center align-items-center" style="height: 150px;">
-              Image 1
+      <% @items.each do |item| %>
+        <div class="col-md-6 col-lg-3 mb-4 product-item">
+          <div class="card">
+            <div class="card-body">
+              <div class="card-img-top bg-light d-flex justify-content-center align-items-center" style="height: 150px;">
+                <% if item.image.present? %>
+                  <%= image_tag item.image.url, style: "max-width: 100px; max-height: 100px; object-fit: cover;" if item.image.present? %>
+                <% else %>
+                  <span class="text-muted">No Image Available</span>
+                <% end %>
+              </div>
+              <h5 class="card-title mb-3 text-dark font-weight-bold"><%= item.name %></h5>
+              <div class="d-flex justify-content-between">
+                <h6 class="card-text text-secondary"><strong>Status:</strong> <%= item.status %></h6>
+                <h6 class="card-text text-muted"><strong>State:</strong> <%= item.state %></h6>
+              </div>
             </div>
           </div>
         </div>
-      </div>
-
-      <div class="col-md-6 col-lg-3 mb-4 product-item">
-        <div class="card">
-          <div class="card-body">
-            <div class="card-img-top bg-light d-flex justify-content-center align-items-center" style="height: 150px;">
-              Image 2
-            </div>
-          </div>
-        </div>
-      </div>
-
-      <div class="col-md-6 col-lg-3 mb-4 product-item" >
-        <div class="card">
-          <div class="card-body">
-            <div class="card-img-top bg-light d-flex justify-content-center align-items-center" style="height: 150px;">
-              Image 3
-            </div>
-          </div>
-        </div>
-      </div>
-
-      <div class="col-md-6 col-lg-3 mb-4 product-item">
-        <div class="card">
-          <div class="card-body">
-            <div class="card-img-top bg-light d-flex justify-content-center align-items-center" style="height: 150px;">
-              Image 4
-            </div>
-          </div>
-        </div>
-      </div>
+      <% end %>
     </div>
 
     <div class="text-end">
