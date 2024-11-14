@@ -24,6 +24,7 @@ Rails.application.routes.draw do
       resources :user_management, only: [:index]
       resources :item_management
       resources :categories
+      resources :ticket, only: [:index]
       resources :item_management do
         member do
           patch :start
