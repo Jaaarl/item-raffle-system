@@ -1,5 +1,3 @@
-<%= render 'client/shared/navbar' %>
-
 <div class="d-flex flex-column align-items-center mt-5 min-vh-100">
     <div class="mb-4">
         <%= qrcode(current_client_user&.email || '') %>
@@ -9,5 +7,3 @@
         <%= invite_url_link(current_client_user&.email || '') %>
     </div>
 </div>
-
-<%= render 'client/shared/footer' %>
