@@ -5,6 +5,8 @@ class Item < ApplicationRecord
   validates :minimum_tickets, presence: true, numericality: { only_integer: true, greater_than_or_equal_to: 0 }
   validates :online_at, presence: true
   validates :offline_at, presence: true
+  attribute :batch_count, :integer, default: 0
+  attribute :minimum_tickets, :integer, default: 1
   enum status: { active: 1, inactive: 0 }
 
   mount_uploader :image, ImageUploader
@@ -43,7 +45,7 @@ class Item < ApplicationRecord
   end
 
   def can_start?
-    self.quantity > 0 && self.offline_at > Time.current && self.status == "active"
+    self.quantity > 0 && self.offline_at > Time.current && self.active?
   end
 
   def destroy
