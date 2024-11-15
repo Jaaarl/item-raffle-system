@@ -45,4 +45,8 @@ class Item < ApplicationRecord
   def can_start?
     self.quantity > 0 && self.offline_at > Time.current && self.status == "active"
   end
+
+  def destroy
+    update(deleted_at: Time.current)
+  end
 end
