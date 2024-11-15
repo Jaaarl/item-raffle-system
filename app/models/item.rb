@@ -6,7 +6,7 @@ class Item < ApplicationRecord
   validates :minimum_tickets, presence: true, numericality: { only_integer: true, greater_than_or_equal_to: 0 }
   validates :online_at, presence: true
   validates :offline_at, presence: true
-  enum status: { active: 0, inactive: 1 }
+  enum status: { active: 1, inactive: 0 }
 
   mount_uploader :image, ImageUploader
 

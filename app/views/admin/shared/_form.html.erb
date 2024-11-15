@@ -41,7 +41,7 @@
 
   <div class="form-group">
     <%= form.label :status %>
-    <%= form.select :status, options_for_select(['active', 'inactive']), {}, class: 'form-control' %>
+    <%= form.select :status, options_for_select(Item.statuses.keys.map { |status| [status.humanize, status] }, selected: item.status), {}, class: 'form-control' %>
   </div>
 
   <div class="form-group">
