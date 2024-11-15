@@ -42,8 +42,8 @@ class Client::RegistrationsController < Devise::RegistrationsController
     yield resource if block_given?
     if resource_updated
       set_flash_message_for_update(resource, prev_unconfirmed_email)
+      flash[:notice] = 'User profile has been updated successfully.'
       bypass_sign_in resource, scope: resource_name if sign_in_after_change_password?
-
       redirect_to client_me_index_path
     else
       clean_up_passwords resource
