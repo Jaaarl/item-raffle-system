@@ -4,6 +4,8 @@ class Item < ApplicationRecord
   validates :quantity, presence: true, numericality: { only_integer: true, greater_than_or_equal_to: 0 }
   validates :batch_count, presence: true, numericality: { only_integer: true, greater_than_or_equal_to: 0 }
   validates :minimum_tickets, presence: true, numericality: { only_integer: true, greater_than_or_equal_to: 0 }
+  validates :online_at, presence: true
+  validates :offline_at, presence: true
   enum status: { active: 0, inactive: 1 }
 
   mount_uploader :image, ImageUploader
