@@ -23,8 +23,37 @@
   </nav>
 
   <div class="container-fluid mt-4">
-  <h1>Ticket View</h1>
-
+  <h1>Tickets</h1>
+  <div class="table-responsive">
+      <table class="table table-bordered table-striped">
+        <thead>
+          <tr>
+            <th scope="col">Serial Number</th>
+            <th scope="col">Item</th>
+            <th scope="col">Email</th>
+            <th scope="col">Batch Count</th>
+            <th scope="col">Coins</th>
+            <th scope="col">State</th>
+            <th scope="col">Serial Number</th>
+            <th scope="col">Created At</th>
+          </tr>
+        </thead>
+        <tbody>
+          <% @ticket.each do |ticket| %>
+            <tr>
+              <td><%= ticket.serial_number %></td>
+              <td><%= ticket.item.name %></td>
+              <td><%= ticket.user.email %></td>
+              <td><%= ticket.batch_count %></td>
+              <td><%= ticket.coins %></td>
+              <td><%= ticket.state %></td>
+              <td><%= ticket.serial_number %></td>
+              <td><%= ticket.created_at.strftime('%Y-%m-%d %H:%M:%S') %></td>
+            </tr>
+          <% end %>
+        </tbody>
+      </table>
+    </div>
   </div>
 </div>
 </body>

@@ -1,3 +1,5 @@
 class Admin::TicketController < Admin::BaseController
-  def index; end
+  def index
+    @ticket = Ticket.includes(:user, :item).all
+  end
 end
