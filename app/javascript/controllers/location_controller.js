@@ -7,6 +7,11 @@ export default class extends Controller {
         let target = this.selectedProvinceIdTarget
         $(target).empty();
 
+        let defaultOption = document.createElement("option");
+        defaultOption.value = "";
+        defaultOption.text = "Please select province";
+        target.appendChild(defaultOption);
+
         $.ajax({
         type: 'GET',
         url: '/api/v1/regions/' + this.selectedRegionIdTarget.value + '/provinces',
@@ -26,6 +31,11 @@ export default class extends Controller {
         let target = this.selectedCityIdTarget
         $(target).empty();
 
+        let defaultOption = document.createElement("option");
+        defaultOption.value = "";
+        defaultOption.text = "Please select city";
+        target.appendChild(defaultOption);
+
         $.ajax({
             type: 'GET',
             url: '/api/v1/provinces/' + this.selectedProvinceIdTarget.value + '/cities',
@@ -44,6 +54,11 @@ export default class extends Controller {
     fetchBarangays(){
         let target = this.selectedBarangayIdTarget
         $(target).empty();
+
+        let defaultOption = document.createElement("option");
+        defaultOption.value = "";
+        defaultOption.text = "Please select barangay";
+        target.appendChild(defaultOption);
 
         $.ajax({
             type: 'GET',
