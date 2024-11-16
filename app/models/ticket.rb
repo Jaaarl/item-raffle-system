@@ -1,6 +1,6 @@
 class Ticket < ApplicationRecord
-  before_create :update
-
+  before_create :update_value
+  after_create :assign_serial_number
   belongs_to :user
   belongs_to :item
 
@@ -22,13 +22,26 @@ class Ticket < ApplicationRecord
     end
   end
 
-  def update
+  private
+
+  def update_value
+    deduct_coins
+    assign_batch_count
+  end
+
+  def assign_batch_count
     self.batch_count = item.batch_count
-    number_count = Ticket.where(item_id: item_id, batch_count: batch_count).count + 1
+  end
+
+  def deduct_coins
+    user.coins -= 1
+    user.save
+  end
+
+  def assign_serial_number
+    number_count = Ticket.where(item_id: item_id, batch_count: batch_count).count
     formatted_number_count = number_count.to_s.rjust(4, '0')
     time = Time.current.strftime("%y%m%d")
     self.serial_number = "#{time}-#{item.id}-#{item.batch_count}-#{formatted_number_count}"
-    user.coins -= 1
-    user.save
   end
 end
