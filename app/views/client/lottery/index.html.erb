@@ -28,10 +28,9 @@
 
   <div class="container mt-4">
     <div class="mb-3">
+      <%= link_to "All Categories", client_lottery_index_path, class: "btn btn-outline-secondary me-2" %>
       <% @categories.each do |category| %>
-        <button class="btn btn-outline-primary me-2">
-          <%= category.name.capitalize %>
-        </button>
+        <%= link_to category.name.capitalize, client_lottery_index_path(category_id: category.id), class: "btn btn-outline-primary me-2" %>
       <% end %>
     </div>
     <div class="row" id="product-grid">
