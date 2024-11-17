@@ -37,8 +37,19 @@ class Item < ApplicationRecord
     end
 
     event :cancel do
-      transitions from: [:starting, :paused], to: :cancelled
+      transitions from: [:starting, :paused], to: :cancelled,
+                  success: :refund_coins
     end
+  end
+
+  def refund_coins
+    self.tickets.each do |ticket|
+      if ticket.may_cancel?
+        ticket.cancel!
+        ticket.save
+      end
+    end
+    self.save
   end
 
   private
