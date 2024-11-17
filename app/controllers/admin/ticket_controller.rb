@@ -1,7 +1,31 @@
 class Admin::TicketController < Admin::BaseController
   before_action :set_ticket, only: [:cancel]
   def index
-    @ticket = Ticket.includes(:user, :item).all
+    @tickets = Ticket.includes(:user, :item).all
+
+    if params[:serial_number].present?
+      @tickets = @tickets.where(serial_number: params[:serial_number])
+    end
+
+    if params[:item_name].present?
+      @tickets = @tickets.joins(:item).where('items.name LIKE ?', "%#{params[:item_name]}%")
+    end
+
+    if params[:email].present?
+      @tickets = @tickets.joins(:user).where('users.email LIKE ?', "%#{params[:email]}%")
+    end
+
+    if params[:state].present?
+      @tickets = @tickets.where(state: params[:state])
+    end
+
+    if params[:start_date].present? && params[:end_date].present?
+      @tickets = @tickets.where(created_at: params[:start_date]..params[:end_date])
+    elsif params[:start_date].present?
+      @tickets = @tickets.where('created_at >= ?', params[:start_date])
+    elsif params[:end_date].present?
+      @tickets = @tickets.where('created_at <= ?', params[:end_date])
+    end
   end
 
   def cancel
