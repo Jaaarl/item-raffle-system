@@ -32,8 +32,13 @@ class Admin::ItemManagementController < Admin::BaseController
   end
 
   def destroy
-    @item.update(deleted_at: Time.current)
+    tickets = Ticket.find_by(item_id: @item.id)
+    if tickets
+      redirect_to admin_item_management_index_path, notice: 'Cannot delete item. This item has associated tickets.'
+    else
+    @item.destroy!
     redirect_to admin_item_management_index_path, notice: 'Item was successfully deleted.'
+      end
   end
 
   def start

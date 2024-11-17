@@ -10,7 +10,8 @@ class Item < ApplicationRecord
   enum status: { active: 1, inactive: 0 }
 
   mount_uploader :image, ImageUploader
-
+  
+  has_many :tickets
   has_many :item_category_ships
   has_many :categories, through: :item_category_ships
 
