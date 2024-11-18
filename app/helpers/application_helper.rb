@@ -33,4 +33,9 @@ module ApplicationHelper
       nil
     end
   end
+
+  def percentage(item)
+    # @percentage = ((@exam.score.to_f / @exam.total_score) * 100).round(2)
+    percent = item.minimum_tickets / Item.where(batch_count: item.batch_count).count
+  end
 end

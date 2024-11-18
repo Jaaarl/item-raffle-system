@@ -6,18 +6,18 @@ export default class extends Controller {
     connect() {
         // Set default value if empty
         if (!this.inputTarget.value) {
-            this.inputTarget.value = 0;
+            this.inputTarget.value = 1;
         }
     }
 
     increment() {
-        const currentValue = parseInt(this.inputTarget.value) || 0;
+        const currentValue = parseInt(this.inputTarget.value) || 1;
         this.inputTarget.value = currentValue + 1;
     }
 
     decrement() {
-        const currentValue = parseInt(this.inputTarget.value) || 0;
-        if (currentValue > 0) {
+        const currentValue = parseInt(this.inputTarget.value) || 1;
+        if (currentValue > 1) {
             this.inputTarget.value = currentValue - 1;
         }
     }

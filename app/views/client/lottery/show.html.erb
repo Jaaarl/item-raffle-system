@@ -1,23 +1,26 @@
-<div class="container mt-4" style="min-height: 118vh;">
+<div class="container mt-4" style="min-height: 120vh;">
   <div class="card">
     <div class="card-body">
       <div class="mb-3">
         <div class="ratio ratio-16x9 bg-secondary d-flex align-items-center justify-content-center text-white">
-          Image cap
+          <%= image_tag @item.image.url, class: "border", size: "60x60" if @item.image.present? %>
+          <% unless @item.image.present? %>
+             No image
+          <% end %>
         </div>
       </div>
 
       <div class="mb-3">
         <div class="d-flex justify-content-between">
-          <span>Item Name</span>
-          <span id="progress-percentage">61%</span>
+          <span><%= @item.name %></span>
+          <span id="progress-percentage"> <%= percentage(@item) %>%</span>
         </div>
         <div class="progress">
           <div id="progress-bar"
                class="progress-bar"
                role="progressbar"
-               style="width: 61%;"
-               aria-valuenow="61"
+               style="width: <%= percentage(@item) %>%;"
+               aria-valuenow="<%= percentage(@item) %>"
                aria-valuemin="0"
                aria-valuemax="100"></div>
         </div>
@@ -25,23 +28,26 @@
 
       <div class="input-group mb-3" data-controller="counter">
         <button class="btn btn-outline-secondary" data-action="click->counter#decrement" type="button">-</button>
-        <%= number_field_tag 'counter', 0,
+        <%= number_field_tag 'counter', 1,
                              class: 'form-control text-center',
                              id: 'counter-input',
-                             min: 0,
+                             min: 1,
                              data: { counter_target: 'input' } %>
         <button class="btn btn-outline-secondary" data-action="click->counter#increment" type="button">+</button>
       </div>
 
       <div class="d-grid mb-3">
-        <button type="submit" class="btn btn-warning">Submit</button>
+        <button type="submit" class="btn btn-warning">Buy tickets</button>
       </div>
 
-      <div class="mb-3">
+      <div class="mb-3" style=" margin-bottom: 550px;">
         <div class="d-flex flex-column">
-          <div class="border p-2">Serial Number</div>
-          <div class="border p-2">xxxxxxxxxxxx</div>
-          <div class="border p-2">xxxxxxxxxxxx</div>
+          <div class="border p-2">Ticket</div>
+          <% @item.tickets.each do |ticket| %>
+            <% if ticket.user == current_client_user %>
+              <div class="border p-2"><%= ticket.serial_number %></div>
+            <% end %>
+          <% end %>
         </div>
       </div>
     </div>
