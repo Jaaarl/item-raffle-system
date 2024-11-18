@@ -26,20 +26,22 @@
         </div>
       </div>
 
-      <div class="input-group mb-3" data-controller="counter">
-        <button class="btn btn-outline-secondary" data-action="click->counter#decrement" type="button">-</button>
-        <%= number_field_tag 'counter', 1,
-                             class: 'form-control text-center',
-                             id: 'counter-input',
-                             min: 1,
-                             data: { counter_target: 'input' } %>
-        <button class="btn btn-outline-secondary" data-action="click->counter#increment" type="button">+</button>
-      </div>
+      <%= form_with url: client_buy_tickets_path(@item), method: :post, local: true do |form| %>
+        <div class="input-group mb-3" data-controller="counter">
+          <button class="btn btn-outline-secondary" data-action="click->counter#decrement" type="button">-</button>
+          <%= number_field_tag 'counter', 1,
+                               class: 'form-control text-center',
+                               id: 'counter-input',
+                               min: 1,
+                               data: { counter_target: 'input' } %>
+          <button class="btn btn-outline-secondary" data-action="click->counter#increment" type="button">+</button>
+        </div>
 
-      <div class="d-grid mb-3">
-        <button type="submit" class="btn btn-warning">Buy tickets</button>
-      </div>
 
+        <div class="d-grid mb-3">
+          <button type="submit" class="btn btn-warning">Buy tickets</button>
+        </div>
+      <% end %>
       <div class="mb-3" style=" margin-bottom: 550px;">
         <div class="d-flex flex-column">
           <div class="border p-2">Ticket</div>
