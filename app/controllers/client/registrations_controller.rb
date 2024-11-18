@@ -34,6 +34,7 @@ class Client::RegistrationsController < Devise::RegistrationsController
       respond_with resource
     end
   end
+
   def update
     self.resource = resource_class.to_adapter.get!(send(:"current_#{resource_name}").to_key)
     prev_unconfirmed_email = resource.unconfirmed_email if resource.respond_to?(:unconfirmed_email)
@@ -51,12 +52,13 @@ class Client::RegistrationsController < Devise::RegistrationsController
       if resource.errors.any?
         flash[:alert] = resource.errors.full_messages.to_sentence
       end
-      
+
       redirect_to edit_client_user_registration_path
     end
   end
-  
+
   protected
+
   def configure_sign_up_params
     devise_parameter_sanitizer.permit(:sign_up, keys: [:username, :parent_id])
   end

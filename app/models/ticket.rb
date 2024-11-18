@@ -19,7 +19,7 @@ class Ticket < ApplicationRecord
 
     event :cancel do
       transitions from: :pending, to: :cancelled,
-      success: :refund_coins
+                  success: :refund_coins
     end
   end
 
@@ -42,7 +42,7 @@ class Ticket < ApplicationRecord
   def refund_coins
     user.coins = user.coins + self.coins
     user.save
-  end 
+  end
 
   def assign_serial_number
     number_count = Ticket.where(item_id: item_id, batch_count: batch_count).count

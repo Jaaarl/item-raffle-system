@@ -5,7 +5,7 @@
         <div class="ratio ratio-16x9 bg-secondary d-flex align-items-center justify-content-center text-white">
           <%= image_tag @item.image.url, class: "border", size: "60x60" if @item.image.present? %>
           <% unless @item.image.present? %>
-             No image
+            No image
           <% end %>
         </div>
       </div>

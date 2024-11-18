@@ -1,43 +1,46 @@
 <div class="d-flex" id="wrapper">
-    <div class="bg-dark border-end" id="sidebar-wrapper">
-        <div class="sidebar-heading text-white py-4 px-3 h5">System Management</div>
-        <div class="list-group list-group-flush">
-            <%= link_to 'Homepage', admin_root_path , class: 'list-group-item list-group-item-action bg-dark text-white'%>
-            <div class="list-group list-group-flush">
-                <a class="list-group-item list-group-item-action bg-dark text-white" data-bs-toggle="collapse" href="#collapseMemberManagement" role="button" aria-expanded="false" aria-controls="collapseMemberManagement">
-                    Member Management <i class="bi bi-arrow-down-square float-end"></i>
-                </a>
-            <div class="collapse list-group-flush" id="collapseMemberManagement">
-              <%= link_to 'User list', admin_user_management_index_path, class: 'list-group-item list-group-item-action bg-dark text-white ps-5'%>
-              <%= link_to 'Item list', admin_item_management_index_path, class: 'list-group-item list-group-item-action bg-dark text-white ps-5'%>
-            </div>
+  <div class="bg-dark border-end" id="sidebar-wrapper">
+    <div class="sidebar-heading text-white py-4 px-3 h5">System Management</div>
+    <div class="list-group list-group-flush">
+      <%= link_to 'Homepage', admin_root_path, class: 'list-group-item list-group-item-action bg-dark text-white' %>
+      <div class="list-group list-group-flush">
+        <a class="list-group-item list-group-item-action bg-dark text-white" data-bs-toggle="collapse" href="#collapseMemberManagement" role="button" aria-expanded="false" aria-controls="collapseMemberManagement">
+          Member Management <i class="bi bi-arrow-down-square float-end"></i>
+        </a>
+        <div class="collapse list-group-flush" id="collapseMemberManagement">
+          <%= link_to 'User list', admin_user_management_index_path, class: 'list-group-item list-group-item-action bg-dark text-white ps-5' %>
+          <%= link_to 'Item list', admin_item_management_index_path, class: 'list-group-item list-group-item-action bg-dark text-white ps-5' %>
         </div>
+      </div>
 
-        <div class="list-group list-group-flush">
-            <a class="list-group-item list-group-item-action bg-dark text-white" data-bs-toggle="collapse" href="#collapseAnotherManagement" role="button" aria-expanded="false" aria-controls="collapseAnotherManagement">
-            Another Management <i class="bi bi-arrow-down-square float-end"></i>
-            </a>
-            <div class="collapse list-group-flush" id="collapseAnotherManagement">
-              <%= link_to 'Category', admin_categories_path, class: 'list-group-item list-group-item-action bg-dark text-white ps-5'%>
-              <%= link_to 'Ticket', admin_ticket_index_path, class: 'list-group-item list-group-item-action bg-dark text-white ps-5'%>
-            </div>
+      <div class="list-group list-group-flush">
+        <a class="list-group-item list-group-item-action bg-dark text-white" data-bs-toggle="collapse" href="#collapseAnotherManagement" role="button" aria-expanded="false" aria-controls="collapseAnotherManagement">
+          Another Management <i class="bi bi-arrow-down-square float-end"></i>
+        </a>
+        <div class="collapse list-group-flush" id="collapseAnotherManagement">
+          <%= link_to 'Category', admin_categories_path, class: 'list-group-item list-group-item-action bg-dark text-white ps-5' %>
+          <%= link_to 'Ticket', admin_ticket_index_path, class: 'list-group-item list-group-item-action bg-dark text-white ps-5' %>
         </div>
+      </div>
     </div>
-</div>
+  </div>
 
   <style>
       #wrapper {
           display: flex;
           width: 100%;
       }
+
       #sidebar-wrapper {
           min-height: 100vh;
           min-width: 250px;
           max-width: 250px;
       }
+
       #page-content-wrapper {
           flex: 1;
       }
+
       .toggled #sidebar-wrapper {
           margin-left: -250px;
       }

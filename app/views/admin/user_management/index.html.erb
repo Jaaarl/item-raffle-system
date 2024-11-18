@@ -2,57 +2,57 @@
   <title>System Management</title>
 </head>
 <body>
-  <%= render 'admin/shared/sidebar'%>
+<%= render 'admin/shared/sidebar' %>
 
-  <div id="page-content-wrapper" class="w-100">
-    <nav class="navbar navbar-expand-lg navbar-light bg-light border-bottom">
-      <div class="container-fluid">
-        <div class="ms-auto dropdown">
-          <a class="text-decoration-none text-dark btn border-black">
-            Change Language
-          </a>
-          <a class="text-decoration-none text-dark btn dropdown-toggle border-black" type="button" id="dropdownMenuButton" data-bs-toggle="dropdown" aria-expanded="false">
-            Username
-          </a>
-          <ul class="dropdown-menu dropdown-menu-end" aria-labelledby="dropdownMenuButton">
-            <li><a class="text-dark text-decoration-none btn btn-links" href="#">Profile</a></li>
-            <li><%= button_to 'Sign out', destroy_admin_user_session_path, method: :delete, class: "text-dark text-decoration-none btn btn-links" %></li>
-          </ul>
-        </div>
+<div id="page-content-wrapper" class="w-100">
+  <nav class="navbar navbar-expand-lg navbar-light bg-light border-bottom">
+    <div class="container-fluid">
+      <div class="ms-auto dropdown">
+        <a class="text-decoration-none text-dark btn border-black">
+          Change Language
+        </a>
+        <a class="text-decoration-none text-dark btn dropdown-toggle border-black" type="button" id="dropdownMenuButton" data-bs-toggle="dropdown" aria-expanded="false">
+          Username
+        </a>
+        <ul class="dropdown-menu dropdown-menu-end" aria-labelledby="dropdownMenuButton">
+          <li><a class="text-dark text-decoration-none btn btn-links" href="#">Profile</a></li>
+          <li><%= button_to 'Sign out', destroy_admin_user_session_path, method: :delete, class: "text-dark text-decoration-none btn btn-links" %></li>
+        </ul>
       </div>
-    </nav>
+    </div>
+  </nav>
 
-    <div class="container-fluid mt-4">
-        <div class="table-responsive">
-            <table class="table table-striped">
-            <thead>
-                <tr>
-                <th>Parent Email</th>
-                <th>Email</th>
-                <th>Total Deposit</th>
-                <th>Member Total Deposits</th>
-                <th>Coins</th>
-                <th>Total Used Coins</th>
-                <th>Children Members</th>
-                <th>Phone Number</th>
-                </tr>
-            </thead>
-            <tbody>
-                <% @clients.each do |client| %>
-                <tr>
-                    <td><%= client.parent_id.blank? ? "N/A" : client.parent.email %></td>
-                    <td><%= client.email %></td>
-                    <td><%= client.total_deposit || 0 %></td>
-                    <td><%= client.children.sum(:total_deposit) %> </td>
-                    <td><%= client.coins || 0 %></td>
-                    <td><%= total_used_coins(client.total_deposit, client.coins) %> </td>
-                    <td><%= client.children_members || 0 %></td>
-                    <td><%= client.phone %></td>
-                </tr>
-                <% end %>
-            </tbody>
-            </table>
-        </div>
+  <div class="container-fluid mt-4">
+    <div class="table-responsive">
+      <table class="table table-striped">
+        <thead>
+        <tr>
+          <th>Parent Email</th>
+          <th>Email</th>
+          <th>Total Deposit</th>
+          <th>Member Total Deposits</th>
+          <th>Coins</th>
+          <th>Total Used Coins</th>
+          <th>Children Members</th>
+          <th>Phone Number</th>
+        </tr>
+        </thead>
+        <tbody>
+        <% @clients.each do |client| %>
+          <tr>
+            <td><%= client.parent_id.blank? ? "N/A" : client.parent.email %></td>
+            <td><%= client.email %></td>
+            <td><%= client.total_deposit || 0 %></td>
+            <td><%= client.children.sum(:total_deposit) %> </td>
+            <td><%= client.coins || 0 %></td>
+            <td><%= total_used_coins(client.total_deposit, client.coins) %> </td>
+            <td><%= client.children_members || 0 %></td>
+            <td><%= client.phone %></td>
+          </tr>
+        <% end %>
+        </tbody>
+      </table>
     </div>
   </div>
+</div>
 </body>

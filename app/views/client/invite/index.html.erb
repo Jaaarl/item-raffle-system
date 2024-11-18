@@ -1,9 +1,9 @@
 <div class="d-flex flex-column align-items-center mt-5 min-vh-100">
-    <div class="mb-4">
-        <%= qrcode(current_client_user&.email || '') %>
-    </div>
+  <div class="mb-4">
+    <%= qrcode(current_client_user&.email || '') %>
+  </div>
 
-    <div class="border border-secondary rounded-3 p-4 text-center">
-        <%= invite_url_link(current_client_user&.email || '') %>
-    </div>
+  <div class="border border-secondary rounded-3 p-4 text-center">
+    <%= invite_url_link(current_client_user&.email || '') %>
+  </div>
 </div>

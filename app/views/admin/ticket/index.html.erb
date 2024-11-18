@@ -23,77 +23,77 @@
   </nav>
 
   <div class="container-fluid mt-4">
-  <h1>Tickets</h1>
-  <%= form_with(url: admin_ticket_index_path, method: :get, local: true, class: 'container mt-4') do |form| %>
-    <div class="row mb-3">
-      <div class="col-md-4">
-        <%= form.label :serial_number, 'Serial Number', class: 'form-label' %>
-        <%= form.text_field :serial_number, value: params[:serial_number], class: 'form-control' %>
+    <h1>Tickets</h1>
+    <%= form_with(url: admin_ticket_index_path, method: :get, local: true, class: 'container mt-4') do |form| %>
+      <div class="row mb-3">
+        <div class="col-md-4">
+          <%= form.label :serial_number, 'Serial Number', class: 'form-label' %>
+          <%= form.text_field :serial_number, value: params[:serial_number], class: 'form-control' %>
+        </div>
+
+        <div class="col-md-4">
+          <%= form.label :item_name, 'Item Name', class: 'form-label' %>
+          <%= form.text_field :item_name, value: params[:item_name], class: 'form-control' %>
+        </div>
+
+        <div class="col-md-4">
+          <%= form.label :email, 'Email', class: 'form-label' %>
+          <%= form.text_field :email, value: params[:email], class: 'form-control' %>
+        </div>
       </div>
 
-      <div class="col-md-4">
-        <%= form.label :item_name, 'Item Name', class: 'form-label' %>
-        <%= form.text_field :item_name, value: params[:item_name], class: 'form-control' %>
+      <div class="row mb-3">
+        <div class="col-md-4">
+          <%= form.label :state, 'Ticket State', class: 'form-label' %>
+          <%= form.select :state, ['pending', 'won', 'lost', 'cancelled'],
+                          include_blank: true,
+                          selected: params[:state],
+                          class: 'form-select' %>
+        </div>
+
+        <div class="col-md-4">
+          <%= form.label :start_date, 'Start Date', class: 'form-label' %>
+          <%= form.date_field :start_date, value: params[:start_date], class: 'form-control' %>
+        </div>
+
+        <div class="col-md-4">
+          <%= form.label :end_date, 'End Date', class: 'form-label' %>
+          <%= form.date_field :end_date, value: params[:end_date], class: 'form-control' %>
+        </div>
       </div>
 
-      <div class="col-md-4">
-        <%= form.label :email, 'Email', class: 'form-label' %>
-        <%= form.text_field :email, value: params[:email], class: 'form-control' %>
+      <div class="d-flex justify-content-end">
+        <%= form.submit 'Search', class: 'btn btn-primary' %>
       </div>
-    </div>
+    <% end %>
 
-    <div class="row mb-3">
-      <div class="col-md-4">
-      <%= form.label :state, 'Ticket State', class: 'form-label' %>
-      <%= form.select :state, ['pending', 'won', 'lost', 'cancelled'], 
-                      include_blank: true, 
-                      selected: params[:state], 
-                      class: 'form-select' %>
-      </div>
-
-      <div class="col-md-4">
-        <%= form.label :start_date, 'Start Date', class: 'form-label' %>
-        <%= form.date_field :start_date, value: params[:start_date], class: 'form-control' %>
-      </div>
-
-      <div class="col-md-4">
-        <%= form.label :end_date, 'End Date', class: 'form-label' %>
-        <%= form.date_field :end_date, value: params[:end_date], class: 'form-control' %>
-      </div>
-    </div>
-
-    <div class="d-flex justify-content-end">
-      <%= form.submit 'Search', class: 'btn btn-primary' %>
-    </div>
-  <% end %>
-
-  <div class="table-responsive">
+    <div class="table-responsive">
       <table class="table table-bordered table-striped">
         <thead>
-          <tr>
-            <th scope="col">Serial Number</th>
-            <th scope="col">Item</th>
-            <th scope="col">Email</th>
-            <th scope="col">Batch Count</th>
-            <th scope="col">Coins</th>
-            <th scope="col">State</th>
-            <th scope="col">Created At</th>
-            <th scope="col">Action</th>
-          </tr>
+        <tr>
+          <th scope="col">Serial Number</th>
+          <th scope="col">Item</th>
+          <th scope="col">Email</th>
+          <th scope="col">Batch Count</th>
+          <th scope="col">Coins</th>
+          <th scope="col">State</th>
+          <th scope="col">Created At</th>
+          <th scope="col">Action</th>
+        </tr>
         </thead>
         <tbody>
-          <% @tickets.each do |ticket| %>
-            <tr>
-              <td><%= ticket.serial_number %></td>
-              <td><%= ticket.item.name %></td>
-              <td><%= ticket.user.email %></td>
-              <td><%= ticket.batch_count %></td>
-              <td><%= ticket.coins %></td>
-              <td><%= ticket.state %></td>
-              <td><%= ticket.created_at.strftime('%Y-%m-%d %H:%M:%S') %></td>
-              <td><%= button_to 'Cancel', cancel_admin_ticket_path(ticket), method: :patch, class: 'btn btn-primary' if ticket.may_cancel? %> </td>
-            </tr>
-          <% end %>
+        <% @tickets.each do |ticket| %>
+          <tr>
+            <td><%= ticket.serial_number %></td>
+            <td><%= ticket.item.name %></td>
+            <td><%= ticket.user.email %></td>
+            <td><%= ticket.batch_count %></td>
+            <td><%= ticket.coins %></td>
+            <td><%= ticket.state %></td>
+            <td><%= ticket.created_at.strftime('%Y-%m-%d %H:%M:%S') %></td>
+            <td><%= button_to 'Cancel', cancel_admin_ticket_path(ticket), method: :patch, class: 'btn btn-primary' if ticket.may_cancel? %> </td>
+          </tr>
+        <% end %>
         </tbody>
       </table>
     </div>

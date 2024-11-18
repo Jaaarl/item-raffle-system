@@ -2,7 +2,7 @@
   <title>System Management</title>
 </head>
 <body>
-<%= render 'admin/shared/sidebar'%>
+<%= render 'admin/shared/sidebar' %>
 
 <div id="page-content-wrapper" class="w-100">
   <nav class="navbar navbar-expand-lg navbar-light bg-light border-bottom">
@@ -26,21 +26,21 @@
     <div class="table-responsive">
       <table class="table table-striped">
         <thead>
-          <tr>
-            <th>Name</th>
-            <th>Image</th>
-            <th>Quantity</th>
-            <th>Minimum Tickets</th>
-            <th>State</th>
-            <th>Batch Count</th>
-            <th>Online At</th>
-            <th>Offline At</th>
-            <th>Start At</th>
-            <th>Status</th>
-            <th>Categories</th>
-            <th>Action</th>
-            <th>Change Status</th>
-          </tr>
+        <tr>
+          <th>Name</th>
+          <th>Image</th>
+          <th>Quantity</th>
+          <th>Minimum Tickets</th>
+          <th>State</th>
+          <th>Batch Count</th>
+          <th>Online At</th>
+          <th>Offline At</th>
+          <th>Start At</th>
+          <th>Status</th>
+          <th>Categories</th>
+          <th>Action</th>
+          <th>Change Status</th>
+        </tr>
         </thead>
         <tbody>
         <% @items.each do |item| %>
@@ -63,9 +63,9 @@
               </ul>
             </td>
             <td>
-              <%= link_to 'Show',admin_item_management_path(item), class: 'btn btn-primary' %>
-              <%= link_to 'Edit',edit_admin_item_management_path(item), class: 'btn btn-primary' %>
-              <%= button_to 'Delete',admin_item_management_path(item),method: :delete, class: 'btn btn-primary' %>
+              <%= link_to 'Show', admin_item_management_path(item), class: 'btn btn-primary' %>
+              <%= link_to 'Edit', edit_admin_item_management_path(item), class: 'btn btn-primary' %>
+              <%= button_to 'Delete', admin_item_management_path(item), method: :delete, class: 'btn btn-primary' %>
             </td>
             <td>
               <%= button_to 'Start', start_admin_item_management_path(item), method: :patch, class: 'btn btn-primary' if item.may_start? %>
@@ -77,7 +77,7 @@
         <% end %>
         </tbody>
       </table>
-      <%= link_to 'Add Item',new_admin_item_management_path, class: 'btn btn-primary' %>
+      <%= link_to 'Add Item', new_admin_item_management_path, class: 'btn btn-primary' %>
     </div>
   </div>
 </div>

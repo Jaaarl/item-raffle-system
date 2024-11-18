@@ -1,42 +1,43 @@
-<h1 class="text-center my-4"><%= current_client_user.username.present? ? current_client_user.username : current_client_user.email %> Address List</h1>
-<% if @places.count < 5%>
-    <%= link_to 'Add Address', new_client_place_path, class: 'btn btn-primary'%>
+<h1 class="text-center my-4"><%= current_client_user.username.present? ? current_client_user.username : current_client_user.email %>
+  Address List</h1>
+<% if @places.count < 5 %>
+  <%= link_to 'Add Address', new_client_place_path, class: 'btn btn-primary' %>
 <% end %>
 <table class="table table-striped table-bordered table-hover">
   <thead class="thead-dark">
-    <tr>
-      <th>Name</th>
-      <th>Genre</th>
-      <th>Phone Number</th>
-      <th>Default Address</th>
-      <th>Region</th>
-      <th>Province</th>
-      <th>City</th>
-      <th>Barangay</th>
-      <th>Street Address</th>
-      <th>Actions</th>
-    </tr>
+  <tr>
+    <th>Name</th>
+    <th>Genre</th>
+    <th>Phone Number</th>
+    <th>Default Address</th>
+    <th>Region</th>
+    <th>Province</th>
+    <th>City</th>
+    <th>Barangay</th>
+    <th>Street Address</th>
+    <th>Actions</th>
+  </tr>
   </thead>
   <tbody>
-    <% @places.each do |place| %>
-      <tr>
-        <td><%= place.name %></td>
-        <td><%= place.genre %></td>
-        <td><%= place.phone_number %></td>
-        <td><%= place.is_default ? 'Yes' : 'No' %></td>
-        <td><%= place.region.name %></td>
-        <td><%= place.province.name %></td>
-        <td><%= place.city.name %></td>
-        <td><%= place.barangay.name %></td>
-        <td><%= place.street_address %></td>
-        <td>
+  <% @places.each do |place| %>
+    <tr>
+      <td><%= place.name %></td>
+      <td><%= place.genre %></td>
+      <td><%= place.phone_number %></td>
+      <td><%= place.is_default ? 'Yes' : 'No' %></td>
+      <td><%= place.region.name %></td>
+      <td><%= place.province.name %></td>
+      <td><%= place.city.name %></td>
+      <td><%= place.barangay.name %></td>
+      <td><%= place.street_address %></td>
+      <td>
         <% if !(place.is_default) %>
           <button>Make default</button>
         <% end %>
         <%= button_to 'Delete', client_place_path(place), method: :delete %>
         <%= link_to 'Edit', edit_client_place_path(place), class: 'btn btn-info btn-sm' %>
-        </td>
-      </tr>
-    <% end %>
+      </td>
+    </tr>
+  <% end %>
   </tbody>
 </table>

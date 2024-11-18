@@ -1,5 +1,6 @@
 class Admin::ItemManagementController < Admin::BaseController
   before_action :set_item, only: [:edit, :update, :destroy, :show, :start, :pause, :end, :cancel]
+
   def index
     @items = Item.includes(:categories).all
   end
@@ -36,9 +37,9 @@ class Admin::ItemManagementController < Admin::BaseController
     if tickets
       redirect_to admin_item_management_index_path, notice: 'Cannot delete item. This item has associated tickets.'
     else
-    @item.destroy!
-    redirect_to admin_item_management_index_path, notice: 'Item was successfully deleted.'
-      end
+      @item.destroy!
+      redirect_to admin_item_management_index_path, notice: 'Item was successfully deleted.'
+    end
   end
 
   def start
@@ -74,6 +75,7 @@ class Admin::ItemManagementController < Admin::BaseController
   end
 
   private
+
   def set_item
     @item = Item.find(params[:id])
   end

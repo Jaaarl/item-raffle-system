@@ -1,5 +1,6 @@
 class Client::LotteryController < ApplicationController
   before_action :set_lottery, only: [:show, :buy]
+
   def index
     @items = Item.includes(:categories).starting.active
     if params[:category_id].present?

@@ -2,7 +2,7 @@
   <title>System Management</title>
 </head>
 <body>
-<%= render 'admin/shared/sidebar'%>
+<%= render 'admin/shared/sidebar' %>
 
 <div id="page-content-wrapper" class="w-100">
   <nav class="navbar navbar-expand-lg navbar-light bg-light border-bottom">
@@ -42,7 +42,7 @@
           <%= @item.categories.pluck(:name).join(', ').capitalize %>
         </p>
       </div>
-      
+
       <div class="form-group">
         <strong>Quantity:</strong>
         <p><%= @item.quantity %></p>
