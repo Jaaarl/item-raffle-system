@@ -8,3 +8,5 @@ import HelloController from "./hello_controller";
 application.register("hello", HelloController)
 import LocationController from "./location_controller";
 application.register("location", LocationController)
+import CounterController from "./counter_controller";
+application.register("counter", CounterController);

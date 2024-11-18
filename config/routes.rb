@@ -6,8 +6,8 @@ Rails.application.routes.draw do
       resources :menu, only: [:index]
       resources :me, only: [:index]
       resources :place
-      resources :invite, only: [:index]
-      resources :lottery, only: [:index]
+      resources :invite, only: [:index, :show]
+      resources :lottery, only: [:index, :show]
     end
     devise_for :users, controllers: {
       sessions: 'client/sessions',
