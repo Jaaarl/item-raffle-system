@@ -1,7 +1,7 @@
 <h1 class="text-center my-4"><%= current_client_user.username.present? ? current_client_user.username : current_client_user.email %>
   Address List</h1>
-<% if @places.count < 5 %>
-  <%= link_to 'Add Address', new_client_place_path, class: 'btn btn-primary' %>
+<% if @locations.count < 5 %>
+  <%= link_to 'Add Address', new_client_location_path, class: 'btn btn-primary' %>
 <% end %>
 <table class="table table-striped table-bordered table-hover">
   <thead class="thead-dark">
@@ -19,7 +19,7 @@
   </tr>
   </thead>
   <tbody>
-  <% @places.each do |place| %>
+  <% @locations.each do |place| %>
     <tr>
       <td><%= place.name %></td>
       <td><%= place.genre %></td>
@@ -34,8 +34,8 @@
         <% if !(place.is_default) %>
           <button>Make default</button>
         <% end %>
-        <%= button_to 'Delete', client_place_path(place), method: :delete %>
-        <%= link_to 'Edit', edit_client_place_path(place), class: 'btn btn-info btn-sm' %>
+        <%= button_to 'Delete', client_location_path(place), method: :delete %>
+        <%= link_to 'Edit', edit_client_location_path(place), class: 'btn btn-info btn-sm' %>
       </td>
     </tr>
   <% end %>

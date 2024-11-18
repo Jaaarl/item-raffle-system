@@ -1,4 +1,4 @@
-class Place < ApplicationRecord
+class Location < ApplicationRecord
   enum genre: { home: 0, work: 1 }
 
   validates :genre, presence: true

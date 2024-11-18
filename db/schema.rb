@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema[7.0].define(version: 2024_11_15_020536) do
+ActiveRecord::Schema[7.0].define(version: 2024_11_18_101502) do
   create_table "address_barangays", charset: "utf8mb4", force: :cascade do |t|
     t.bigint "city_id"
     t.string "code"
@@ -76,7 +76,7 @@ ActiveRecord::Schema[7.0].define(version: 2024_11_15_020536) do
     t.datetime "deleted_at"
   end
 
-  create_table "places", charset: "utf8mb4", force: :cascade do |t|
+  create_table "locations", charset: "utf8mb4", force: :cascade do |t|
     t.integer "genre", default: 0, null: false
     t.string "name"
     t.string "street_address"
@@ -90,11 +90,11 @@ ActiveRecord::Schema[7.0].define(version: 2024_11_15_020536) do
     t.bigint "address_barangay_id", null: false
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
-    t.index ["address_barangay_id"], name: "index_places_on_address_barangay_id"
-    t.index ["address_city_id"], name: "index_places_on_address_city_id"
-    t.index ["address_province_id"], name: "index_places_on_address_province_id"
-    t.index ["address_region_id"], name: "index_places_on_address_region_id"
-    t.index ["user_id"], name: "index_places_on_user_id"
+    t.index ["address_barangay_id"], name: "index_locations_on_address_barangay_id"
+    t.index ["address_city_id"], name: "index_locations_on_address_city_id"
+    t.index ["address_province_id"], name: "index_locations_on_address_province_id"
+    t.index ["address_region_id"], name: "index_locations_on_address_region_id"
+    t.index ["user_id"], name: "index_locations_on_user_id"
   end
 
   create_table "tickets", charset: "utf8mb4", force: :cascade do |t|
@@ -130,11 +130,11 @@ ActiveRecord::Schema[7.0].define(version: 2024_11_15_020536) do
     t.index ["reset_password_token"], name: "index_users_on_reset_password_token", unique: true
   end
 
-  add_foreign_key "places", "address_barangays"
-  add_foreign_key "places", "address_cities"
-  add_foreign_key "places", "address_provinces"
-  add_foreign_key "places", "address_regions"
-  add_foreign_key "places", "users"
+  add_foreign_key "locations", "address_barangays"
+  add_foreign_key "locations", "address_cities"
+  add_foreign_key "locations", "address_provinces"
+  add_foreign_key "locations", "address_regions"
+  add_foreign_key "locations", "users"
   add_foreign_key "tickets", "items"
   add_foreign_key "tickets", "users"
 end
