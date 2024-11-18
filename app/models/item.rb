@@ -14,6 +14,7 @@ class Item < ApplicationRecord
   has_many :tickets
   has_many :item_category_ships
   has_many :categories, through: :item_category_ships
+  has_many :winners
 
   include AASM
   aasm column: :state do
