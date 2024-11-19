@@ -1,8 +1,8 @@
 class Winner < ApplicationRecord
-  belongs_to :tickets
-  belongs_to :users
-  belongs_to :items
-  belongs_to :locations
+  belongs_to :ticket
+  belongs_to :user
+  belongs_to :item
+  belongs_to :location
   belongs_to :admin, class_name: 'User'
 
   include AASM
