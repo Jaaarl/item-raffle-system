@@ -5,6 +5,8 @@ class Winner < ApplicationRecord
   belongs_to :location
   belongs_to :admin, class_name: 'User'
 
+  mount_uploader :image, ImageUploader
+
   include AASM
   aasm column: :state do
     state :won, initial: true
