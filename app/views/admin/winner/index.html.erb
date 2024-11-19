@@ -81,6 +81,7 @@
           <th scope="col">Admin email</th>
           <th scope="col">Picture</th>
           <th scope="col">Comment</th>
+          <th scope="col">Action</th>
         </tr>
         </thead>
         <tbody>
@@ -96,6 +97,14 @@
             <td><%= winner.admin.email %></td>
             <td><%= winner.picture %></td>
             <td><%= winner.comment %></td>
+            <td>
+              <%= button_to 'Submit', submit_admin_winner_path(winner), method: :patch, class: 'btn btn-primary' if winner.may_submit? %>
+              <%= button_to 'Pay', pay_admin_winner_path(winner), method: :patch, class: 'btn btn-primary' if winner.may_pay? %>
+              <%= button_to 'Ship', ship_admin_winner_path(winner), method: :patch, class: 'btn btn-primary' if winner.may_ship? %>
+              <%= button_to 'Deliver', deliver_admin_winner_path(winner), method: :patch, class: 'btn btn-primary' if winner.may_deliver? %>
+              <%= button_to 'Publish', publish_admin_winner_path(winner), method: :patch, class: 'btn btn-primary' if winner.may_publish? %>
+              <%= button_to 'Remove Publish', remove_publish_admin_winner_path(winner), method: :patch, class: 'btn btn-primary' if winner.may_remove_publish? %>
+            </td>
           </tr>
         <% end %>
         </tbody>
