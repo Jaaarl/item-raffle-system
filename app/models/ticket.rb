@@ -3,7 +3,7 @@ class Ticket < ApplicationRecord
   after_create :assign_serial_number
   belongs_to :user
   belongs_to :item
-  belongs_to :winner
+  belongs_to :winner, optional: true
 
   include AASM
   aasm column: :state do
