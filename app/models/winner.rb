@@ -3,7 +3,7 @@ class Winner < ApplicationRecord
   belongs_to :user
   belongs_to :item
   belongs_to :location
-  belongs_to :admin, class_name: 'User'
+  belongs_to :admin, class_name: 'User', optional: true
 
   mount_uploader :image, ImageUploader
 

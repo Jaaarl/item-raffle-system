@@ -83,10 +83,34 @@ class Item < ApplicationRecord
   end
 
   def set_winner
-    pick_a_winner
+    winner = pick_a_winner
+    update_ticket_value(winner)
   end
 
   def pick_a_winner
     winner = self.tickets.where(batch_count: self.batch_count).order("RAND()").first
+  end
+
+  def add_winner(ticket)
+    location = Location.find_by(user_id: ticket.user.id, is_default: true)
+    Winner.create(
+      ticket: ticket,
+      user: ticket.user,
+      item_batch_count: ticket.batch_count,
+      item: ticket.item,
+      location: location
+    )
+  end
+
+  def update_ticket_value(winner)
+    tickets = self.tickets.where(batch_count: self.batch_count)
+    tickets.each do |ticket|
+      if winner.serial_number == ticket.serial_number
+        ticket.win!
+        add_winner(ticket)
+      else
+        ticket.lose!
+      end
+    end
   end
 end
