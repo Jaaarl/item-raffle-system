@@ -10,7 +10,7 @@ class Client::LotteryController < ApplicationController
   end
 
   def buy
-    if current_client_user&.signed_in?
+    if current_client_user
       number_of_tickets = params[:counter].to_i
 
       if number_of_tickets > 0
