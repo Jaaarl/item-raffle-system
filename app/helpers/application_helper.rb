@@ -35,6 +35,8 @@ module ApplicationHelper
   end
 
   def percentage(item)
-    percent = item.minimum_tickets / Item.where(batch_count: item.batch_count).count
+    total_tickets = Ticket.where(batch_count: item.batch_count, item_id: item.id).count
+    percentage = (total_tickets.to_f / item.minimum_tickets) * 100
+    percentage.round(2)
   end
 end
