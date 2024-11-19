@@ -34,7 +34,9 @@ class Item < ApplicationRecord
     end
 
     event :end do
-      transitions from: :starting, to: :ended
+      transitions from: :starting, to: :ended,
+                  guard: :eligible_to_end?,
+                  success: :set_winner
     end
 
     event :cancel do
@@ -74,5 +76,17 @@ class Item < ApplicationRecord
 
   def destroy
     update(deleted_at: Time.current)
+  end
+
+  def eligible_to_end?
+    self.tickets.where(batch_count: self.batch_count).count >= self.minimum_tickets
+  end
+
+  def set_winner
+    pick_a_winner
+  end
+
+  def pick_a_winner
+    winner = self.tickets.where(batch_count: self.batch_count).order("RAND()").first
   end
 end
