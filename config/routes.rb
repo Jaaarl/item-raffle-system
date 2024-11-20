@@ -5,7 +5,11 @@ Rails.application.routes.draw do
       resources :homepage, only: [:index]
       resources :menu, only: [:index]
       resources :me, only: [:index]
-      resources :location
+      resources :location do
+        member do
+          patch :make_default
+        end
+      end
       resources :invite, only: [:index, :show]
       resources :lottery, only: [:index, :show]
       post ':id/buy_tickets', to: 'lottery#buy', as: 'buy_tickets'

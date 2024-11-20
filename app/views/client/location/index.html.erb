@@ -32,7 +32,7 @@
       <td><%= place.street_address %></td>
       <td>
         <% if !(place.is_default) %>
-          <button>Make default</button>
+          <%= button_to 'Make Default', make_default_client_location_path(place), method: :patch, class: 'btn btn-primary' %>
         <% end %>
         <%= button_to 'Delete', client_location_path(place), method: :delete %>
         <%= link_to 'Edit', edit_client_location_path(place), class: 'btn btn-info btn-sm' %>
