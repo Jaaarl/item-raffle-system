@@ -23,6 +23,9 @@ class Admin::OfferController < Admin::BaseController
     if @offer.save
       redirect_to admin_offer_index_path, notice: 'Offer was successfully created.'
     else
+      if @offer.errors.any?
+        flash[:alert] = @offer.errors.full_messages.to_sentence
+      end
       render :new
     end
   end
@@ -34,6 +37,9 @@ class Admin::OfferController < Admin::BaseController
     if @offer.update(offer_params)
       redirect_to admin_offer_path(@offer), notice: 'Offer was successfully updated.'
     else
+      if @offer.errors.any?
+        flash[:alert] = @offer.errors.full_messages.to_sentence
+      end
       render :edit
     end
   end

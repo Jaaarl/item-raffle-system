@@ -28,6 +28,9 @@ class Admin::ItemManagementController < Admin::BaseController
     if @item.update(item_params)
       redirect_to admin_item_management_index_path, notice: 'Item was successfully updated.'
     else
+      if @offer.errors.any?
+        flash[:alert] = @offer.errors.full_messages.to_sentence
+      end
       render :edit
     end
   end

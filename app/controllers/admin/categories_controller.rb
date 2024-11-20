@@ -17,6 +17,9 @@ class Admin::CategoriesController < Admin::BaseController
     if @category.save
       redirect_to admin_categories_path, notice: 'Category was successfully created.'
     else
+      if @category.errors.any?
+        flash[:alert] = @category.errors.full_messages.to_sentence
+      end
       render :new
     end
   end
