@@ -25,7 +25,7 @@ class Item < ApplicationRecord
     event :start do
       transitions from: [:pending, :ended, :cancelled], to: :starting,
                   guard: :eligible_to_start?,
-                  success: :update_value
+                  success: :update_quantity_and_batch_count
       transitions from: :paused, to: :starting
     end
 
@@ -57,7 +57,7 @@ class Item < ApplicationRecord
 
   private
 
-  def update_value
+  def update_quantity_and_batch_count
     deduct_quantity
     add_batch_count
   end
@@ -83,11 +83,11 @@ class Item < ApplicationRecord
   end
 
   def set_winner
-    winner = pick_a_winner
-    update_ticket_value(winner)
+    winner = set_a_winner
+    update_ticket(winner)
   end
 
-  def pick_a_winner
+  def set_a_winner
     winner = self.tickets.where(batch_count: self.batch_count).order("RAND()").first
   end
 
@@ -102,15 +102,8 @@ class Item < ApplicationRecord
     )
   end
 
-  def update_ticket_value(winner)
+  def update_ticket(winner)
     tickets = self.tickets.where(batch_count: self.batch_count)
-    tickets.each do |ticket|
-      if winner.serial_number == ticket.serial_number
-        ticket.win!
-        add_winner(ticket)
-      else
-        ticket.lose!
-      end
-    end
+    tickets.each { |ticket| ticket.serial_number == winner.serial_number ? (ticket.win! && add_winner(ticket)) : ticket.lose! }
   end
 end
