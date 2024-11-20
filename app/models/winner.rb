@@ -1,4 +1,6 @@
 class Winner < ApplicationRecord
+  include AASM
+
   belongs_to :ticket
   belongs_to :user
   belongs_to :item
@@ -7,11 +9,10 @@ class Winner < ApplicationRecord
 
   mount_uploader :image, ImageUploader
 
-  include AASM
   aasm column: :state do
     state :won, initial: true
     state :claimed, :submitted, :paid, :shipped, :delivered, :shared, :published, :remove_published
-    
+
     event :claim do
       transitions from: :won, to: :claimed
     end

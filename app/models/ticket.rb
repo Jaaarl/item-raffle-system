@@ -1,11 +1,13 @@
 class Ticket < ApplicationRecord
+  include AASM
+
   before_create :update_value
   after_create :assign_serial_number
+
   belongs_to :user
   belongs_to :item
   belongs_to :winner, optional: true
 
-  include AASM
   aasm column: :state do
     state :pending, initial: true
     state :won, :lost, :cancelled
