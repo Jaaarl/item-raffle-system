@@ -25,6 +25,7 @@ Rails.application.routes.draw do
       resources :user_management, only: [:index]
       resources :item_management
       resources :categories
+      resources :offer
       resources :ticket, only: [:index] do
         member do
           patch :cancel

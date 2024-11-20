@@ -1,0 +1,72 @@
+<head>
+  <title>System Management</title>
+</head>
+<body>
+<%= render 'admin/shared/sidebar' %>
+
+<div id="page-content-wrapper" class="w-100">
+  <nav class="navbar navbar-expand-lg navbar-light bg-light border-bottom">
+    <div class="container-fluid">
+      <div class="ms-auto dropdown">
+        <a class="text-decoration-none text-dark btn border-black">
+          Change Language
+        </a>
+        <a class="text-decoration-none text-dark btn dropdown-toggle border-black" type="button" id="dropdownMenuButton" data-bs-toggle="dropdown" aria-expanded="false">
+          Username
+        </a>
+        <ul class="dropdown-menu dropdown-menu-end" aria-labelledby="dropdownMenuButton">
+          <li><a class="text-dark text-decoration-none btn btn-links" href="#">Profile</a></li>
+          <li><%= button_to 'Sign out', destroy_admin_user_session_path, method: :delete, class: "text-dark text-decoration-none btn btn-links" %></li>
+        </ul>
+      </div>
+    </div>
+  </nav>
+
+  <div class="container-fluid mt-4">
+    <h1>Offers</h1>
+    <%= form_with(url: admin_offer_index_path, method: :get, local: true, class: 'container mt-4') do |form| %>
+      <div class="row mb-3">
+        <div class="col-md-4">
+          <%= form.label :status, 'Ticket State', class: 'form-label' %>
+          <%= form.select :status, Offer.statuses.keys.map { |state| [state.humanize, state] },
+                          include_blank: true,
+                          selected: params[:status],
+                          class: 'form-select' %>
+          <%= form.submit 'Search', class: 'btn btn-primary' %>
+        </div>
+      </div>
+    <% end %>
+    <%= link_to 'New offer', new_admin_offer_path, class: 'btn btn-primary' %>
+    <div class="table-responsive">
+      <table class="table table-bordered table-striped">
+        <thead>
+        <tr>
+          <th scope="col">Image</th>
+          <th scope="col">Name</th>
+          <th scope="col">Status</th>
+          <th scope="col">Amount</th>
+          <th scope="col">coin</th>
+          <th scope="col">Action</th>
+        </tr>
+        </thead>
+        <tbody>
+        <% @offers.each do |offer| %>
+          <tr>
+            <td><%= image_tag offer.image_url if offer.image_url.present? %></td>
+            <td><%= offer.name %></td>
+            <td><%= offer.status %></td>
+            <td><%= offer.amount %></td>
+            <td><%= offer.coin %></td>
+            <td>
+              <%= link_to 'Show', admin_offer_path(offer), class: 'btn btn-primary' %>
+              <%= link_to 'Edit', edit_admin_offer_path(offer), class: 'btn btn-primary' %>
+              <%= button_to 'Delete', admin_offer_path(offer), method: :delete, class: 'btn btn-primary' %>
+            </td>
+          </tr>
+        <% end %>
+        </tbody>
+      </table>
+    </div>
+  </div>
+</div>
+</body>
