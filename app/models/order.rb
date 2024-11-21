@@ -45,29 +45,29 @@ class Order < ApplicationRecord
     elsif self.deposit?
       decrease_total_deposit
     else
-      if user.coins > offer.coin
+      if user.coins > self.coin
         deduct_coins
       end
     end
   end
 
   def add_coins
-    user.coins = user.coins + offer.coin
+    user.coins = user.coins + self.coin
     user.save
   end
 
   def deduct_coins
-    user.coins -= offer.coin
+    user.coins -= self.coin
     user.save
   end
 
   def increase_total_deposit
-    user.total += offer.amount
+    user.total += self.amount
     user.save
   end
 
   def decrease_total_deposit
-    user.total -= offer.amount
+    user.total -= self.amount
     user.save
   end
 
@@ -75,6 +75,6 @@ class Order < ApplicationRecord
     number_count = Order.where(offer_id: offer_id, user_id: user_id).count
     formatted_number_count = number_count.to_s.rjust(4, '0')
     time = Time.current.strftime("%y%m%d")
-    self.serial_number = "#{time}-#{offer.id}-#{user_id}-#{formatted_number_count}"
+    self.serial_number = "#{time}-#{order.id}-#{user_id}-#{formatted_number_count}"
   end
 end
