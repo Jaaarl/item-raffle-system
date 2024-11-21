@@ -13,14 +13,18 @@ class Client::LotteryController < ApplicationController
     if current_client_user
       number_of_tickets = params[:counter].to_i
 
-      if number_of_tickets > 0
+      if number_of_tickets > 0 && current_client_user.coins >= number_of_tickets
         number_of_tickets.times do
           @ticket = Ticket.create(user: current_client_user, item: @item)
           @ticket.save
         end
         flash[:notice] = "#{number_of_tickets} tickets purchased successfully!"
       else
-        flash[:alert] = "Please select at least one ticket."
+        if number_of_tickets < 0
+          flash[:alert] = "Please select at least one ticket."
+        elsif current_client_user.coins < number_of_tickets
+          flash[:alert] = "You don't have enough coins to purchase this ticket. Please add more coins to proceed"
+        end
       end
       redirect_to client_lottery_path(id: @item.id)
     else
