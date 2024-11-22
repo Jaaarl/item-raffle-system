@@ -75,6 +75,6 @@ class Order < ApplicationRecord
     number_count = Order.where(offer_id: offer_id, user_id: user_id).count
     formatted_number_count = number_count.to_s.rjust(4, '0')
     time = Time.current.strftime("%y%m%d")
-    self.serial_number = "#{time}-#{order.id}-#{user_id}-#{formatted_number_count}"
+    self.serial_number = "#{time}-#{self.id}-#{user_id}-#{formatted_number_count}"
   end
 end

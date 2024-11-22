@@ -5,6 +5,7 @@ Rails.application.routes.draw do
       resources :homepage, only: [:index]
       resources :menu, only: [:index]
       resources :me, only: [:index]
+      resources :shop, only: [:index, :show]
       resources :location do
         member do
           patch :make_default
@@ -13,6 +14,7 @@ Rails.application.routes.draw do
       resources :invite, only: [:index, :show]
       resources :lottery, only: [:index, :show]
       post ':id/buy_tickets', to: 'lottery#buy', as: 'buy_tickets'
+      post ':id/buy_offer', to: 'shop#buy', as: 'buy_offer'
     end
     devise_for :users, controllers: {
       sessions: 'client/sessions',

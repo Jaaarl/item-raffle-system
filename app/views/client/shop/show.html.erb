@@ -1,0 +1,21 @@
+<div class="container mt-4" style="min-height: 120vh;">
+  <div class="card">
+    <div class="card-body">
+      <div class="mb-3">
+        <div class="ratio ratio-16x9 bg-secondary d-flex align-items-center justify-content-center text-white">
+          <%= image_tag @offer.image.url, class: "border", size: "60x60" if @offer.image.present? %>
+          <% unless @offer.image.present? %>
+            No image
+          <% end %>
+        </div>
+        <%= @offer.name %>
+      </div>
+
+      <%= form_with url: client_buy_offer_path(@offer), method: :post, local: true do |form| %>
+        <div class="d-grid mb-3">
+          <%= form.submit 'Buy Offer', class: 'btn btn-success my-2' %>
+        </div>
+      <% end %>
+    </div>
+  </div>
+</div>

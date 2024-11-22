@@ -1,0 +1,51 @@
+<div class="container mt-5">
+  <div class="row mb-4">
+    <div class="col-1 d-flex align-items-center">
+      <button class="btn btn-light">
+        <i class="bi bi-chevron-left"></i>
+      </button>
+    </div>
+    <div class="col text-center">
+      <div class="bg-light p-5">
+        <h2>Banner Image</h2>
+      </div>
+    </div>
+    <div class="col-1 d-flex align-items-center justify-content-end">
+      <button class="btn btn-light">
+        <i class="bi bi-chevron-right"></i>
+      </button>
+    </div>
+  </div>
+
+
+  <div class="row mb-4">
+    <div class="col">
+      <div class="alert alert-secondary text-center">
+        Announcement
+      </div>
+    </div>
+  </div>
+
+  <div class="container mt-4">
+    <div class="row" id="product-grid">
+      <% @offers.each do |offer| %>
+        <div class="col-md-6 col-lg-3 mb-4 product-item">
+          <%= link_to client_shop_path(offer), class: "card-link text-decoration-none" do %>
+            <div class="card">
+              <div class="card-body">
+                <div class="card-img-top bg-light d-flex justify-content-center align-items-center" style="height: 150px;">
+                  <% if offer.image.present? %>
+                    <%= image_tag offer.image.url, style: "max-width: 100px; max-height: 100px; object-fit: cover;" if offer.image.present? %>
+                  <% else %>
+                    <span class="text-muted">No Image Available</span>
+                  <% end %>
+                </div>
+                <h5 class="card-title mb-3 text-dark font-weight-bold"><%= offer.name %></h5>
+              </div>
+            </div>
+          <% end %>
+        </div>
+      <% end %>
+    </div>
+  </div>
+</div>
