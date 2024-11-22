@@ -62,12 +62,12 @@ class Order < ApplicationRecord
   end
 
   def increase_total_deposit
-    user.total += self.amount
+    user.total += offer.amount
     user.save
   end
 
   def decrease_total_deposit
-    user.total -= self.amount
+    user.total -= offer.amount
     user.save
   end
 
