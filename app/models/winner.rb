@@ -4,7 +4,7 @@ class Winner < ApplicationRecord
   belongs_to :ticket
   belongs_to :user
   belongs_to :item
-  belongs_to :location
+  belongs_to :location, optional: true
   belongs_to :admin, class_name: 'User', optional: true
 
   mount_uploader :image, ImageUploader

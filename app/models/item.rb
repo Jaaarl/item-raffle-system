@@ -92,13 +92,11 @@ class Item < ApplicationRecord
   end
 
   def add_winner(ticket)
-    location = Location.find_by(user_id: ticket.user.id, is_default: true)
     Winner.create(
       ticket: ticket,
       user: ticket.user,
       item_batch_count: ticket.batch_count,
       item: ticket.item,
-      location: location
     )
   end
 
