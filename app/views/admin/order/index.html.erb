@@ -96,9 +96,8 @@
             <td><%= order.amount %></td>
             <td><%= order.coin %></td>
             <td>
-              <%= link_to 'Show', admin_order_path(order), class: 'btn btn-primary' %>
-              <%= link_to 'Edit', edit_admin_order_path(order), class: 'btn btn-primary' %>
-              <%= button_to 'Delete', admin_order_path(order), method: :delete, class: 'btn btn-primary' %>
+              <%= button_to 'Pay', pay_admin_order_path(order), method: :patch, class: 'btn btn-primary' if order.may_pay? %>
+              <%= button_to 'Cancel', cancel_admin_order_path(order), method: :patch, class: 'btn btn-primary' if order.may_cancel? %>
             </td>
           </tr>
         <% end %>
