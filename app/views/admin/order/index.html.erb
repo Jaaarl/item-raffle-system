@@ -1,0 +1,110 @@
+<head>
+  <title>System Management</title>
+</head>
+<body>
+<%= render 'admin/shared/sidebar' %>
+
+<div id="page-content-wrapper" class="w-100">
+  <nav class="navbar navbar-expand-lg navbar-light bg-light border-bottom">
+    <div class="container-fluid">
+      <div class="ms-auto dropdown">
+        <a class="text-decoration-none text-dark btn border-black">
+          Change Language
+        </a>
+        <a class="text-decoration-none text-dark btn dropdown-toggle border-black" type="button" id="dropdownMenuButton" data-bs-toggle="dropdown" aria-expanded="false">
+          Username
+        </a>
+        <ul class="dropdown-menu dropdown-menu-end" aria-labelledby="dropdownMenuButton">
+          <li><a class="text-dark text-decoration-none btn btn-links" href="#">Profile</a></li>
+          <li><%= button_to 'Sign out', destroy_admin_user_session_path, method: :delete, class: "text-dark text-decoration-none btn btn-links" %></li>
+        </ul>
+      </div>
+    </div>
+  </nav>
+
+  <div class="container-fluid mt-4">
+    <h1>Orders</h1>
+    <%= form_with(url: admin_order_index_path, method: :get, local: true, class: 'container mt-4') do |form| %>
+      <div class="row mb-3">
+        <div class="col-md-4">
+          <%= form.label :serial_number, 'Serial Number', class: 'form-label' %>
+          <%= form.text_field :serial_number, value: params[:serial_number], class: 'form-control' %>
+        </div>
+
+        <div class="col-md-4">
+          <%= form.label :email, 'Email', class: 'form-label' %>
+          <%= form.text_field :email, value: params[:email], class: 'form-control' %>
+        </div>
+      </div>
+
+      <div class="row mb-3">
+        <div class="col-md-4">
+          <%= form.label :genre, 'Genre', class: 'form-label' %>
+          <%= form.select :genre, ['deposit', 'increase', 'deduct', 'bonus', 'share'],
+                          include_blank: true,
+                          selected: params[:genre],
+                          class: 'form-select' %>
+        </div>
+
+        <div class="col-md-4">
+          <%= form.label :state, 'Order State', class: 'form-label' %>
+          <%= form.select :state, ['pending', 'submitted', 'paid', 'cancelled'],
+                          include_blank: true,
+                          selected: params[:state],
+                          class: 'form-select' %>
+        </div>
+
+        <div class="col-md-4">
+          <%= form.label :offer, 'Offer', class: 'form-label' %>
+          <%= form.select :offer, ['active', 'inactive'],
+                          include_blank: true,
+                          selected: params[:offer],
+                          class: 'form-select' %>
+        </div>
+
+        <div class="col-md-4">
+          <%= form.label :start_date, 'Start Date', class: 'form-label' %>
+          <%= form.date_field :start_date, value: params[:start_date], class: 'form-control' %>
+        </div>
+
+        <div class="col-md-4">
+          <%= form.label :end_date, 'End Date', class: 'form-label' %>
+          <%= form.date_field :end_date, value: params[:end_date], class: 'form-control' %>
+        </div>
+      </div>
+
+      <div class="d-flex justify-content-end">
+        <%= form.submit 'Filter', class: 'btn btn-primary' %>
+      </div>
+    <% end %>
+    <div class="table-responsive">
+      <table class="table table-bordered table-striped">
+        <thead>
+        <tr>
+          <th scope="col">Name</th>
+          <th scope="col">Status</th>
+          <th scope="col">Amount</th>
+          <th scope="col">coin</th>
+          <th scope="col">Action</th>
+        </tr>
+        </thead>
+        <tbody>
+        <% @orders.each do |order| %>
+          <tr>
+            <td><%= order.offer.name %></td>
+            <td><%= order.state %></td>
+            <td><%= order.amount %></td>
+            <td><%= order.coin %></td>
+            <td>
+              <%= link_to 'Show', admin_order_path(order), class: 'btn btn-primary' %>
+              <%= link_to 'Edit', edit_admin_order_path(order), class: 'btn btn-primary' %>
+              <%= button_to 'Delete', admin_order_path(order), method: :delete, class: 'btn btn-primary' %>
+            </td>
+          </tr>
+        <% end %>
+        </tbody>
+      </table>
+    </div>
+  </div>
+</div>
+</body>

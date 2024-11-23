@@ -32,6 +32,7 @@ Rails.application.routes.draw do
       resources :item_management
       resources :categories
       resources :offer
+      resources :order
       resources :ticket, only: [:index] do
         member do
           patch :cancel
