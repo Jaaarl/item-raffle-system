@@ -10,7 +10,7 @@ class Client::ShopController < ApplicationController
   def buy
     if current_client_user
       if current_client_user.total_deposit >= @offer.amount
-        @order = Order.create(user: current_client_user, offer: @offer)
+        @order = Order.create(user: current_client_user, offer: @offer, amount: @offer.amount, coin: @offer.coin, genre: "deposit")
         @order.save
         flash[:notice] = "Offer purchased successfully!"
       else
