@@ -27,7 +27,7 @@
     <%= form_with(url: admin_offer_index_path, method: :get, local: true, class: 'container mt-4') do |form| %>
       <div class="row mb-3">
         <div class="col-md-4">
-          <%= form.label :status, 'Ticket State', class: 'form-label' %>
+          <%= form.label :status, 'Offers State', class: 'form-label' %>
           <%= form.select :status, Offer.statuses.keys.map { |state| [state.humanize, state] },
                           include_blank: true,
                           selected: params[:status],
