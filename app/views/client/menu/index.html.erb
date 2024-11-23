@@ -23,13 +23,17 @@
     <div class="card mt-4 shadow-sm">
       <ul class="list-group list-group-flush">
         <li class="list-group-item">
-          <a href="/contact" class="btn btn-link text-decoration-none text-dark">Contact Us</a>
+          <a href="/contact" class="btn btn-link text-decoration-none text-dark w-100">Contact Us</a>
         </li>
         <li class="list-group-item">
-          <a href="/profile" class="btn btn-link text-decoration-none text-dark">My Profile</a>
+          <%= link_to client_me_index_path, class: 'btn btn-link text-decoration-none text-dark w-100' do %>
+            My Profile
+          <% end %>
         </li>
         <li class="list-group-item">
-          <%= button_to 'Sign out', destroy_client_user_session_path, method: :delete, class: 'btn btn-link text-decoration-none text-dark' %>
+          <%= button_to destroy_client_user_session_path, method: :delete, class: 'btn btn-link text-decoration-none text-dark w-100' do %>
+            Sign out
+          <% end %>
         </li>
       </ul>
     </div>
@@ -39,10 +43,10 @@
     <div class="card mt-4 shadow-sm">
       <ul class="list-group list-group-flush">
         <li class="list-group-item">
-          <%= link_to 'Sign in', new_client_user_session_path, class: 'btn btn-link text-decoration-none text-dark' %>
+          <%= link_to 'Sign in', new_client_user_session_path, class: 'btn btn-link text-decoration-none text-dark w-100' %>
         </li>
         <li class="list-group-item">
-          <%= link_to 'Register', new_client_user_registration_path, class: 'btn btn-link text-decoration-none text-dark' %>
+          <%= link_to 'Register', new_client_user_registration_path, class: 'btn btn-link text-decoration-none text-dark w-100' %>
         </li>
       </ul>
     </div>

@@ -5,19 +5,18 @@
         <a href="#" class="footer-link">Share</a>
       </div>
       <div class="col">
-        <%= link_to 'Invite',client_invite_index_path, class: 'footer-link'%>
+        <%= link_to 'Invite', client_invite_index_path, class: 'footer-link' %>
       </div>
       <div class="col">
-        <%= link_to 'Lottery',client_lottery_index_path, class: 'footer-link'%>
-
+        <%= link_to 'Lottery', client_lottery_index_path, class: 'footer-link' %>
       </div>
       <div class="col">
-        <a href="#" class="footer-link">Shop</a>
+        <%= link_to 'Shop', client_shop_index_path, class: 'footer-link' %>
       </div>
       <% if client_user_signed_in? %>
-      <div class="col">
-        <%= link_to 'Me',client_me_index_path ,class: 'footer-link'%>
-      </div>
+        <div class="col">
+          <%= link_to 'Me', client_me_index_path, class: 'footer-link' %>
+        </div>
       <% end %>
     </div>
   </div>
