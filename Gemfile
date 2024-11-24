@@ -54,6 +54,7 @@ gem "bootsnap", require: false
 gem 'aasm'
 gem 'carrierwave'
 gem 'devise'
+gem 'kaminari'
 gem 'phonelib'
 gem 'rest-client'
 gem "rqrcode", "~> 2.0"
