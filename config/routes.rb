@@ -8,6 +8,7 @@ Rails.application.routes.draw do
       namespace :me do
         resources :order_history, only: [:index]
         resources :lottery_history, only: [:index]
+        resources :winning_history, only: [:index]
       end
       resources :shop, only: [:index, :show]
       resources :location do
