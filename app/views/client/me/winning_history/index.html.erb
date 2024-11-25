@@ -22,6 +22,9 @@
         <% if winner.may_claim? %>
           <%= link_to "Claim Prize", edit_client_me_winning_history_path(winner), class: 'btn btn-success d-flex justify-content-center align-items-center'%>
         <% end %>
+        <% if winner.may_share? %>
+          <%= link_to "Share", edit_client_me_share_path(winner), class: 'btn btn-success d-flex justify-content-center align-items-center'%>
+        <% end %>
       </div>
     </div>
   <% end %>

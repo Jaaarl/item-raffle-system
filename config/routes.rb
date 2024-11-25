@@ -10,6 +10,7 @@ Rails.application.routes.draw do
         resources :lottery_history, only: [:index]
         resources :winning_history, only: [:index, :update, :edit]
         resources :invitation_history, only: [:index]
+        resources :share, only: [:edit, :update]
       end
       resources :shop, only: [:index, :show]
       resources :location do

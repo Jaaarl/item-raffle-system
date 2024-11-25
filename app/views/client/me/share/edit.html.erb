@@ -1,0 +1,20 @@
+<%= form_with(model: @winner, url: client_me_share_path) do |form| %>
+    <div class="container mt-5">
+        <div class="card">
+            <div class="card-body">
+                <div class="form-group">
+                    <%= form.label :comment, 'Your Comment' %>
+                    <%= form.text_area :comment, class: 'form-control', rows: 3 %>
+                </div>
+                
+                <div class="form-group">
+                    <%= form.label :image, 'Upload Image' %>
+                    <%= form.file_field :image, class: 'form-control' %>
+                </div>
+            </div>
+            <div class="card-footer text-center">
+            <%= form.submit 'Add Feedback', class: 'btn btn-success my-2' %>
+            </div>
+        </div>
+    </div>
+<% end %>
