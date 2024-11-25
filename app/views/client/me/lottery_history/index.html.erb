@@ -1,0 +1,30 @@
+<%= render 'client/me/profile' %>
+<div class="container">
+  <% @lotteries.each do |lottery| %>
+    <div class="card d-flex align-items-center p-3 mb-3 shadow-sm">
+      <div class="d-flex flex-row w-100 gap-5">
+        <div class="me-4">
+          <strong>Serial Number:</strong><br>
+          <%= lottery.serial_number %>
+        </div>
+        <div class="me-4">
+          <strong>Item:</strong><br>
+          <%= lottery.item.name %>
+        </div>
+        <div class="me-4">
+          <strong>Batch Count:</strong><br>
+          <%= lottery.item.batch_count %>
+        </div>
+        <div class="me-4">
+          <strong>Created at:</strong><br>
+          <%= lottery.created_at.strftime("%Y-%m-%d %I:%M %p") %>
+        </div>
+        <div>
+          <strong>State:</strong><br>
+          <span class="text-success"><%= lottery.state %></span>
+        </div>
+      </div>
+    </div>
+  <% end %>
+  <%= paginate @lotteries, theme: 'bootstrap-5', previous_label: "Previous", next_label: "Next", gap: 0, window: nil %>
+</div>
