@@ -2,7 +2,7 @@ class Admin::OrderController < Admin::BaseController
   before_action :set_order, only: [:cancel, :pay]
 
   def index
-    @orders = Order.includes(:offer).all
+    @orders = Order.includes(:offer).page(params[:page]).per(5)
 
     @orders = @orders.where(serial_number: params[:serial_number]) if params[:serial_number].present?
 
@@ -17,7 +17,6 @@ class Admin::OrderController < Admin::BaseController
     @orders = @orders.where("created_at >= ?", Date.parse(params[:start_date])) if params[:start_date].present?
 
     @orders = @orders.where("created_at <= ?", Date.parse(params[:end_date])) if params[:end_date].present?
-
   end
 
   def pay
