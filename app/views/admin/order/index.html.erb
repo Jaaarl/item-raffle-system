@@ -81,6 +81,7 @@
       <table class="table table-bordered table-striped">
         <thead>
         <tr>
+          <th scope="col">Ordered by</th>
           <th scope="col">Name</th>
           <th scope="col">Status</th>
           <th scope="col">Amount</th>
@@ -91,6 +92,7 @@
         <tbody>
         <% @orders.each do |order| %>
           <tr>
+            <td><%= order.user.email %></td>
             <td><%= order.offer.name %></td>
             <td><%= order.state %></td>
             <td><%= order.amount %></td>
