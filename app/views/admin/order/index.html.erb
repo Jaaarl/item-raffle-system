@@ -104,6 +104,10 @@
         </tbody>
       </table>
       <%= paginate @orders, theme: 'bootstrap-5' %>
+      <p><strong>Total Amount:</strong> <%= @all_orders.sum(&:amount) %></p>
+      <p><strong>Subtotal Amount:</strong> <%= @orders.sum(&:amount) %></p>
+      <p><strong>Total Coins:</strong> <%= @all_orders.sum(&:coin) %></p>
+      <p><strong>Subtotal Coins:</strong> <%= @orders.sum(&:coin) %></p>
     </div>
   </div>
 </div>

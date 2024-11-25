@@ -17,6 +17,8 @@ class Admin::OrderController < Admin::BaseController
     @orders = @orders.where("created_at >= ?", Date.parse(params[:start_date])) if params[:start_date].present?
 
     @orders = @orders.where("created_at <= ?", Date.parse(params[:end_date])) if params[:end_date].present?
+
+    @all_orders = Order.includes(:offer).all
   end
 
   def pay
