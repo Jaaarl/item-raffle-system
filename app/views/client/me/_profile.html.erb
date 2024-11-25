@@ -25,16 +25,16 @@
   <br>
   <ul class="nav nav-tabs d-flex justify-content-between">
     <li class="nav-item">
-      <a class="nav-link active" aria-current="page" href="#">Order History</a>
+      <%= link_to 'Order History', client_me_order_history_index_path, class: "nav-link #{'active' if current_page?(client_me_order_history_index_path)}" %>
     </li>
     <li class="nav-item">
-      <a class="nav-link" href="#">Lottery History</a>
+      <%= link_to 'Lottery History', client_me_lottery_history_index_path, class: "nav-link #{'active' if current_page?(client_me_lottery_history_index_path)}" %>
     </li>
     <li class="nav-item">
-      <a class="nav-link" href="#">Winning History</a>
+      <%= link_to 'Winning History', client_me_winning_history_index_path, class: "nav-link #{'active' if current_page?(client_me_winning_history_index_path)}" %>
     </li>
     <li class="nav-item">
-      <a class="nav-link" href="#">Invitation History</a>
-    </li>
+      <%= link_to 'Invitation History', client_me_invitation_history_index_path, class: "nav-link #{'active' if current_page?(client_me_invitation_history_index_path)}" %>
+    </li> 
   </ul>
 </div>
