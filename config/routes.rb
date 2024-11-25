@@ -5,6 +5,9 @@ Rails.application.routes.draw do
       resources :homepage, only: [:index]
       resources :menu, only: [:index]
       resources :me, only: [:index]
+      namespace :me do
+        resources :order_history, only: [:index]
+      end
       resources :shop, only: [:index, :show]
       resources :location do
         member do
