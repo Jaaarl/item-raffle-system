@@ -79,7 +79,7 @@
           <th scope="col">Price</th>
           <th scope="col">Paid at</th>
           <th scope="col">Admin email</th>
-          <th scope="col">Picture</th>
+          <th scope="col">Image</th>
           <th scope="col">Comment</th>
           <th scope="col">Action</th>
         </tr>
@@ -95,7 +95,7 @@
             <td><%= winner.price %></td>
             <td><%= winner.paid_at %></td>
             <td><%= winner.admin&.email %></td>
-            <td><%= winner.picture %></td>
+            <td><%= winner.image %></td>
             <td><%= winner.comment %></td>
             <td>
               <%= button_to 'Submit', submit_admin_winner_path(winner), method: :patch, class: 'btn btn-primary' if winner.may_submit? %>
