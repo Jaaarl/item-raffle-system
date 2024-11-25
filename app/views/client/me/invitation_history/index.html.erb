@@ -1,0 +1,14 @@
+<%= render 'client/me/profile' %>
+<div class="container">
+  <% @invited.each do |person| %>
+    <div class="card d-flex align-items-center p-3 mb-3 shadow-sm">
+      <div class="d-flex flex-row w-100 gap-5">
+        <div class="me-4">
+          <strong>Email:</strong><br>
+          <%= person.email %>
+        </div>
+      </div>
+    </div>
+  <% end %>
+  <%= paginate @invited, theme: 'bootstrap-5', previous_label: "Previous", next_label: "Next", gap: 0, window: nil %>
+</div>
