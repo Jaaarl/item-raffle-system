@@ -20,6 +20,7 @@ Rails.application.routes.draw do
       end
       resources :invite, only: [:index, :show]
       resources :lottery, only: [:index, :show]
+      resources :share, only: [:index]
       post ':id/buy_tickets', to: 'lottery#buy', as: 'buy_tickets'
       post ':id/buy_offer', to: 'shop#buy', as: 'buy_offer'
     end

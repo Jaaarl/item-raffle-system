@@ -1,0 +1,53 @@
+<div class="container mt-5">
+  <div class="row mb-4">
+    <div class="col-1 d-flex align-items-center">
+      <button class="btn btn-light">
+        <i class="bi bi-chevron-left"></i>
+      </button>
+    </div>
+    <div class="col text-center">
+      <div class="bg-light p-5">
+        <h2>Banner Image</h2>
+      </div>
+    </div>
+    <div class="col-1 d-flex align-items-center justify-content-end">
+      <button class="btn btn-light">
+        <i class="bi bi-chevron-right"></i>
+      </button>
+    </div>
+  </div>
+
+
+  <div class="row mb-4">
+    <div class="col">
+      <div class="alert alert-secondary text-center">
+        Announcement
+      </div>
+    </div>
+  </div>
+</div>
+<div class="container">
+  <div class="row gy-4 mb-2">
+    <% @feedbacks.each do |feedback| %>
+      <div class="col-12">
+        <div class="card d-flex flex-row">
+          <div class="card-img-left" style="max-width: 150px; max-height: 150px; overflow: hidden;">
+            <% if feedback.image.present? %>
+              <%= image_tag feedback.image.url, class: "img-fluid", style: "width: 100%; height: 100%; object-fit: cover;" %>
+            <% else %>
+              <div class="d-flex align-items-center justify-content-center bg-light" style="width: 150px; height: 150px;">
+                <span>No Image</span>
+              </div>
+            <% end %>
+          </div>
+
+          <div class="card-body">
+            <h6 class="card-title mb-2"><%= feedback.user.email %></h6>
+            <p class="card-text"><%= feedback.comment %></p>
+          </div>
+        </div>
+      </div>
+    <% end %>
+  </div>
+  <%= paginate @feedbacks, theme: 'bootstrap-5', previous_label: "Previous", next_label: "Next", gap: 0, window: nil %>
+</div>
