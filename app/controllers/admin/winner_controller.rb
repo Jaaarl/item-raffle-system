@@ -1,5 +1,5 @@
 class Admin::WinnerController < Admin::BaseController
-  before_action :set_winner, only: [:submit, :pay, :ship, :deliver] 
+  before_action :set_winner, only: [:submit, :pay, :ship, :deliver, :publish, :remove_publish]
   def index
     @winners = Winner.includes(:user, :item, :ticket).all
 
@@ -52,7 +52,23 @@ class Admin::WinnerController < Admin::BaseController
       redirect_to admin_winner_index_path, alert: 'Unable to deliver the item.'
     end
   end
-  
+
+  def publish
+    if @winner.publish!
+      redirect_to admin_winner_index_path, notice: 'Feedback has been publish.'
+    else
+      redirect_to admin_winner_index_path, alert: 'Unable to publish the item.'
+    end
+  end
+
+  def remove_publish
+    if @winner.remove_publish!
+      redirect_to admin_winner_index_path, notice: 'Feedback has been unpublish.'
+    else
+      redirect_to admin_winner_index_path, alert: 'Unable to unpublish the item.'
+    end
+  end
+
   private
 
   def set_winner
