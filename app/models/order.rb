@@ -17,8 +17,10 @@ class Order < ApplicationRecord
     end
 
     event :cancel do
-      transitions from: [:pending, :submitted, :paid], to: :cancelled,
+      transitions from: :paid, to: :cancelled,
+                  guard: :eligible_to_cancel?,
                   success: :update_value_post_cancel
+      transitions from: [:pending, :submitted], to: :cancelled
     end
 
     event :pay do
@@ -43,7 +45,6 @@ class Order < ApplicationRecord
       add_coins
     elsif deposit?
       decrease_total_deposit
-    elsif user.coins > self.coin
       deduct_coins
     end
   end
@@ -66,6 +67,10 @@ class Order < ApplicationRecord
   def decrease_total_deposit
     user.total_deposit -= offer.amount
     user.save
+  end
+
+  def eligible_to_cancel?
+    user.coins > self.coin
   end
 
   def assign_serial_number
