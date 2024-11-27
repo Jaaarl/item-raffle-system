@@ -1,5 +1,5 @@
 class Admin::OrderController < Admin::BaseController
-  before_action :set_order, only: [:cancel, :pay]
+  before_action :set_order, only: [:cancel, :pay, :submit]
 
   def index
     @orders = Order.includes(:offer).page(params[:page]).per(5)
@@ -34,6 +34,14 @@ class Admin::OrderController < Admin::BaseController
       redirect_to admin_order_index_path, notice: 'Order has been cancelled.'
     else
       redirect_to admin_order_path, alert: 'Unable to cancel the order.'
+    end
+  end
+
+  def submit
+    if @order.submit!
+      redirect_to admin_order_index_path, notice: 'Order has been Submitted.'
+    else
+      redirect_to admin_order_index_path, alert: 'Unable to submit the order.'
     end
   end
 

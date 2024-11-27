@@ -18,7 +18,7 @@ class Order < ApplicationRecord
 
     event :cancel do
       transitions from: [:pending, :submitted, :paid], to: :cancelled,
-                  success: :update_value_post_paid
+                  success: :update_value_post_cancel
     end
 
     event :pay do
@@ -30,9 +30,9 @@ class Order < ApplicationRecord
   private
 
   def update_value_post_paid
-    if self.deduct?
+    if deduct?
       deduct_coins
-    elsif self.deposit?
+    elsif deposit?
       increase_total_deposit
     else
       add_coins
@@ -40,14 +40,12 @@ class Order < ApplicationRecord
   end
 
   def update_value_post_cancel
-    if self.deduct?
+    if deduct?
       add_coins
-    elsif self.deposit?
+    elsif deposit?
       decrease_total_deposit
-    else
-      if user.coins > self.coin
-        deduct_coins
-      end
+    elsif user.coins > self.coin
+      deduct_coins
     end
   end
 
