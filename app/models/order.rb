@@ -34,7 +34,6 @@ class Order < ApplicationRecord
       deduct_coins
     elsif deposit?
       increase_total_deposit
-    else
       add_coins
     end
   end
