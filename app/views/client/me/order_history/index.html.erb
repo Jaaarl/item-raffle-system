@@ -23,8 +23,11 @@
           <strong>State:</strong><br>
           <span class="text-success"><%= order.state %></span>
         </div>
+        <% if order.may_cancel? %>
+          <%= button_to "Cancel", cancel_client_me_order_history_path(order), method: :patch, class: 'btn btn-success d-flex justify-content-center align-items-center' %>
+        <% end %>
       </div>
     </div>
   <% end %>
-  <%= paginate @orders, theme: 'bootstrap-5', previous_label: "Previous", next_label: "Next", gap: 0, window: nil  %>
+  <%= paginate @orders, theme: 'bootstrap-5', previous_label: "Previous", next_label: "Next", gap: 0, window: nil %>
 </div>

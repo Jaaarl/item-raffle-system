@@ -6,7 +6,11 @@ Rails.application.routes.draw do
       resources :menu, only: [:index]
       resources :me, only: [:index]
       namespace :me do
-        resources :order_history, only: [:index]
+        resources :order_history, only: [:index] do
+          member do
+            patch :cancel
+          end
+        end
         resources :lottery_history, only: [:index]
         resources :winning_history, only: [:index, :update, :edit]
         resources :invitation_history, only: [:index]
@@ -40,7 +44,7 @@ Rails.application.routes.draw do
       resources :item_management
       resources :categories
       resources :offer
-      resources :order, only: [:index]  do
+      resources :order, only: [:index] do
         member do
           patch :submit
           patch :pay
