@@ -1,5 +1,5 @@
 class Offer < ApplicationRecord
   mount_uploader :image, ImageUploader
 
-  enum status: { active: 1, inactive: 0 }
+  enum status: { inactive: 0, active: 1 }
 end
