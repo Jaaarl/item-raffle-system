@@ -52,7 +52,7 @@
         <tbody>
         <% @offers.each do |offer| %>
           <tr>
-            <td><%= image_tag offer.image_url if offer.image_url.present? %></td>
+            <td><%= image_tag offer.image.url, style: "max-width: 100px; max-height: 100px; object-fit: cover;" if offer.image.present? %></td>
             <td><%= offer.name %></td>
             <td><%= offer.status %></td>
             <td><%= offer.amount %></td>
