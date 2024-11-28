@@ -41,6 +41,7 @@ Rails.application.routes.draw do
     namespace :admin do
       resources :dashboard, only: [:index]
       resources :user_management, only: [:index, :show]
+      post 'clients/:id/increase', to: 'balance#increase', as: 'increase'
       resources :item_management
       resources :categories
       resources :offer

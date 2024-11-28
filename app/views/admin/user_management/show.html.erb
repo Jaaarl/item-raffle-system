@@ -39,20 +39,26 @@
         </ul>
         <div class="tab-content mt-3" id="balanceTabsContent">
           <div class="tab-pane fade show active" id="increase" role="tabpanel" aria-labelledby="increase-tab">
-            <form>
+            <%= form_with(url: admin_increase_path(@client), local: true, class: 'container mt-4') do |form| %>
               <div class="mb-3">
-                <label for="coins" class="form-label">Coins</label>
-                <input type="number" class="form-control" id="coins" name="coins">
+                <%= form.label :coin %>
+                <%= form.text_field :coin, class: 'form-control' %>
               </div>
+
               <div class="mb-3">
-                <label for="genre" class="form-label">Genre</label>
-                <input type="text" class="form-control" id="genre" name="genre">
+                <%= form.label :genre %>
+                <%= form.text_field :genre, value: 'Increase', class: 'form-control', disabled: true %>
               </div>
+
               <div class="mb-3">
-                <label for="remarks" class="form-label">Remarks</label>
-                <textarea class="form-control" id="remarks" name="remarks"></textarea>
+                <%= form.label :remarks %>
+                <%= form.text_field :remarks, class: 'form-control' %>
               </div>
-            </form>
+
+              <div class="mb-3">
+                <%= form.submit 'Increase', class: 'btn btn-primary' %>
+              </div>
+            <% end %>
           </div>
           <div class="tab-pane fade" id="deduct" role="tabpanel" aria-labelledby="deduct-tab">
             <form>
