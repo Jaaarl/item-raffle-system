@@ -35,6 +35,7 @@
           <th>Total Used Coins</th>
           <th>Children Members</th>
           <th>Phone Number</th>
+          <th>Action</th>
         </tr>
         </thead>
         <tbody>
@@ -48,6 +49,7 @@
             <td><%= total_used_coins(client.total_deposit, client.coins) %> </td>
             <td><%= client.children_members || 0 %></td>
             <td><%= client.phone %></td>
+            <td><%= link_to 'Show', admin_user_management_path(client), class: 'btn btn-primary'%></td>
           </tr>
         <% end %>
         </tbody>

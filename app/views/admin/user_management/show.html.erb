@@ -1,0 +1,108 @@
+<head>
+  <title>System Management</title>
+</head>
+<body>
+<%= render 'admin/shared/sidebar' %>
+
+<div id="page-content-wrapper" class="w-100">
+  <nav class="navbar navbar-expand-lg navbar-light bg-light border-bottom">
+    <div class="container-fluid">
+      <div class="ms-auto dropdown">
+        <a class="text-decoration-none text-dark btn border-black">
+          Change Language
+        </a>
+        <a class="text-decoration-none text-dark btn dropdown-toggle border-black" type="button" id="dropdownMenuButton" data-bs-toggle="dropdown" aria-expanded="false">
+          Username
+        </a>
+        <ul class="dropdown-menu dropdown-menu-end" aria-labelledby="dropdownMenuButton">
+          <li><a class="text-dark text-decoration-none btn btn-links" href="#">Profile</a></li>
+          <li><%= button_to 'Sign out', destroy_admin_user_session_path, method: :delete, class: "text-dark text-decoration-none btn btn-links" %></li>
+        </ul>
+      </div>
+    </div>
+  </nav>
+
+  <div class="container mt-5">
+    <h2>Balance Operate</h2>
+    <div class="row">
+      <div class="col-md-6">
+        <ul class="nav nav-tabs" id="balanceTabs" role="tablist">
+          <li class="nav-item" role="presentation">
+            <button class="nav-link active" id="increase-tab" data-bs-toggle="tab" data-bs-target="#increase" type="button" role="tab" aria-controls="increase" aria-selected="true">Increase</button>
+          </li>
+          <li class="nav-item" role="presentation">
+            <button class="nav-link" id="deduct-tab" data-bs-toggle="tab" data-bs-target="#deduct" type="button" role="tab" aria-controls="deduct" aria-selected="false">Deduct</button>
+          </li>
+          <li class="nav-item" role="presentation">
+            <button class="nav-link" id="bonus-tab" data-bs-toggle="tab" data-bs-target="#bonus" type="button" role="tab" aria-controls="bonus" aria-selected="false">Bonus</button>
+          </li>
+        </ul>
+        <div class="tab-content mt-3" id="balanceTabsContent">
+          <div class="tab-pane fade show active" id="increase" role="tabpanel" aria-labelledby="increase-tab">
+            <form>
+              <div class="mb-3">
+                <label for="coins" class="form-label">Coins</label>
+                <input type="number" class="form-control" id="coins" name="coins">
+              </div>
+              <div class="mb-3">
+                <label for="genre" class="form-label">Genre</label>
+                <input type="text" class="form-control" id="genre" name="genre">
+              </div>
+              <div class="mb-3">
+                <label for="remarks" class="form-label">Remarks</label>
+                <textarea class="form-control" id="remarks" name="remarks"></textarea>
+              </div>
+            </form>
+          </div>
+          <div class="tab-pane fade" id="deduct" role="tabpanel" aria-labelledby="deduct-tab">
+            <form>
+              <div class="mb-3">
+                <label for="coins-deduct" class="form-label">Coins</label>
+                <input type="number" class="form-control" id="coins-deduct" name="coins">
+              </div>
+              <div class="mb-3">
+                <label for="genre-deduct" class="form-label">Genre</label>
+                <input type="text" class="form-control" id="genre-deduct" name="genre">
+              </div>
+              <div class="mb-3">
+                <label for="remarks-deduct" class="form-label">Remarks</label>
+                <textarea class="form-control" id="remarks-deduct" name="remarks"></textarea>
+              </div>
+            </form>
+          </div>
+          <div class="tab-pane fade" id="bonus" role="tabpanel" aria-labelledby="bonus-tab">
+            <form>
+              <div class="mb-3">
+                <label for="coins-bonus" class="form-label">Coins</label>
+                <input type="number" class="form-control" id="coins-bonus" name="coins">
+              </div>
+              <div class="mb-3">
+                <label for="genre-bonus" class="form-label">Genre</label>
+                <input type="text" class="form-control" id="genre-bonus" name="genre">
+              </div>
+              <div class="mb-3">
+                <label for="remarks-bonus" class="form-label">Remarks</label>
+                <textarea class="form-control" id="remarks-bonus" name="remarks"></textarea>
+              </div>
+            </form>
+          </div>
+        </div>
+      </div>
+      <div class="col-md-6">
+        <div class="mb-3">
+          <label for="username" class="form-label">Username</label>
+          <input type="text" class="form-control" id="username" name="username" disabled value="<%= @client.email %>">
+        </div>
+        <div class="mb-3">
+          <label for="promoter-name" class="form-label">Promoter Name</label>
+          <input type="text" class="form-control" id="promoter-name" name="promoter_name" disabled value='<%= @client.parent_id.blank? ? "N/A" : @client.parent.email %>'>
+        </div>
+        <div class="mb-3">
+          <label for="coins-summary" class="form-label">Coins</label>
+          <input type="number" class="form-control" id="coins-summary" name="coins" disabled value="<%= @client.coins %>">
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+</body>

@@ -40,7 +40,7 @@ Rails.application.routes.draw do
     }, as: :admin
     namespace :admin do
       resources :dashboard, only: [:index]
-      resources :user_management, only: [:index]
+      resources :user_management, only: [:index, :show]
       resources :item_management
       resources :categories
       resources :offer
