@@ -4,7 +4,7 @@ class Order < ApplicationRecord
   after_create :assign_serial_number
 
   belongs_to :user
-  belongs_to :offer
+  belongs_to :offer, optional: true
 
   enum genre: { deposit: 0, increase: 1, deduct: 2, bonus: 3, share: 4 }
 
@@ -60,12 +60,12 @@ class Order < ApplicationRecord
   end
 
   def increase_total_deposit
-    user.total_deposit += offer.amount
+    user.total_deposit += self.amount
     user.save
   end
 
   def decrease_total_deposit
-    user.total_deposit -= offer.amount
+    user.total_deposit -= self.amount
     user.save
   end
 
