@@ -1,0 +1,54 @@
+<head>
+  <title>System Management</title>
+</head>
+<body>
+<%= render 'admin/shared/sidebar' %>
+
+<div id="page-content-wrapper" class="w-100">
+  <nav class="navbar navbar-expand-lg navbar-light bg-light border-bottom">
+    <div class="container-fluid">
+      <div class="ms-auto dropdown">
+        <a class="text-decoration-none text-dark btn border-black">
+          Change Language
+        </a>
+        <a class="text-decoration-none text-dark btn dropdown-toggle border-black" type="button" id="dropdownMenuButton" data-bs-toggle="dropdown" aria-expanded="false">
+          Username
+        </a>
+        <ul class="dropdown-menu dropdown-menu-end" aria-labelledby="dropdownMenuButton">
+          <li><a class="text-dark text-decoration-none btn btn-links" href="#">Profile</a></li>
+          <li><%= button_to 'Sign out', destroy_admin_user_session_path, method: :delete, class: "text-dark text-decoration-none btn btn-links" %></li>
+        </ul>
+      </div>
+    </div>
+  </nav>
+
+  <h1>Bannner Details</h1>
+  <div class="card">
+    <div class="card-body">
+      <h5 class="card-title">Bannner Information</h5>
+
+      <div class="form-group">
+        <strong>Image:</strong>
+        <p><%= image_tag @banner.image.url, style: "max-width: 100px; max-height: 100px; object-fit: cover;" if @banner.image.present? %></p>
+      </div>
+
+      <div class="form-group">
+        <strong>Online At:</strong>
+        <p><%= @banner.online_at %></p>
+      </div>
+
+      <div class="form-group">
+        <strong>Offline At:</strong>
+        <p><%= @banner.offline_at %></p>
+      </div>
+
+      <div class="form-group">
+        <strong>Status:</strong>
+        <p><%= @banner.status.capitalize %></p>
+      </div>
+
+      <%= link_to 'Back to List', admin_banner_index_path, class: 'btn btn-secondary' %>
+    </div>
+  </div>
+</div>
+</body>

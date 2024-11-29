@@ -48,6 +48,7 @@ Rails.application.routes.draw do
       resources :offer
       resources :invite , only: [:index]
       resources :news_ticker
+      resources :banner
       resources :order, only: [:index] do
         member do
           patch :submit
