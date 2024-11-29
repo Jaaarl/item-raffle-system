@@ -42,6 +42,7 @@ Rails.application.routes.draw do
       resources :dashboard, only: [:index]
       resources :user_management, only: [:index, :show]
       post 'clients/:id/increase', to: 'balance#increase', as: 'increase'
+      post 'clients/:id/deduct', to: 'balance#deduct', as: 'deduct'
       resources :item_management
       resources :categories
       resources :offer
