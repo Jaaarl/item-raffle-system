@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema[7.0].define(version: 2024_11_28_125718) do
+ActiveRecord::Schema[7.0].define(version: 2024_11_29_133853) do
   create_table "address_barangays", charset: "utf8mb4", force: :cascade do |t|
     t.bigint "city_id"
     t.string "code"
@@ -97,6 +97,16 @@ ActiveRecord::Schema[7.0].define(version: 2024_11_28_125718) do
     t.index ["user_id"], name: "index_locations_on_user_id"
   end
 
+  create_table "news_tickers", charset: "utf8mb4", force: :cascade do |t|
+    t.bigint "admin_id", null: false
+    t.string "content"
+    t.integer "status"
+    t.datetime "deleted_at"
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+    t.index ["admin_id"], name: "index_news_tickers_on_admin_id"
+  end
+
   create_table "offers", charset: "utf8mb4", force: :cascade do |t|
     t.string "name"
     t.integer "status"
@@ -181,6 +191,7 @@ ActiveRecord::Schema[7.0].define(version: 2024_11_28_125718) do
   add_foreign_key "locations", "address_provinces"
   add_foreign_key "locations", "address_regions"
   add_foreign_key "locations", "users"
+  add_foreign_key "news_tickers", "users", column: "admin_id"
   add_foreign_key "orders", "offers"
   add_foreign_key "orders", "users"
   add_foreign_key "tickets", "items"
