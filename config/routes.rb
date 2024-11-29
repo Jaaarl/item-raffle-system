@@ -46,6 +46,7 @@ Rails.application.routes.draw do
       resources :item_management
       resources :categories
       resources :offer
+      resources :invite , only: [:index]
       resources :order, only: [:index] do
         member do
           patch :submit
