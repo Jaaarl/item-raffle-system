@@ -8,6 +8,7 @@ class Client::LotteryController < ApplicationController
     end
     @categories = Category.all
     @banners = Banner.active.where('online_at <= ? AND offline_at > ?', Date.current, Date.current)
+    @news_tickers = NewsTicker.active
   end
 
   def buy
