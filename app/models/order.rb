@@ -33,7 +33,9 @@ class Order < ApplicationRecord
 
   def update_value_post_paid
     if deduct?
-      deduct_coins
+      unless user.coins < self.coin
+        deduct_coins
+      end
     elsif deposit?
       increase_total_deposit
       add_coins
