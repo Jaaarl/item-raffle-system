@@ -2,6 +2,11 @@ class Admin::BalanceController < Admin::BaseController
   before_action :set_user, only: [:show, :edit, :increase, :deduct]
 
   def increase
+    if params[:coin].nil? || params[:coin].to_i == 0
+      flash[:alert] = 'Coin amount cannot be nil or zero.'
+      redirect_to admin_user_management_index_path and return
+    end
+
     @increase = Order.create(user: @user, amount: 0, coin: params[:coin], genre: "increase")
     if @increase.save
       @increase.submit!
@@ -16,6 +21,11 @@ class Admin::BalanceController < Admin::BaseController
   end
 
   def deduct
+    if params[:coin].nil? || params[:coin].to_i == 0
+      flash[:alert] = 'Coin amount cannot be nil or zero.'
+      redirect_to admin_user_management_index_path and return
+    end
+
     @increase = Order.create(user: @user, amount: 0, coin: params[:coin], genre: "deduct")
     if @increase.save
       @increase.submit!
