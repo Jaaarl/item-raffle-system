@@ -7,6 +7,7 @@ class Client::LotteryController < ApplicationController
       @items = @items.joins(:categories).where(categories: { id: params[:category_id] })
     end
     @categories = Category.all
+    @banners = Banner.active.where('online_at <= ? AND offline_at > ?', Date.current, Date.current)
   end
 
   def buy
