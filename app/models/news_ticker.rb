@@ -4,6 +4,9 @@ class NewsTicker < ApplicationRecord
 
   enum status: { inactive: 0, active: 1 }
 
+  validates :content, presence: true
+  validates :status, presence: true
+
   def destroy
     update(deleted_at: Time.current)
   end
