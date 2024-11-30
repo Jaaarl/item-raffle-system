@@ -26,19 +26,19 @@ class Admin::BalanceController < Admin::BaseController
       redirect_to admin_user_management_index_path and return
     end
 
-    @increase = Order.create(user: @user, amount: 0, coin: params[:coin], genre: "deduct")
-    if @increase.save
-      @increase.submit!
-      if @increase.may_pay? && @user.coins >= @increase.coin
-        @increase.pay!
+    @deduct = Order.create(user: @user, amount: 0, coin: params[:coin], genre: "deduct")
+    if @deduct.save
+      @deduct.submit!
+      if @deduct.may_pay? && @user.coins >= @deduct.coin
+        @deduct.pay!
         redirect_to admin_user_management_index_path, notice: 'Deduct successfully added to the user.'
       else
-        @increase.cancel!
+        @deduct.cancel!
         redirect_to admin_user_management_index_path, alert: 'Cannot deduct coins resulting in a negative balance.'
       end
     else
-      if @increase.errors.any?
-        flash[:alert] = @increase.errors.full_messages.to_sentence
+      if @deduct.errors.any?
+        flash[:alert] = @deduct.errors.full_messages.to_sentence
       end
       redirect_to admin_user_management_index_path
     end
