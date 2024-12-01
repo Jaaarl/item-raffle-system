@@ -16,17 +16,23 @@ Rails.application.routes.draw do
         resources :invitation_history, only: [:index]
         resources :share, only: [:edit, :update]
       end
-      resources :shop, only: [:index, :show]
+      resources :shop, only: [:index, :show] do
+        member do
+          post :buy
+        end
+      end
       resources :location do
         member do
           patch :make_default
         end
       end
       resources :invite, only: [:index, :show]
-      resources :lottery, only: [:index, :show]
+      resources :lottery, only: [:index, :show] do
+        member do
+          post :buy
+        end
+      end
       resources :share, only: [:index]
-      post ':id/buy_tickets', to: 'lottery#buy', as: 'buy_tickets'
-      post ':id/buy_offer', to: 'shop#buy', as: 'buy_offer'
     end
     devise_for :users, controllers: {
       sessions: 'client/sessions',
@@ -40,9 +46,12 @@ Rails.application.routes.draw do
     }, as: :admin
     namespace :admin do
       resources :dashboard, only: [:index]
-      resources :user_management, only: [:index, :show]
-      post 'clients/:id/increase', to: 'balance#increase', as: 'increase'
-      post 'clients/:id/deduct', to: 'balance#deduct', as: 'deduct'
+      resources :user_management, only: [:index, :show] do
+        member do
+          post :increase
+          post :deduct
+        end
+      end
       resources :item_management
       resources :categories
       resources :offer

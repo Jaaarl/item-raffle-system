@@ -11,7 +11,7 @@
         <%= @offer.name %>
       </div>
 
-      <%= form_with url: client_buy_offer_path(@offer), method: :post, local: true do |form| %>
+      <%= form_with url: buy_client_shop_path(@offer), method: :post, local: true do |form| %>
         <div class="d-grid mb-3">
           <%= form.submit 'Buy Offer', class: 'btn btn-success my-2' %>
         </div>
