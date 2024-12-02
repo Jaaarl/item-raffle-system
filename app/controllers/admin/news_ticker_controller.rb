@@ -2,7 +2,7 @@ class Admin::NewsTickerController < Admin::BaseController
   before_action :set_news_ticker, only: [:show, :edit, :update, :destroy]
 
   def index
-    @news_tickers = NewsTicker.all.order(created_at: :desc)
+    @news_tickers = NewsTicker.all.order(created_at: :desc).page(params[:page]).per(10)
   end
 
   def show

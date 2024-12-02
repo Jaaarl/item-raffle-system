@@ -2,7 +2,7 @@ class Admin::ItemManagementController < Admin::BaseController
   before_action :set_item, only: [:edit, :update, :destroy, :show, :start, :pause, :end, :cancel]
 
   def index
-    @items = Item.includes(:categories).all.order(created_at: :desc)
+    @items = Item.includes(:categories).all.order(created_at: :desc).page(params[:page]).per(10)
   end
 
   def show

@@ -36,10 +36,6 @@
         </div>
       <% end %>
     </div>
-
-    <div class="text-end">
-      <button class="btn btn-primary">More...</button>
-    </div>
+    <%= paginate @items, theme: 'bootstrap-5', previous_label: "Previous", next_label: "Next", gap: 0, window: nil %>
   </div>
-
 </div>

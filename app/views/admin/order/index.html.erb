@@ -92,7 +92,7 @@
         <tbody>
         <% @orders.each do |order| %>
           <tr>
-            <td><%= order.user.email %></td>
+            <td><%= order.user&.email %></td>
             <td><%= order.offer&.name || "N/A" %></td>
             <td><%= order.state %></td>
             <td><%= order.amount %></td>

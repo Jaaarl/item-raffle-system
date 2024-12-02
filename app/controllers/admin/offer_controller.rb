@@ -2,10 +2,10 @@ class Admin::OfferController < Admin::BaseController
   before_action :set_offer, only: [:show, :edit, :update, :destroy]
 
   def index
-    @offers = Offer.all.order(created_at: :desc)
+    @offers = Offer.all.order(created_at: :desc).page(params[:page]).per(10)
 
     if params[:status].present?
-      @offers = Offer.where(status: params[:status])
+      @offers = Offer.where(status: params[:status]).page(params[:page]).per(10)
     end
   end
 

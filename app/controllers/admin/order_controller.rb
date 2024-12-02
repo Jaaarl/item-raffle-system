@@ -2,11 +2,11 @@ class Admin::OrderController < Admin::BaseController
   before_action :set_order, only: [:cancel, :pay, :submit]
 
   def index
-    @orders = Order.includes(:offer).page(params[:page]).per(5).order(created_at: :desc)
+    @orders = Order.includes(:offer)
 
     @orders = @orders.where(serial_number: params[:serial_number]) if params[:serial_number].present?
 
-    @orders = @orders.where("email LIKE ?", "%#{params[:email]}%") if params[:email].present?
+    @orders = @orders.joins(:user).where("email LIKE ?", "%#{params[:email]}%") if params[:email].present?
 
     @orders = @orders.where(genre: params[:genre]) if params[:genre].present?
 
@@ -17,6 +17,8 @@ class Admin::OrderController < Admin::BaseController
     @orders = @orders.where("created_at >= ?", Date.parse(params[:start_date])) if params[:start_date].present?
 
     @orders = @orders.where("created_at <= ?", Date.parse(params[:end_date])) if params[:end_date].present?
+
+    @orders = @orders.order(created_at: :desc).page(params[:page]).per(10)
 
     @all_orders = Order.includes(:offer).all
   end

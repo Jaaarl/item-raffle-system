@@ -2,7 +2,7 @@ class Client::LotteryController < ApplicationController
   before_action :set_lottery, only: [:show, :buy]
 
   def index
-    @items = Item.includes(:categories).starting.active
+    @items = Item.includes(:categories).starting.active.order(created_at: :desc).page(params[:page]).per(12)
     if params[:category_id].present?
       @items = @items.joins(:categories).where(categories: { id: params[:category_id] })
     end
