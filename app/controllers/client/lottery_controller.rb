@@ -36,6 +36,7 @@ class Client::LotteryController < ApplicationController
   end
 
   def show
+    @user_ticket = Ticket.where(user: current_client_user, item: @item, batch_count: @item.batch_count)
   end
 
   private
