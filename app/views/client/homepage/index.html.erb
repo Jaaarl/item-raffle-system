@@ -30,22 +30,24 @@
     </div>
   </div>
 
-  <div class="row">
-    <div class="col">
-      <h4>Coming Soon</h4>
-      <div class="d-flex justify-content-around">
-        <div class="card p-3 text-center" style="width: 150px;">
-          Image 1
-        </div>
-        <div class="card p-3 text-center" style="width: 150px;">
-          Image 2
-        </div>
-        <div class="card p-3 text-center" style="width: 150px;">
-          Image 3
-        </div>
-        <div class="card p-3 text-center" style="width: 150px;">
-          More...
-        </div>
+  <div class="row mb-4">
+    <div class="col-12">
+      <h4 class="text-center mb-4">Coming Soon</h4>
+
+      <div class="row row-cols-1 row-cols-md-3 g-4">
+        <% @items.each do |item| %>
+          <div class="col">
+            <div class="card p-3 h-100 shadow-sm border-0 rounded-3">
+              <div class="d-flex justify-content-center mb-3">
+                <%= image_tag item.image.url, class: "img-fluid border", size: "120x120" if item.image.present? %>
+              </div>
+            </div>
+          </div>
+        <% end %>
+      </div>
+
+      <div class="text-center mt-4">
+        <%= link_to 'More...', client_lottery_index_path, class: 'btn btn-outline-primary' %>
       </div>
     </div>
   </div>
