@@ -2,7 +2,7 @@ class Admin::TicketController < Admin::BaseController
   before_action :set_ticket, only: [:cancel]
 
   def index
-    @tickets = Ticket.includes(:user, :item).all
+    @tickets = Ticket.includes(:user, :item).all.order(created_at: :desc)
 
     @tickets = @tickets.where(serial_number: params[:serial_number]) if params[:serial_number].present?
 

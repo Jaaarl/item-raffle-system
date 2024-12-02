@@ -2,7 +2,7 @@ class Admin::UserManagementController < Admin::BaseController
   before_action :set_user, only: [:show, :increase, :deduct]
 
   def index
-    @clients = User.where(role: 'client')
+    @clients = User.where(role: 'client').order(created_at: :desc)
   end
 
   def show

@@ -2,7 +2,7 @@ class Client::Me::OrderHistoryController < ApplicationController
   before_action :set_order, only: [:cancel]
 
   def index
-    @orders = Order.where(user: current_client_user).page(params[:page]).per(5)
+    @orders = Order.where(user: current_client_user).page(params[:page]).per(5).order(created_at: :desc)
   end
 
   def cancel

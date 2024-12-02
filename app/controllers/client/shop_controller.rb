@@ -2,9 +2,9 @@ class Client::ShopController < ApplicationController
   before_action :set_offer, only: [:show, :buy]
 
   def index
-    @offers = Offer.active
+    @offers = Offer.active.order(created_at: :desc)
     @banners = Banner.active.where('online_at <= ? AND offline_at > ?', Date.current, Date.current)
-    @news_tickers = NewsTicker.active
+    @news_tickers = NewsTicker.active.order(created_at: :desc)
   end
 
   def show; end

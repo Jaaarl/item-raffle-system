@@ -2,7 +2,7 @@ class Client::Me::WinningHistoryController < ApplicationController
   before_action :set_winner, only: [:edit, :update]
 
   def index
-    @winners = Winner.where(user: current_client_user).page(params[:page]).per(5)
+    @winners = Winner.where(user: current_client_user).page(params[:page]).per(5).order(created_at: :desc)
   end
 
   def edit

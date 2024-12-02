@@ -2,7 +2,7 @@ class Admin::BannerController < Admin::BaseController
   before_action :set_banner, only: [:show, :edit, :update, :destroy]
 
   def index
-    @banners = Banner.all
+    @banners = Banner.all.order(created_at: :desc)
   end
 
   def show

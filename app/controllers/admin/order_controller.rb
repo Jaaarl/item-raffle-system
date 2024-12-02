@@ -2,7 +2,7 @@ class Admin::OrderController < Admin::BaseController
   before_action :set_order, only: [:cancel, :pay, :submit]
 
   def index
-    @orders = Order.includes(:offer).page(params[:page]).per(5)
+    @orders = Order.includes(:offer).page(params[:page]).per(5).order(created_at: :desc)
 
     @orders = @orders.where(serial_number: params[:serial_number]) if params[:serial_number].present?
 

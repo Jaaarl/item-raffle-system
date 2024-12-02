@@ -3,7 +3,7 @@ class Client::LocationController < ApplicationController
   before_action :set_location, only: [:show, :edit, :update, :destroy, :make_default]
 
   def index
-    @locations = Location.where(user_id: current_client_user.id)
+    @locations = Location.where(user_id: current_client_user.id).order(created_at: :desc)
   end
 
   def show

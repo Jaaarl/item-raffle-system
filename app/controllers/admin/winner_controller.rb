@@ -1,7 +1,7 @@
 class Admin::WinnerController < Admin::BaseController
   before_action :set_winner, only: [:submit, :pay, :ship, :deliver, :publish, :remove_publish]
   def index
-    @winners = Winner.includes(:user, :item, :ticket).all
+    @winners = Winner.includes(:user, :item, :ticket).all.order(created_at: :desc)
 
     @winners = @winners.where(serial_number: params[:serial_number]) if params[:serial_number].present?
 
