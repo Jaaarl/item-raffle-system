@@ -17,7 +17,8 @@
         </div>
       </div>
       <div class="card-footer text-center">
-        <%= form.submit 'Select Address', class: 'btn btn-success my-2' %>
+        <%= form.submit 'Select Address', class: 'btn btn-success my-2' if @locations.present? %>
+        <%= link_to 'Add or Edit Address?', client_location_index_path, class: 'btn btn-success my-2' %>
       </div>
     </div>
   </div>
