@@ -6,7 +6,7 @@ class Client::Me::ShareController < ApplicationController
   def update
     if @winner.update(winner_params)
       @winner.share!
-      redirect_to client_me_lottery_history_index_path, notice: 'Feedback submitted successfully.'
+      redirect_to client_me_share_path, notice: 'Feedback submitted successfully.'
     else
       render :edit, alert: 'There was an error submitting your feedback. Please try again.'
     end

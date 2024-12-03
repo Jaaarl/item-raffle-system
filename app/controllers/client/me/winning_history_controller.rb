@@ -13,7 +13,7 @@ class Client::Me::WinningHistoryController < ApplicationController
   def update
     if @winner.update(winner_params)
       @winner.claim!
-      redirect_to client_me_lottery_history_index_path, notice: 'Winning record updated successfully.'
+      redirect_to client_me_winning_history_index_path, notice: 'Winning record updated successfully.'
     else
       render :edit, alert: 'Failed to update the winning record.'
     end
