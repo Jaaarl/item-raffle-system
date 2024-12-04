@@ -47,7 +47,7 @@
         </div>
 
         <div class="col-md-4">
-          <%= form.label :state, 'Order State', class: 'form-label' %>
+          <%= form.label :state, 'State', class: 'form-label' %>
           <%= form.select :state, ['pending', 'submitted', 'paid', 'cancelled'],
                           include_blank: true,
                           selected: params[:state],
@@ -55,7 +55,7 @@
         </div>
 
         <div class="col-md-4">
-          <%= form.label :offer, 'Offer', class: 'form-label' %>
+          <%= form.label :offer, 'Offer State', class: 'form-label' %>
           <%= form.select :offer, ['active', 'inactive'],
                           include_blank: true,
                           selected: params[:offer],
@@ -82,7 +82,7 @@
         <thead>
         <tr>
           <th scope="col">Ordered by</th>
-          <th scope="col">Name</th>
+          <th scope="col">Offer</th>
           <th scope="col">Status</th>
           <th scope="col">Amount</th>
           <th scope="col">coin</th>

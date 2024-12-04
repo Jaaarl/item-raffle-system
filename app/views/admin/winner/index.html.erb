@@ -44,7 +44,7 @@
 
       <div class="row mb-3">
         <div class="col-md-4">
-          <%= form.label :state, 'Winner State', class: 'form-label' %>
+          <%= form.label :state, 'State', class: 'form-label' %>
           <%= form.select :state, %w[pending won claimed submitted paid shipped delivered shared published remove_published],
                           include_blank: true,
                           selected: params[:state],
