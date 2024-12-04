@@ -8,9 +8,11 @@
             No image
           <% end %>
         </div>
-        <%= @offer.name %>
       </div>
-
+      <h5 class="card-title text-center mb-3"><%= @offer.name %></h5>
+      <div class="mb-3">
+        <p class="mb-1"><%= "You can have #{@offer.coin} coins for ₱#{@offer.amount}" %></p>
+      </div>
       <%= form_with url: buy_client_shop_path(@offer), method: :post, local: true do |form| %>
         <div class="d-grid mb-3">
           <%= form.submit 'Buy Offer', class: 'btn btn-success my-2' %>
