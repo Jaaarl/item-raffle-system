@@ -21,7 +21,11 @@
         </div>
         <div>
           <strong>State:</strong><br>
-          <span class="text-success"><%= order.state %></span>
+          <span class="text-success">
+            <span class="<%= 'text-danger' if order.cancelled? %>">
+                <%= order.state %>
+            </span>
+          </span>
         </div>
         <% if order.may_cancel? && order.submitted? %>
           <%= button_to "Cancel", cancel_client_me_order_history_path(order), method: :patch, class: 'btn btn-success d-flex justify-content-center align-items-center' %>

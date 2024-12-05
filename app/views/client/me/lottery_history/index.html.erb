@@ -21,7 +21,13 @@
         </div>
         <div>
           <strong>State:</strong><br>
-          <span class="text-success"><%= lottery.state %></span>
+          <span class="text-success">
+            <span class="<%= 'text-danger' if lottery.lost? %>">
+              <span class="<%= 'text-warning' if lottery.cancelled? %>">
+                <%= lottery.state %>
+              </span>
+            </span>
+          </span>
         </div>
       </div>
     </div>
