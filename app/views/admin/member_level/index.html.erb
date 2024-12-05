@@ -1,0 +1,56 @@
+<head>
+  <title>System Management</title>
+</head>
+<body>
+<%= render 'admin/shared/sidebar' %>
+
+<div id="page-content-wrapper" class="w-100">
+  <nav class="navbar navbar-expand-lg navbar-light bg-light border-bottom">
+    <div class="container-fluid">
+      <div class="ms-auto dropdown">
+        <a class="text-decoration-none text-dark btn border-black">
+          Change Language
+        </a>
+        <a class="text-decoration-none text-dark btn dropdown-toggle border-black" type="button" id="dropdownMenuButton" data-bs-toggle="dropdown" aria-expanded="false">
+          Username
+        </a>
+        <ul class="dropdown-menu dropdown-menu-end" aria-labelledby="dropdownMenuButton">
+          <li><a class="text-dark text-decoration-none btn btn-links" href="#">Profile</a></li>
+          <li><%= button_to 'Sign out', destroy_admin_user_session_path, method: :delete, class: "text-dark text-decoration-none btn btn-links" %></li>
+        </ul>
+      </div>
+    </div>
+  </nav>
+
+  <div class="container-fluid mt-4">
+    <h1>Member Level list</h1>
+    <div class="table-responsive">
+      <table class="table table-striped">
+        <thead>
+        <tr>
+          <th>Level</th>
+          <th>required members</th>
+          <th>coins</th>
+          <th>Action</th>
+        </tr>
+        </thead>
+        <tbody>
+        <% @member_levels.each do |member| %>
+          <tr>
+            <td><%= member.level %></td>
+            <td><%= member.required_members %></td>
+            <td><%= member.coins %></td>
+            <td>
+              <%= link_to 'Show', admin_member_level_path(member), class: 'btn btn-primary' %>
+              <%= link_to 'Edit', edit_admin_member_level_path(member), class: 'btn btn-primary' %>
+            </td>
+          </tr>
+        <% end %>
+        </tbody>
+      </table>
+      <%= link_to 'Add Member Level', new_admin_member_level_path, class: 'btn btn-primary' %>
+    </div>
+    <%= paginate @member_levels, theme: 'bootstrap-5', previous_label: "Previous", next_label: "Next", gap: 0, window: nil %>
+  </div>
+</div>
+</body>

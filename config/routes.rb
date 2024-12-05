@@ -58,6 +58,7 @@ Rails.application.routes.draw do
       resources :invite , only: [:index]
       resources :news_ticker
       resources :banner
+      resources :member_level, except: [:destroy]
       resources :order, only: [:index] do
         member do
           patch :submit
