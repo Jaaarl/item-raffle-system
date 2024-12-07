@@ -10,7 +10,7 @@ module ApplicationHelper
     svg = qrcode.as_svg(
       color: "000",
       shape_rendering: "crispEdges",
-      module_size: 11,
+      module_size: 7,
       standalone: true,
       use_path: true
     )
@@ -38,5 +38,20 @@ module ApplicationHelper
     total_tickets = Ticket.where(batch_count: item.batch_count, item_id: item.id).count
     percentage = (total_tickets.to_f / item.minimum_tickets) * 100
     percentage.round(2)
+  end
+
+  def next_level_message(current_client_user)
+    next_level = current_client_user.member_level.level + 1
+    next_level_content = MemberLevel.find_by(level: next_level)
+
+    if next_level_content
+      required_members = next_level_content.required_members
+      children_members = current_client_user.children_members
+      coins = next_level_content.coins
+
+      "Share this to #{required_members - children_members} friend/s and get #{coins} coins"
+    else
+      "No next level available"
+    end
   end
 end

@@ -2,7 +2,11 @@
   <div class="mb-4">
     <%= qrcode(current_client_user&.email || '') %>
   </div>
-
+  <% if client_user_signed_in? %>
+    <div class="border border-secondary rounded-3 p-4 text-center mb-4">
+      <%= next_level_message(current_client_user) %>
+    </div>
+  <% end %>
   <div class="border border-secondary rounded-3 p-4 text-center">
     <%= invite_url_link(current_client_user&.email || '') %>
   </div>
