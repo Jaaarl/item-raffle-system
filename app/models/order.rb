@@ -6,7 +6,7 @@ class Order < ApplicationRecord
   belongs_to :user
   belongs_to :offer, optional: true
 
-  enum genre: { deposit: 0, increase: 1, deduct: 2, bonus: 3, share: 4 }
+  enum genre: { deposit: 0, increase: 1, deduct: 2, bonus: 3, share: 4, member_level: 5 }
 
   aasm column: :state do
     state :pending, initial: true
