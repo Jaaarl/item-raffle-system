@@ -6,12 +6,16 @@
 
   <div class="form-group">
     <%= form.label :required_Members %>
-    <%= form.number_field :required_members, class: 'form-control' %>
+    <%= form.number_field :required_members, class: 'form-control',
+                          value: (@member_levels_count || @member_level.level == 1 ? 0 : @member_level.required_members),
+                          disabled: (@member_levels_count == 1 || @member_level.level == 1) %>
   </div>
 
   <div class="form-group">
     <%= form.label :coins %>
-    <%= form.number_field :coins, class: 'form-control' %>
+    <%= form.number_field :coins, class: 'form-control',
+                          value: (@member_levels_count || @member_level.level == 1 ? 0 : @member_level.coins),
+                          disabled: (@member_levels_count == 1 || @member_level.level == 1) %>
   </div>
 
   <%= form.submit class: 'btn btn-success my-2' %>
