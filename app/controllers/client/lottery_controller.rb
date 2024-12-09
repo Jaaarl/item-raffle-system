@@ -26,6 +26,7 @@ class Client::LotteryController < ApplicationController
           flash[:alert] = "Please select at least one ticket."
         elsif current_client_user.coins < number_of_tickets
           flash[:alert] = "You don't have enough coins to purchase this ticket. Please add more coins to proceed"
+          redirect_to client_shop_index_path and return
         end
       end
       redirect_to client_lottery_path(id: @item.id)

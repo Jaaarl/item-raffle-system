@@ -25,16 +25,23 @@
                aria-valuemax="100"></div>
         </div>
       </div>
-
       <%= form_with url: buy_client_lottery_path(@item), method: :post, local: true do |form| %>
-        <div class="input-group mb-3" data-controller="counter">
-          <button class="btn btn-outline-secondary" data-action="click->counter#decrement" type="button">-</button>
-          <%= number_field_tag 'counter', 1,
-                               class: 'form-control text-center',
-                               id: 'counter-input',
-                               min: 1,
-                               data: { counter_target: 'input' } %>
-          <button class="btn btn-outline-secondary" data-action="click->counter#increment" type="button">+</button>
+        <div data-controller="counter">
+          <div class="d-flex justify-content-between mb-3 gap-2">
+            <button type="button" class="btn btn-success flex-fill" data-action="click->counter#setValue" data-value="1">1</button>
+            <button type="button" class="btn btn-success flex-fill" data-action="click->counter#setValue" data-value="5">5</button>
+            <button type="button" class="btn btn-success flex-fill" data-action="click->counter#setValue" data-value="10">10</button>
+            <button type="button" class="btn btn-success flex-fill" data-action="click->counter#setValue" data-value="20">20</button>
+          </div>
+          <div class="input-group mb-3">
+            <button class="btn btn-outline-secondary" data-action="click->counter#decrement" type="button">-</button>
+            <%= number_field_tag 'counter', 1,
+                                 class: 'form-control text-center',
+                                 id: 'counter-input',
+                                 min: 1,
+                                 data: { counter_target: 'input' } %>
+            <button class="btn btn-outline-secondary" data-action="click->counter#increment" type="button">+</button>
+          </div>
         </div>
 
 
@@ -46,7 +53,7 @@
         <div class="d-flex flex-column">
           <div class="border p-2">Ticket</div>
           <% @user_ticket.each do |ticket| %>
-              <div class="border p-2"><%= ticket.serial_number %></div>
+            <div class="border p-2"><%= ticket.serial_number %></div>
           <% end %>
         </div>
       </div>

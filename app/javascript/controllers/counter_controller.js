@@ -21,4 +21,8 @@ export default class extends Controller {
             this.inputTarget.value = currentValue - 1;
         }
     }
+    setValue(event) {
+        const value = parseInt(event.target.dataset.value, 10);
+        this.inputTarget.value = value;
+    }
 }
