@@ -15,7 +15,6 @@ class Client::RegistrationsController < Devise::RegistrationsController
 
   def create
     build_resource(sign_up_params)
-
     resource.save
     yield resource if block_given?
     if resource.persisted?
@@ -23,6 +22,17 @@ class Client::RegistrationsController < Devise::RegistrationsController
         set_flash_message! :notice, :signed_up
         sign_up(resource_name, resource)
         respond_with resource, location: after_sign_up_path_for(resource)
+        promoter_name = cookies[:promoter]
+        promoter = User.find_by(email: promoter_name)
+        next_level = promoter.member_level.level + 1
+        next_level_content = MemberLevel.find_by(level: next_level)
+        if next_level_content
+          if next_level_content.required_members <= promoter.children_members
+            promoter.coins += next_level_content.coins
+            promoter.member_level = next_level_content
+            promoter.save
+          end
+        end
       else
         set_flash_message! :notice, :"signed_up_but_#{resource.inactive_message}"
         expire_data_after_sign_in!
