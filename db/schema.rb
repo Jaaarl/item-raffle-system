@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema[7.0].define(version: 2024_12_06_054410) do
+ActiveRecord::Schema[7.0].define(version: 2024_12_09_052156) do
   create_table "address_barangays", charset: "utf8mb4", force: :cascade do |t|
     t.bigint "city_id"
     t.string "code"
@@ -179,6 +179,7 @@ ActiveRecord::Schema[7.0].define(version: 2024_12_06_054410) do
     t.string "image"
     t.integer "parent_id"
     t.bigint "member_level_id", default: 1
+    t.integer "current_invite_counter", default: 0
     t.index ["email"], name: "index_users_on_email", unique: true
     t.index ["member_level_id"], name: "index_users_on_member_level_id"
     t.index ["reset_password_token"], name: "index_users_on_reset_password_token", unique: true

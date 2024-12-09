@@ -24,12 +24,14 @@ class Client::RegistrationsController < Devise::RegistrationsController
         respond_with resource, location: after_sign_up_path_for(resource)
         promoter_name = cookies[:promoter]
         promoter = User.find_by(email: promoter_name)
+        promoter.current_invite_counter += 1
         next_level = promoter.member_level.level + 1
         next_level_content = MemberLevel.find_by(level: next_level)
         if next_level_content
-          if next_level_content.required_members <= promoter.children_members
+          if next_level_content.required_members <= promoter.current_invite_counter
             promoter.coins += next_level_content.coins
             promoter.member_level = next_level_content
+            promoter.current_invite_counter = 0
             promoter.save
           end
         end

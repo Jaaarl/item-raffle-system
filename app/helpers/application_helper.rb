@@ -46,10 +46,10 @@ module ApplicationHelper
 
     if next_level_content
       required_members = next_level_content.required_members
-      children_members = current_client_user.children_members
+      current_invite_counter = current_client_user.current_invite_counter
       coins = next_level_content.coins
 
-      "Share this to #{required_members - children_members} friend/s and get #{coins} coins"
+      "Share this to #{required_members - current_invite_counter} friend/s and get #{coins} coins"
     else
       "No next level available"
     end
