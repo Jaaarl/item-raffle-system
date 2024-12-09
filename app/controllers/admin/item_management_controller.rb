@@ -38,43 +38,48 @@ class Admin::ItemManagementController < Admin::BaseController
   def destroy
     tickets = Ticket.find_by(item_id: @item.id)
     if tickets
-      redirect_to admin_item_management_index_path, notice: 'Cannot delete item. This item has associated tickets.'
+      flash[:notice] = 'Cannot delete item. This item has associated tickets.'
     else
       @item.destroy!
-      redirect_to admin_item_management_index_path, notice: 'Item was successfully deleted.'
+      flash[:notice] = 'Item was successfully deleted.'
     end
+    redirect_to admin_item_management_index_path
   end
 
   def start
     if @item.start!
-      redirect_to admin_item_management_index_path, notice: 'Item has been started.'
+      flash[:notice] = 'Item has been started.'
     else
-      redirect_to admin_item_management_index_path, alert: 'Unable to start the item.'
+      flash[:alert] = 'Unable to start the item.'
     end
+    redirect_to admin_item_management_index_path
   end
 
   def pause
     if @item.pause!
-      redirect_to admin_item_management_index_path, notice: 'Item has been paused.'
+      flash[:notice] = 'Item has been paused.'
     else
-      redirect_to admin_item_management_index_path, alert: 'Unable to pause the item.'
+      flash[:alert] = 'Unable to pause the item.'
     end
+    redirect_to admin_item_management_index_path
   end
 
   def end
     if @item.end!
-      redirect_to admin_item_management_index_path, notice: 'Item has been ended.'
+      flash[:notice] = 'Item has been ended.'
     else
-      redirect_to admin_item_management_index_path, alert: 'Unable to end the item.'
+      flash[:alert] = 'Unable to end the item.'
     end
+    redirect_to admin_item_management_index_path
   end
 
   def cancel
     if @item.cancel!
-      redirect_to admin_item_management_index_path, notice: 'Item has been cancelled.'
+      flash[:notice] = 'Item has been cancelled.'
     else
-      redirect_to admin_item_management_index_path, alert: 'Unable to cancel the item.'
+      flash[:alert] = 'Unable to cancel the item.'
     end
+    redirect_to admin_item_management_index_path
   end
 
   private

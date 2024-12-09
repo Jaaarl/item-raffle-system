@@ -25,10 +25,11 @@ class Admin::OrderController < Admin::BaseController
 
   def pay
     if @order.pay!
-      redirect_to admin_order_index_path, notice: 'Order has been paid.'
+      flash[:notice] = 'Order has been paid.'
     else
-      redirect_to admin_order_index_path, alert: 'Unable to pay the order.'
+      flash[:alert] = 'Unable to pay the order.'
     end
+    redirect_to admin_order_index_path
   end
 
   def cancel
@@ -41,9 +42,9 @@ class Admin::OrderController < Admin::BaseController
 
   def submit
     if @order.submit!
-      redirect_to admin_order_index_path, notice: 'Order has been Submitted.'
+      flash[:notice] = 'Order has been Submitted.'
     else
-      redirect_to admin_order_index_path, alert: 'Unable to submit the order.'
+      flash[:alert] = 'Unable to submit the order.'
     end
   end
 

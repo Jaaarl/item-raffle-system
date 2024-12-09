@@ -39,17 +39,17 @@ class Admin::UserManagementController < Admin::BaseController
       @deduct.submit!
       if @deduct.may_pay? && @client.coins >= @deduct.coin
         @deduct.pay!
-        redirect_to admin_user_management_index_path, notice: 'Deduct successfully added to the user.'
+        flash[:notice] = 'Deduct successfully added to the user.'
       else
         @deduct.cancel!
-        redirect_to admin_user_management_index_path, alert: 'Cannot deduct coins resulting in a negative balance.'
+        flash[:alert] = 'Cannot deduct coins resulting in a negative balance.'
       end
     else
       if @deduct.errors.any?
         flash[:alert] = @deduct.errors.full_messages.to_sentence
       end
-      redirect_to admin_user_management_index_path
     end
+    redirect_to admin_user_management_index_path
   end
 
   private

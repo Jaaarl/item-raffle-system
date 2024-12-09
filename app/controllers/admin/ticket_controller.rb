@@ -23,10 +23,11 @@ class Admin::TicketController < Admin::BaseController
 
   def cancel
     if @ticket.cancel!
-      redirect_to admin_ticket_index_path, notice: 'Item has been cancelled.'
+      flash[:notice] = 'Item has been cancelled.'
     else
-      redirect_to admin_ticket_index_path, alert: 'Unable to cancel the item.'
+      flash[:alert] = 'Unable to cancel the item.'
     end
+    redirect_to admin_ticket_index_path
   end
 
   private
