@@ -26,6 +26,9 @@ class Order < ApplicationRecord
     event :pay do
       transitions from: :submitted, to: :paid,
                   success: :update_value_post_paid
+      transitions from: :pending, to: :paid,
+                  guard: :member_level?,
+                  success: :add_coins
     end
   end
 

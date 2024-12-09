@@ -29,12 +29,14 @@ class Client::RegistrationsController < Devise::RegistrationsController
         next_level_content = MemberLevel.find_by(level: next_level)
         if next_level_content
           if next_level_content.required_members <= promoter.current_invite_counter
-            promoter.coins += next_level_content.coins
+            order = Order.create(user: promoter, amount: 0, coin: next_level_content.coins, genre: :member_level)
+            order.save
+            order.pay!
             promoter.member_level = next_level_content
             promoter.current_invite_counter = 0
-            promoter.save
           end
         end
+        promoter.save
       else
         set_flash_message! :notice, :"signed_up_but_#{resource.inactive_message}"
         expire_data_after_sign_in!

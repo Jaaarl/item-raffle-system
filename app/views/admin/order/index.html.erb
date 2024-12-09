@@ -40,7 +40,7 @@
       <div class="row mb-3">
         <div class="col-md-4">
           <%= form.label :genre, 'Genre', class: 'form-label' %>
-          <%= form.select :genre, ['deposit', 'increase', 'deduct', 'bonus', 'share'],
+          <%= form.select :genre, Order.genres.keys.map { |genre| [genre.humanize, genre] },
                           include_blank: true,
                           selected: params[:genre],
                           class: 'form-select' %>
@@ -83,6 +83,7 @@
         <tr>
           <th scope="col">Ordered by</th>
           <th scope="col">Offer</th>
+          <th scope="col">Genre</th>
           <th scope="col">Status</th>
           <th scope="col">Amount</th>
           <th scope="col">coin</th>
@@ -94,6 +95,7 @@
           <tr>
             <td><%= order.user&.email %></td>
             <td><%= order.offer&.name || "N/A" %></td>
+            <td><%= order.genre %></td>
             <td><%= order.state %></td>
             <td><%= order.amount %></td>
             <td><%= order.coin %></td>
