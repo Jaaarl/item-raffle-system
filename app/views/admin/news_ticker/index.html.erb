@@ -31,6 +31,7 @@
         <tr>
           <th scope="col">Content</th>
           <th scope="col">Status</th>
+          <th scope="col">Sort</th>
           <th scope="col">Action</th>
         </tr>
         </thead>
@@ -39,7 +40,7 @@
           <tr>
             <td><%= news.content %></td>
             <td><%= news.status %></td>
-            <td><%= news.status %></td>
+            <td><%= news.sort %></td>
             <td>
               <%= link_to 'Show', admin_news_ticker_path(news), class: 'btn btn-primary' %>
               <%= link_to 'Edit', edit_admin_news_ticker_path(news), class: 'btn btn-primary' %>

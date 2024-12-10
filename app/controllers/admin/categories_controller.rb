@@ -2,7 +2,7 @@ class Admin::CategoriesController < Admin::BaseController
   before_action :set_category, only: [:show, :edit, :update, :destroy]
 
   def index
-    @categories = Category.all.order(created_at: :desc).page(params[:page]).per(10)
+    @categories = Category.all.order(:sort).page(params[:page]).per(10)
   end
 
   def show
@@ -51,6 +51,6 @@ class Admin::CategoriesController < Admin::BaseController
   end
 
   def category_params
-    params.require(:category).permit(:name)
+    params.require(:category).permit(:name, :sort)
   end
 end

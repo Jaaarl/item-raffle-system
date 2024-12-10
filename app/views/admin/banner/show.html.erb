@@ -47,6 +47,11 @@
         <p><%= @banner.status.capitalize %></p>
       </div>
 
+      <div class="form-group">
+        <strong>Sort:</strong>
+        <p><%= @banner.sort %></p>
+      </div>
+
       <%= link_to 'Back to List', admin_banner_index_path, class: 'btn btn-secondary' %>
     </div>
   </div>

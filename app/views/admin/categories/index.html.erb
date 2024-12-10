@@ -28,6 +28,7 @@
       <thead>
       <tr>
         <th>Name</th>
+        <th>Sort</th>
         <th>Actions</th>
       </tr>
       </thead>
@@ -35,6 +36,7 @@
       <% @categories.each do |category| %>
         <tr>
           <td><%= category.name %></td>
+          <td><%= category.sort %></td>
           <td>
             <%= link_to 'Show', admin_category_path(category), class: 'btn btn-primary' %>
             <%= link_to 'Edit', edit_admin_category_path(category), class: 'btn btn-primary' %>

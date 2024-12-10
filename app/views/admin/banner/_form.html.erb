@@ -14,6 +14,11 @@
     <%= form.datetime_local_field :offline_at, class: 'form-control' %>
   </div>
 
+  <div class="form-group">
+    <%= form.label :sort, class: 'col-sm-2 control-label' %>
+    <%= form.number_field :sort, class: 'form-control' %>
+  </div>
+
   <div class="mb-3">
     <%= form.label :image, class: "col-sm-2 form-label" %>
     <%= form.file_field :image, class: "form-control" %>

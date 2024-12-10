@@ -2,7 +2,7 @@ class Admin::BannerController < Admin::BaseController
   before_action :set_banner, only: [:show, :edit, :update, :destroy]
 
   def index
-    @banners = Banner.all.order(created_at: :desc).page(params[:page]).per(10)
+    @banners = Banner.all.order(:sort).page(params[:page]).per(10)
   end
 
   def show
@@ -50,6 +50,6 @@ class Admin::BannerController < Admin::BaseController
   end
 
   def news_ticker_params
-    params.require(:banner).permit(:image, :online_at, :offline_at, :status)
+    params.require(:banner).permit(:image, :online_at, :offline_at, :status, :sort)
   end
 end

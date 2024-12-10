@@ -6,6 +6,7 @@ class NewsTicker < ApplicationRecord
 
   validates :content, presence: true
   validates :status, presence: true
+  validates :sort, presence: true, numericality: { greater_than: 0 }
 
   def destroy
     update(deleted_at: Time.current)
