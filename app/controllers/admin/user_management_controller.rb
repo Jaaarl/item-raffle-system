@@ -15,7 +15,7 @@ class Admin::UserManagementController < Admin::BaseController
       redirect_to admin_user_management_index_path and return
     end
 
-    @increase = Order.create(user: @client, amount: 0, coin: params[:coin], genre: "increase")
+    @increase = Order.create(user: @client, amount: 0, coin: params[:coin], remarks: params[:remarks], genre: "increase")
     if @increase.save
       @increase.submit!
       @increase.pay!
@@ -34,7 +34,7 @@ class Admin::UserManagementController < Admin::BaseController
       redirect_to admin_user_management_index_path and return
     end
 
-    @deduct = Order.create(user: @client, amount: 0, coin: params[:coin], genre: "deduct")
+    @deduct = Order.create(user: @client, amount: 0, coin: params[:coin], remarks: params[:remarks], genre: "deduct")
     if @deduct.save
       @deduct.submit!
       if @deduct.may_pay? && @client.coins >= @deduct.coin

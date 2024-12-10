@@ -86,7 +86,8 @@
           <th scope="col">Genre</th>
           <th scope="col">Status</th>
           <th scope="col">Amount</th>
-          <th scope="col">coin</th>
+          <th scope="col">Coins</th>
+          <th scope="col">Remarks</th>
           <th scope="col">Action</th>
         </tr>
         </thead>
@@ -99,6 +100,7 @@
             <td><%= order.state %></td>
             <td><%= order.amount %></td>
             <td><%= order.coin %></td>
+            <td><%= order&.remarks || "-" %></td>
             <td>
               <%= button_to 'Submit', submit_admin_order_path(order), method: :patch, class: 'btn btn-warning' if order.may_submit? %>
               <%= button_to 'Pay', pay_admin_order_path(order), method: :patch, class: 'btn btn-primary' if order.may_pay? %>
