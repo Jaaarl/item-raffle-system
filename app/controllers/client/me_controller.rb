@@ -1,3 +1,3 @@
-class Client::MeController < ApplicationController
+ class Client::MeController < ApplicationController
   def index; end
 end
