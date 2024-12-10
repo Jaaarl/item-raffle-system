@@ -52,9 +52,9 @@
             <td><%= item.minimum_tickets %></td>
             <td><%= item.state %></td>
             <td><%= item.batch_count %></td>
-            <td><%= item.online_at&.strftime('%Y-%m-%d %H:%M') %></td>
-            <td><%= item.offline_at&.strftime('%Y-%m-%d %H:%M') %></td>
-            <td><%= item.start_at&.strftime('%Y-%m-%d %H:%M') %></td>
+            <td><%= item.online_at&.strftime('%b %d, %Y') %><br><%= item.online_at&.strftime('%I:%M %p') %></td>
+            <td><%= item.offline_at&.strftime('%b %d, %Y') %><br><%= item.offline_at&.strftime('%I:%M %p') %></td>
+            <td><%= item.start_at&.strftime('%b %d, %Y') %><br><%= item.start_at&.strftime('%I:%M %p') %></td>
             <td><%= item.status&.capitalize %></td>
             <td class="text-wrap">
               <ul>

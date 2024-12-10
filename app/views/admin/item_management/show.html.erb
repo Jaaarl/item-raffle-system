@@ -65,17 +65,17 @@
 
       <div class="form-group">
         <strong>Online At:</strong>
-        <p><%= @item.online_at %></p>
+        <p><%= @item.online_at.present? ? @item.online_at.strftime('%b %d, %Y %I:%M %p') : 'Not available' %></p>
       </div>
 
       <div class="form-group">
         <strong>Offline At:</strong>
-        <p><%= @item.offline_at %></p>
+        <p><%= @item.offline_at.present? ? @item.offline_at.strftime('%b %d, %Y %I:%M %p') : 'Not available' %></p>
       </div>
 
       <div class="form-group">
         <strong>Start At:</strong>
-        <p><%= @item.start_at %></p>
+        <p><%= @item.start_at.present? ? @item.start_at.strftime('%b %d, %Y %I:%M %p') : 'Not available' %></p>
       </div>
 
       <div class="form-group">
