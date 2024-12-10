@@ -108,7 +108,7 @@
         </div>
         <div class="mb-3">
           <label for="promoter-name" class="form-label">Promoter Name</label>
-          <input type="text" class="form-control" id="promoter-name" name="promoter_name" disabled value='<%= @client.parent_id.blank? ? "N/A" : @client.parent.email %>'>
+          <input type="text" class="form-control" id="promoter-name" name="promoter_name" disabled value='<%= @client.parent_id.blank? ? "-" : @client.parent.email %>'>
         </div>
         <div class="mb-3">
           <label for="coins-summary" class="form-label">Coins</label>
