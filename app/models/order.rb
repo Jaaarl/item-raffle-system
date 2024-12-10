@@ -32,6 +32,9 @@ class Order < ApplicationRecord
       transitions from: :pending, to: :paid,
                   guard: :bonus?,
                   success: :add_coins
+      transitions from: :pending, to: :paid,
+                  guard: :increase?,
+                  success: :add_coins
     end
   end
 
@@ -44,8 +47,6 @@ class Order < ApplicationRecord
       end
     elsif deposit?
       increase_total_deposit
-      add_coins
-    elsif increase?
       add_coins
     end
   end

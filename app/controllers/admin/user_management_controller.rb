@@ -17,7 +17,6 @@ class Admin::UserManagementController < Admin::BaseController
 
     @increase = Order.create(user: @client, amount: 0, coin: params[:coin], remarks: params[:remarks], genre: :increase)
     if @increase.save
-      @increase.submit!
       @increase.pay!
       redirect_to admin_user_management_index_path, notice: 'Increase successfully added to the user.'
     else
