@@ -50,6 +50,7 @@ Rails.application.routes.draw do
         member do
           post :increase
           post :deduct
+          post :bonus
         end
       end
       resources :item_management

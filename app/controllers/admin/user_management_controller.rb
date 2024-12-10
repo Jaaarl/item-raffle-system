@@ -1,5 +1,5 @@
 class Admin::UserManagementController < Admin::BaseController
-  before_action :set_user, only: [:show, :increase, :deduct]
+  before_action :set_user, only: [:show, :increase, :deduct, :bonus]
 
   def index
     @clients = User.where(role: 'client').order(created_at: :desc).page(params[:page]).per(10)
@@ -50,6 +50,24 @@ class Admin::UserManagementController < Admin::BaseController
       end
     end
     redirect_to admin_user_management_index_path
+  end
+
+  def bonus
+    if params[:coin].nil? || params[:coin].to_i == 0
+      flash[:alert] = 'Coin amount cannot be nil or zero.'
+      redirect_to admin_user_management_index_path and return
+    end
+
+    @bonus = Order.create(user: @client, amount: 0, coin: params[:coin], genre: :bonus)
+    if @bonus.save
+      @bonus.pay!
+      redirect_to admin_user_management_index_path, notice: 'Bonus successfully added to the user.'
+    else
+      if @bonus.errors.any?
+        flash[:alert] = @bonus.errors.full_messages.to_sentence
+      end
+      redirect_to admin_user_management_index_path
+    end
   end
 
   private

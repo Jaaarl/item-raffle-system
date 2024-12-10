@@ -29,6 +29,9 @@ class Order < ApplicationRecord
       transitions from: :pending, to: :paid,
                   guard: :member_level?,
                   success: :add_coins
+      transitions from: :pending, to: :paid,
+                  guard: :bonus?,
+                  success: :add_coins
     end
   end
 
