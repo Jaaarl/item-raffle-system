@@ -1,4 +1,4 @@
-<div class="row py-2">
+<div class="row py-2 justify-content-center mb-1">
   <div class="col-2 col-sm-1 col-md-3 col-lg-2 py-1 pe-md-0 mb-md-1">
     <div class="d-inline-block d-md-block bg-primary text-white text-center breaking-caret py-1 px-2">
       <svg xmlns="http://www.w3.org/2000/svg" width="1rem" height="1rem" fill="currentColor" class="bi bi-lightning-fill" viewBox="0 0 16 16">
@@ -10,13 +10,15 @@
 
   <div class="col-10 col-sm-11 col-md-9 col-lg-10 ps-1 ps-md-2">
     <div class="breaking-box pt-2 pb-1">
-      <marquee behavior="scroll" direction="left" onmouseover="this.stop();" onmouseleave="this.start();">
-        <% @news_tickers.each do |ticker| %>
-          <div class="h6 fw-normal">
-            <span class="position-relative mx-2 badge bg-primary rounded-0"><%= ticker.content %></span>
-          </div>
-        <% end %>
-      </marquee>
+      <div class="marquee-container overflow-hidden bg-white">
+        <div class="marquee-content d-flex align-items-center justify-content-center">
+          <% @news_tickers.each do |ticker| %>
+            <div class="marquee-item px-4 py-1 text-white mx-3 bg-primary">
+              <%= ticker.content %>
+            </div>
+          <% end %>
+        </div>
+      </div>
     </div>
   </div>
 </div>
