@@ -45,6 +45,9 @@ class Client::RegistrationsController < Devise::RegistrationsController
     else
       clean_up_passwords resource
       set_minimum_password_length
+      if resource.errors.any?
+        flash[:alert] = resource.errors.full_messages.to_sentence
+      end
       respond_with resource
     end
   end
