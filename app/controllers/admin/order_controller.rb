@@ -46,6 +46,7 @@ class Admin::OrderController < Admin::BaseController
     else
       flash[:alert] = 'Unable to submit the order.'
     end
+    redirect_to admin_order_index_path
   end
 
   private
