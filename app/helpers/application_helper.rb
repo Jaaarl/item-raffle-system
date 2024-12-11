@@ -41,6 +41,7 @@ module ApplicationHelper
   end
 
   def next_level_message(current_client_user)
+    current_level = current_client_user.member_level.level
     next_level = current_client_user.member_level.level + 1
     next_level_content = MemberLevel.find_by(level: next_level)
 
@@ -49,9 +50,9 @@ module ApplicationHelper
       current_invite_counter = current_client_user.current_invite_counter
       coins = next_level_content.coins
 
-      "Share this to #{required_members - current_invite_counter} friend/s and get #{coins} coins"
+      "You are currently at Level #{current_level}. Share this to #{required_members - current_invite_counter} friend/s and get #{coins} coins to reach Level #{next_level}."
     else
-      "No next level available"
+      "You are at the highest level (Level #{current_level}). No next level available."
     end
   end
 end
