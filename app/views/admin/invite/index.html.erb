@@ -40,6 +40,7 @@
       <table class="table table-striped">
         <thead>
         <tr>
+          <th>Parent Level</th>
           <th>Parent Email</th>
           <th>Email</th>
           <th>Total Deposit</th>
@@ -53,6 +54,7 @@
         <tbody>
         <% @clients.each do |client| %>
           <tr>
+            <td><%= client.parent_id.blank? ? "N/A" : client.parent.member_level.level %></td>
             <td><%= client.parent_id.blank? ? "N/A" : client.parent.email %></td>
             <td><%= client.email %></td>
             <td><%= client.total_deposit || 0 %></td>
