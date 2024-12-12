@@ -2,8 +2,28 @@
   <div class="container-fluid">
     <%= link_to 'Brand Image', client_homepage_index_path, class: 'navbar-brand' %>
     <div class="ml-auto d-flex gap-3 align-items-center">
-      <a class="nav-link" href="#">Coins</a>
-      <a class="nav-link" href="#">Claim</a>
+      <% if client_user_signed_in? %>
+        <a class="nav-link d-flex align-items-center" href="#">
+          <span class="ms-2">Coins: <span class="text-success"><%= current_client_user.coins %></span></span>
+        </a>
+        <a class="nav-link" href="#">
+          <% if Winner.where(user: current_client_user, state: :won).exists? %>
+            <div class="bg-success p-2 position-relative rounded" role="alert">
+              <%= link_to 'Claim', client_me_winning_history_index_path, class: 'text-decoration-none text-reset' %>
+              <sup class="position-absolute top-0 start-100 translate-middle badge rounded-pill bg-danger">
+                <%= Winner.where(user: current_client_user, state: :won).count %>
+              </sup>
+            </div>
+          <% end %>
+        </a>
+      <% else %>
+        <a class="nav-link d-flex align-items-center" href="#">
+          <span class="ms-2">Coins</span>
+        </a>
+        <a class="nav-link" href="#">
+          <span class="ms-2">Claim</span>
+        </a>
+      <% end %>
       <a class="nav-link" href="#">Language</a>
       <a class="nav-link">
         <%= link_to '', client_menu_index_path, class: 'bi bi-list fs-4 text-decoration-none text-dark mr-2' %>
