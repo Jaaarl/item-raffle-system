@@ -60,7 +60,7 @@
             <td><%= client.total_deposit || 0 %></td>
             <td><%= client.children.sum(:total_deposit) %> </td>
             <td><%= client.coins || 0 %></td>
-            <td><%= total_used_coins(client.total_deposit, client.coins) %> </td>
+            <td><%= Ticket.where(user: client).count %> </td>
             <td><%= client.children_members || 0 %></td>
             <td><%= client.created_at.strftime("%B %d, %Y at %I:%M %p") %></td>
           </tr>
