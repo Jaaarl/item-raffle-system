@@ -2,31 +2,35 @@
 <div class="container container-mb">
   <% @winners.each do |winner| %>
     <div class="card d-flex align-items-center p-3 mb-3 shadow-sm">
-      <div class="d-flex flex-row w-100 gap-5">
-        <div class="me-4">
+      <div class="d-flex flex-wrap w-100 gap-4">
+        <div class="me-4 mb-2 mb-sm-0 col-12 col-sm-auto">
           <strong>Item:</strong><br>
-          <%= winner.ticket.item.name %>
+          <span class="text-nowrap"><%= winner.ticket.item.name %></span>
         </div>
-        <div class="me-4">
+        <div class="me-4 mb-2 mb-sm-0 col-12 col-sm-auto">
           <strong>Batch count:</strong><br>
-          <%= winner.ticket.batch_count %>
+          <span class="text-nowrap"><%= winner.ticket.batch_count %></span>
         </div>
-        <div>
+        <div class="mb-2 mb-sm-0 col-12 col-sm-auto">
           <strong>Created at:</strong><br>
-          <%= winner.created_at.strftime("%Y-%m-%d %I:%M %p") %>
+          <span class="text-nowrap"><%= winner.created_at.strftime("%Y-%m-%d %I:%M %p") %></span>
         </div>
-        <div>
+        <div class="mb-2 mb-sm-0 col-12 col-sm-auto">
           <strong>State:</strong><br>
-          <span class="text-success"><%= winner.state %></span>
+          <span class="text-success text-nowrap"><%= winner.state %></span>
         </div>
-        <% if winner.may_claim? %>
-          <%= link_to "Claim Prize", edit_client_me_winning_history_path(winner), class: 'btn btn-success d-flex justify-content-center align-items-center'%>
-        <% end %>
-        <% if winner.may_share? %>
-          <%= link_to "Share", edit_client_me_share_path(winner), class: 'btn btn-success d-flex justify-content-center align-items-center'%>
-        <% end %>
+        <div class="col-12 col-sm-auto mt-2 mt-sm-0">
+          <% if winner.may_claim? %>
+            <%= link_to "Claim Prize", edit_client_me_winning_history_path(winner), class: 'btn btn-success d-flex justify-content-center align-items-center' %>
+          <% end %>
+        </div>
+        <div class="col-12 col-sm-auto mt-2 mt-sm-0">
+          <% if winner.may_share? %>
+            <%= link_to "Share", edit_client_me_share_path(winner), class: 'btn btn-success d-flex justify-content-center align-items-center' %>
+          <% end %>
+        </div>
       </div>
     </div>
   <% end %>
-  <%= paginate @winners, theme: 'bootstrap-5', previous_label: "Previous", next_label: "Next", gap: 0, window: nil  %>
+  <%= paginate @winners, theme: 'bootstrap-5', previous_label: "Previous", next_label: "Next", gap: 0, window: nil %>
 </div>

@@ -2,8 +2,8 @@
 <div class="container container-mb">
   <% @invited.each do |person| %>
     <div class="card d-flex align-items-center p-3 mb-3 shadow-sm">
-      <div class="d-flex flex-row w-100 gap-5">
-        <div class="me-4">
+      <div class="d-flex flex-wrap w-100 gap-4">
+        <div class="me-4 mb-2 mb-sm-0 col-12 col-sm-auto">
           <strong>Email:</strong><br>
           <%= person.email %>
         </div>
