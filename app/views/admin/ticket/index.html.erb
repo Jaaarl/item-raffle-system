@@ -24,7 +24,7 @@
 
   <div class="container-fluid mt-4">
     <h1>Tickets</h1>
-    <%= form_with(url: admin_ticket_index_path, method: :get, local: true, class: 'container mt-4') do |form| %>
+    <%= form_with(url: admin_ticket_index_path, method: :get, local: true) do |form| %>
       <div class="row mb-3">
         <div class="col-md-4">
           <%= form.label :serial_number, 'Serial Number', class: 'form-label' %>
@@ -45,9 +45,9 @@
       <div class="row mb-3">
         <div class="col-md-4">
           <%= form.label :state, 'State', class: 'form-label' %>
-          <%= form.select :state, ['pending', 'won', 'lost', 'cancelled'],
-                          include_blank: true,
-                          selected: params[:state],
+          <%= form.select :state,
+                          options_for_select(['pending', 'won', 'lost', 'cancelled'], params[:state]),
+                          { include_blank: true },
                           class: 'form-select' %>
         </div>
 
@@ -63,7 +63,7 @@
       </div>
 
       <div class="d-flex justify-content-end">
-        <%= form.submit 'Search', class: 'btn btn-primary' %>
+        <%= form.submit 'Search', class: 'btn btn-primary mb-2' %>
       </div>
     <% end %>
 

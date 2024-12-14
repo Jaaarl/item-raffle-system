@@ -24,18 +24,21 @@
 
   <div class="container-fluid mt-4">
     <h1>Offers</h1>
-    <%= form_with(url: admin_offer_index_path, method: :get, local: true, class: 'container mt-4') do |form| %>
-      <div class="row mb-3">
-        <div class="col-md-4">
+    <%= form_with(url: admin_offer_index_path, method: :get, local: true) do |form| %>
+      <div class="row mb-4">
+        <div class="col-md-8 col-lg-6">
           <%= form.label :status, 'Offers State', class: 'form-label' %>
-          <%= form.select :status, Offer.statuses.keys.map { |state| [state.humanize, state] },
-                          include_blank: true,
-                          selected: params[:status],
+          <%= form.select :status,
+                          Offer.statuses.keys.map { |state| [state.humanize, state] },
+                          { include_blank: true, selected: params[:status] },
                           class: 'form-select' %>
-          <%= form.submit 'Search', class: 'btn btn-primary' %>
+        </div>
+        <div class="col-md-4 col-lg-2 d-flex align-items-end">
+          <%= form.submit 'Search', class: 'btn btn-primary w-100 mt-2' %>
         </div>
       </div>
     <% end %>
+
     <%= link_to 'New offer', new_admin_offer_path, class: 'btn btn-primary' %>
     <div class="table-responsive">
       <table class="table table-bordered table-striped">

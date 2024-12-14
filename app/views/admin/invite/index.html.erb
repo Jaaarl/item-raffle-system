@@ -24,16 +24,15 @@
 
   <div class="container-fluid mt-4">
     <h1>Invite list</h1>
-    <%= form_with(url: admin_invite_index_path, method: :get, local: true, class: 'container mt-4') do |form| %>
-      <div class="row mb-3">
-        <div class="col-md-4">
-          <%= form.label :parent_mail, 'parent email', class: 'form-label' %>
+    <%= form_with(url: admin_invite_index_path, method: :get, local: true) do |form| %>
+      <div class="row mb-4">
+        <div class="col-md-8 col-lg-6">
+          <%= form.label :parent_email, 'Parent Email', class: 'form-label' %>
           <%= form.text_field :parent_email, value: params[:parent_email], class: 'form-control' %>
         </div>
-        <div class="d-flex justify-content-end">
-          <%= form.submit 'Search', class: 'btn btn-primary' %>
+        <div class="col-md-4 col-lg-2 d-flex align-items-end">
+          <%= form.submit 'Search', class: 'btn btn-primary w-100 mt-2' %>
         </div>
-
       </div>
     <% end %>
     <div class="table-responsive">

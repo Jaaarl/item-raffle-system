@@ -24,14 +24,14 @@
 
   <div class="container-fluid mt-4">
     <h1>Orders</h1>
-    <%= form_with(url: admin_order_index_path, method: :get, local: true, class: 'container mt-4') do |form| %>
+    <%= form_with(url: admin_order_index_path, method: :get, local: true) do |form| %>
       <div class="row mb-3">
-        <div class="col-md-4">
+        <div class="col-md-6 col-lg-4">
           <%= form.label :serial_number, 'Serial Number', class: 'form-label' %>
           <%= form.text_field :serial_number, value: params[:serial_number], class: 'form-control' %>
         </div>
 
-        <div class="col-md-4">
+        <div class="col-md-6 col-lg-4">
           <%= form.label :email, 'Email', class: 'form-label' %>
           <%= form.text_field :email, value: params[:email], class: 'form-control' %>
         </div>
@@ -40,40 +40,42 @@
       <div class="row mb-3">
         <div class="col-md-4">
           <%= form.label :genre, 'Genre', class: 'form-label' %>
-          <%= form.select :genre, Order.genres.keys.map { |genre| [genre.humanize, genre] },
-                          include_blank: true,
-                          selected: params[:genre],
+          <%= form.select :genre,
+                          Order.genres.keys.map { |genre| [genre.humanize, genre] },
+                          { include_blank: true, selected: params[:genre] },
                           class: 'form-select' %>
         </div>
 
         <div class="col-md-4">
           <%= form.label :state, 'State', class: 'form-label' %>
-          <%= form.select :state, ['pending', 'submitted', 'paid', 'cancelled'],
-                          include_blank: true,
-                          selected: params[:state],
+          <%= form.select :state,
+                          ['pending', 'submitted', 'paid', 'cancelled'],
+                          { include_blank: true, selected: params[:state] },
                           class: 'form-select' %>
         </div>
 
         <div class="col-md-4">
           <%= form.label :offer, 'Offer State', class: 'form-label' %>
-          <%= form.select :offer, ['active', 'inactive'],
-                          include_blank: true,
-                          selected: params[:offer],
+          <%= form.select :offer,
+                          ['active', 'inactive'],
+                          { include_blank: true, selected: params[:offer] },
                           class: 'form-select' %>
         </div>
+      </div>
 
-        <div class="col-md-4">
+      <div class="row mb-3">
+        <div class="col-md-6 col-lg-4">
           <%= form.label :start_date, 'Start Date', class: 'form-label' %>
           <%= form.date_field :start_date, value: params[:start_date], class: 'form-control' %>
         </div>
 
-        <div class="col-md-4">
+        <div class="col-md-6 col-lg-4">
           <%= form.label :end_date, 'End Date', class: 'form-label' %>
           <%= form.date_field :end_date, value: params[:end_date], class: 'form-control' %>
         </div>
       </div>
 
-      <div class="d-flex justify-content-end">
+      <div class="d-flex justify-content-end mb-2">
         <%= form.submit 'Filter', class: 'btn btn-primary' %>
       </div>
     <% end %>
