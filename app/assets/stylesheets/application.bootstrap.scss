@@ -52,3 +52,20 @@
     padding: 0 8px;
   }
 }
+
+#carouselExampleControls {
+  height: 400px;
+}
+
+.carousel-inner {
+  height: 100%;
+}
+
+.carousel-item {
+  height: 100%;
+}
+
+.carousel-item img {
+  object-fit: cover;
+  height: 100%;
+}
