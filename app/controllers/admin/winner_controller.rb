@@ -2,9 +2,9 @@ class Admin::WinnerController < Admin::BaseController
   before_action :set_winner, only: [:submit, :pay, :ship, :deliver, :publish, :remove_publish]
 
   def index
-    @winners = Winner.includes(:user, :item, :ticket).order(created_at: :desc).page(params[:page]).per(10)
+    @winners = Winner.includes(:user, :item, :ticket).order(created_at: :desc)
 
-    @winners = @winners.where(serial_number: params[:serial_number]) if params[:serial_number].present?
+    @winners = @winners.joins(:ticket).where(tickets: { serial_number: params[:serial_number] }) if params[:serial_number].present?
 
     @winners = @winners.joins(:item).where('items.name LIKE ?', "%#{params[:item_name]}%") if params[:item_name].present?
 
@@ -18,6 +18,15 @@ class Admin::WinnerController < Admin::BaseController
       @winners = @winners.where('created_at >= ?', params[:start_date])
     elsif params[:end_date].present?
       @winners = @winners.where('created_at <= ?', params[:end_date])
+    end
+
+    all_winner = @winners
+
+    @winners = @winners.page(params[:page]).per(10)
+
+    respond_to do |format|
+      format.html
+      format.csv { send_data generate_csv(all_winner), filename: "winners-#{Date.today}.csv" }
     end
   end
 
@@ -80,5 +89,26 @@ class Admin::WinnerController < Admin::BaseController
 
   def set_winner
     @winner = Winner.find(params[:id])
+  end
+
+  def generate_csv(winners)
+    CSV.generate(headers: true) do |csv|
+      csv << ["Serial Number", "Winner Email", "Item", "State", "Batch Count", "Price", "Paid At", "Admin Email", "Image", "Comment"]
+
+      winners.each do |winner|
+        csv << [
+          winner.ticket.serial_number,
+          winner.user.email,
+          winner.item.name,
+          winner.state,
+          winner.ticket.batch_count,
+          winner.price,
+          winner.paid_at&.strftime('%b %d, %Y %I:%M %p'),
+          winner.admin&.email,
+          winner.image,
+          winner.comment
+        ]
+      end
+    end
   end
 end

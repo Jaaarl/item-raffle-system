@@ -1,6 +1,8 @@
 class Admin::OrderController < Admin::BaseController
   before_action :set_order, only: [:cancel, :pay, :submit]
 
+  require 'csv'
+
   def index
     @orders = Order.includes(:offer)
 
@@ -18,9 +20,15 @@ class Admin::OrderController < Admin::BaseController
 
     @orders = @orders.where("created_at <= ?", Date.parse(params[:end_date])) if params[:end_date].present?
 
+    csv_orders = @orders
     @orders = @orders.order(created_at: :desc).page(params[:page]).per(10)
 
     @all_orders = Order.includes(:offer).all
+
+    respond_to do |format|
+      format.html
+      format.csv { send_data generate_csv(csv_orders), filename: "orders-#{Date.today}.csv" }
+    end
   end
 
   def pay
@@ -53,5 +61,24 @@ class Admin::OrderController < Admin::BaseController
 
   def set_order
     @order = Order.find(params[:id])
+  end
+
+  def generate_csv(orders)
+    CSV.generate(headers: true) do |csv|
+      csv << ["Ordered by", "Offer", "Genre", "Status", "Amount", "Coins", "Remarks", "Date"]
+
+      orders.each do |order|
+        csv << [
+          order.user&.email,
+          order.offer&.name,
+          order.genre,
+          order.state,
+          order.amount,
+          order.coin,
+          order&.remarks,
+          order.created_at.strftime('%b %d, %Y %I:%M:%S %p')
+        ]
+      end
+    end
   end
 end

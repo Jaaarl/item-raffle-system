@@ -1,8 +1,16 @@
 class Admin::ItemManagementController < Admin::BaseController
   before_action :set_item, only: [:edit, :update, :destroy, :show, :start, :pause, :end, :cancel]
 
+  require 'csv'
+
   def index
     @items = Item.includes(:categories).all.order(created_at: :desc).page(params[:page]).per(10)
+
+    all_items = Item.includes(:categories).all.order(created_at: :desc)
+    respond_to do |format|
+      format.html
+      format.csv { send_data generate_csv(all_items), filename: "items-#{Date.today}.csv" }
+    end
   end
 
   def show
@@ -102,5 +110,27 @@ class Admin::ItemManagementController < Admin::BaseController
       :image,
       category_ids: []
     )
+  end
+
+  def generate_csv(items)
+    CSV.generate(headers: true) do |csv|
+      csv << ["Name", "Image", "Quantity", "Minimum Tickets", "State", "Batch Count", "Online At", "Offline At", "Start At", "Status", "Categories"]
+
+      items.each do |item|
+        csv << [
+          item.name,
+          item.image.url,
+          item.quantity,
+          item.minimum_tickets,
+          item.state,
+          item.batch_count,
+          item.online_at&.strftime('%b %d, %Y %I:%M %p'),
+          item.offline_at&.strftime('%b %d, %Y %I:%M %p'),
+          item.start_at&.strftime('%b %d, %Y %I:%M %p'),
+          item.status.capitalize,
+          item.categories.map(&:name).join(", ")
+        ]
+      end
+    end
   end
 end

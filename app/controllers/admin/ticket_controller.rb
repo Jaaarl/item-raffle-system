@@ -1,8 +1,10 @@
 class Admin::TicketController < Admin::BaseController
   before_action :set_ticket, only: [:cancel]
 
+  require 'csv'
+
   def index
-    @tickets = Ticket.includes(:user, :item).order(created_at: :desc).page(params[:page]).per(10)
+    @tickets = Ticket.includes(:user, :item).order(created_at: :desc)
 
     @tickets = @tickets.where(serial_number: params[:serial_number]) if params[:serial_number].present?
 
@@ -19,6 +21,14 @@ class Admin::TicketController < Admin::BaseController
     elsif params[:end_date].present?
       @tickets = @tickets.where('created_at <= ?', params[:end_date])
     end
+
+    all_tickets = @tickets
+    @tickets = @tickets.page(params[:page]).per(10)
+
+    respond_to do |format|
+      format.html
+      format.csv { send_data generate_csv(all_tickets), filename: "tickets-#{Date.today}.csv" }
+    end
   end
 
   def cancel
@@ -34,5 +44,23 @@ class Admin::TicketController < Admin::BaseController
 
   def set_ticket
     @ticket = Ticket.find(params[:id])
+  end
+
+  def generate_csv(tickets)
+    CSV.generate(headers: true) do |csv|
+      csv << ["Serial Number", "Item", "Email", "Batch Count", "Coins", "State", "Created At"]
+
+      tickets.each do |ticket|
+        csv << [
+          ticket.serial_number,
+          ticket.item.name,
+          ticket.user.email,
+          ticket.batch_count,
+          ticket.coins,
+          ticket.state,
+          ticket.created_at.strftime('%b %d, %Y %I:%M %p')
+        ]
+      end
+    end
   end
 end

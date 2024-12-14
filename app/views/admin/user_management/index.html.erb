@@ -47,7 +47,7 @@
             <td><%= client.total_deposit || 0 %></td>
             <td><%= client.children.sum(:total_deposit) %> </td>
             <td><%= client.coins || 0 %></td>
-            <td><%= Ticket.where(user: client).count %> </td>
+            <td><%= @all_tickets.where(user: client).count %> </td>
             <td><%= client.children_members || 0 %></td>
             <td><%= client.phone %></td>
             <td><%= link_to 'Manage Coins', admin_user_management_path(client), class: 'btn btn-success' %></td>
@@ -57,6 +57,7 @@
       </table>
     </div>
     <%= paginate @clients, theme: 'bootstrap-5', previous_label: "Previous", next_label: "Next", gap: 0, window: nil %>
+    <%= link_to 'Export to CSV', admin_user_management_index_path(format: :csv), class: 'btn btn-primary mb-3' %>
   </div>
 </div>
 </body>

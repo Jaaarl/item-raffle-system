@@ -1,8 +1,16 @@
 class Admin::UserManagementController < Admin::BaseController
   before_action :set_user, only: [:show, :increase, :deduct, :bonus]
 
+  require 'csv'
+
   def index
-    @clients = User.where(role: 'client').order(created_at: :desc).page(params[:page]).per(10)
+    @clients = User.includes(:parent, :children).where(role: 'client').order(created_at: :desc).page(params[:page]).per(10)
+    @all_tickets = Ticket.includes(:user).all
+    all_clients = User.where(role: 'client').order(created_at: :desc)
+    respond_to do |format|
+      format.html
+      format.csv { send_data generate_csv(all_clients), filename: "clients-#{Date.today}.csv" }
+    end
   end
 
   def show
@@ -73,5 +81,26 @@ class Admin::UserManagementController < Admin::BaseController
 
   def set_user
     @client = User.find(params[:id])
+  end
+
+  private
+
+  def generate_csv(clients)
+    CSV.generate(headers: true) do |csv|
+      csv << ['Parent Email', 'Email', 'Total Deposit', 'Member Total Deposits', 'Coins', 'Total Used Coins', 'Children Members', 'Phone Number']
+
+      clients.each do |client|
+        csv << [
+          client.parent&.email,
+          client.email,
+          client.total_deposit || 0,
+          client.children.sum(:total_deposit),
+          client.coins || 0,
+          @all_tickets.where(user: client).count,
+          client.children_members || 0,
+          client.phone
+        ]
+      end
+    end
   end
 end

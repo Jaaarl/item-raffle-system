@@ -100,7 +100,8 @@
         </tbody>
       </table>
     </div>
+    <%= paginate @tickets, theme: 'bootstrap-5', previous_label: "Previous", next_label: "Next", gap: 0, window: nil %>
+    <%= link_to 'Export to CSV', admin_ticket_index_path(params.permit(:serial_number, :item_name, :email, :state, :start_date, :end_date).merge(format: :csv)), class: 'btn btn-primary mb-3' %>
   </div>
-  <%= paginate @tickets, theme: 'bootstrap-5', previous_label: "Previous", next_label: "Next", gap: 0, window: nil %>
 </div>
 </body>

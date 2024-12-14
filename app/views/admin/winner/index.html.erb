@@ -87,7 +87,7 @@
         <tbody>
         <% @winners.each do |winner| %>
           <tr>
-            <td><%= winner.ticket.serial_number  %></td>
+            <td><%= winner.ticket.serial_number %></td>
             <td><%= winner.user.email %></td>
             <td><%= winner.item.name %></td>
             <td><%= winner.state %></td>
@@ -111,6 +111,7 @@
       </table>
     </div>
     <%= paginate @winners, theme: 'bootstrap-5', previous_label: "Previous", next_label: "Next", gap: 0, window: nil %>
+    <%= link_to 'Export to CSV', admin_winner_index_path(params.permit(:serial_number, :item_name, :email, :state, :start_date, :end_date).merge(format: :csv)), class: 'btn btn-success mb-3' %>
   </div>
 </div>
 </body>
