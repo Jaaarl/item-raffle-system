@@ -1,0 +1,18 @@
+tl:
+  winners_feedback: "Puna ng mga Nanalo"
+  coming_soon: "Darating Na"
+  more: "Higit Pa..."
+  no_image: "Walang Imahe"
+  comment_placeholder: "Walang komento"
+  language: "Wika"
+  coins: "Barya"
+  claim: "Mag-claim"
+  announcement: "Anunsyo"
+  level_progress: "Kasalukuyan ka sa Level %{current_level}. I-share ito sa %{required_members} kaibigan at makakuha ng %{coins} coins upang umabot sa Level %{next_level}."
+  highest_level: "Nasa pinakamataas na level ka na (Level %{current_level}). Walang susunod na level."
+  footer:
+    share: "I-share"
+    invite: "Imbitahan"
+    lottery: "Loteriya"
+    shop: "Tindahan"
+    me: "Ako"

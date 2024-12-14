@@ -31,3 +31,5 @@
 
 en:
   hello: "Hello world"
+  level_progress: "You are currently at Level %{current_level}. Share this to %{required_members} friend/s and get %{coins} coins to reach Level %{next_level}."
+  highest_level: "You are at the highest level (Level %{current_level}). No next level available."

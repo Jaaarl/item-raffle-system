@@ -2,20 +2,20 @@
   <div class="container">
     <div class="row text-center py-3">
       <div class="col">
-        <%= link_to 'Share', client_share_index_path, class: 'footer-link text-decoration-none text-reset' %>
+        <%= link_to t('footer.share'), client_share_index_path, class: 'footer-link text-decoration-none text-reset' %>
       </div>
       <div class="col">
-        <%= link_to 'Invite', client_invite_index_path, class: 'footer-link text-decoration-none text-reset' %>
+        <%= link_to t('footer.invite'), client_invite_index_path, class: 'footer-link text-decoration-none text-reset' %>
       </div>
       <div class="col">
-        <%= link_to 'Lottery', client_lottery_index_path, class: 'footer-link text-decoration-none text-reset' %>
+        <%= link_to t('footer.lottery'), client_lottery_index_path, class: 'footer-link text-decoration-none text-reset' %>
       </div>
       <div class="col">
-        <%= link_to 'Shop', client_shop_index_path, class: 'footer-link text-decoration-none text-reset' %>
+        <%= link_to t('footer.shop'), client_shop_index_path, class: 'footer-link text-decoration-none text-reset' %>
       </div>
       <% if client_user_signed_in? %>
         <div class="col">
-          <%= link_to 'Me', client_me_index_path, class: 'footer-link text-decoration-none text-reset' %>
+          <%= link_to t('footer.me'), client_me_index_path, class: 'footer-link text-decoration-none text-reset' %>
         </div>
       <% end %>
     </div>

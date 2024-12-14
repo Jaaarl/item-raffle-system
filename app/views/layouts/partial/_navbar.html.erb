@@ -4,12 +4,13 @@
     <div class="ml-auto d-flex gap-3 align-items-center">
       <% if client_user_signed_in? %>
         <a class="nav-link d-flex align-items-center" href="#">
-          <span class="ms-2">Coins: <span class="text-success"><%= current_client_user.coins %></span></span>
+          <span class="ms-2"><%= t('coins') %>
+            : <span class="text-success"><%= current_client_user.coins %></span></span>
         </a>
         <a class="nav-link" href="#">
           <% if Winner.where(user: current_client_user, state: :won).exists? %>
             <div class="bg-success p-2 position-relative rounded" role="alert">
-              <%= link_to 'Claim', client_me_winning_history_index_path, class: 'text-decoration-none text-reset' %>
+              <%= link_to t('claim'), client_me_winning_history_index_path, class: 'text-decoration-none text-reset' %>
               <sup class="position-absolute top-0 start-100 translate-middle badge rounded-pill bg-danger">
                 <%= Winner.where(user: current_client_user, state: :won).count %>
               </sup>
@@ -18,13 +19,21 @@
         </a>
       <% else %>
         <a class="nav-link d-flex align-items-center" href="#">
-          <span class="ms-2">Coins</span>
+          <span class="ms-2"><%= t('coins') %></span>
         </a>
         <a class="nav-link" href="#">
-          <span class="ms-2">Claim</span>
+          <span class="ms-2"><%= t('claim') %></span>
         </a>
       <% end %>
-      <a class="nav-link" href="#">Language</a>
+      <div class="dropdown">
+        <a class="nav-link dropdown-toggle" href="#" role="button" id="languageDropdown" data-bs-toggle="dropdown" aria-expanded="false">
+          <%= t('language') %>
+        </a>
+        <ul class="dropdown-menu" aria-labelledby="languageDropdown">
+          <li><%= link_to 'English', params.permit!.merge(locale: 'en'), class: 'dropdown-item' %></li>
+          <li><%= link_to 'Tagalog', params.permit!.merge(locale: 'tl'), class: 'dropdown-item' %></li>
+        </ul>
+      </div>
       <a class="nav-link">
         <%= link_to '', client_menu_index_path, class: 'bi bi-list fs-4 text-decoration-none text-dark mr-2' %>
       </a>
