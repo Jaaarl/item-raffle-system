@@ -41,6 +41,7 @@ class Admin::WinnerController < Admin::BaseController
 
   def pay
     @winner.admin = current_admin_user
+    @winner.paid_at = Time.current
     if @winner.pay!
       flash[:notice] = 'Admin has paid the item.'
     else

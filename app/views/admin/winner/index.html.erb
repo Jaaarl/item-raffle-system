@@ -93,7 +93,7 @@
             <td><%= winner.state %></td>
             <td><%= winner.ticket.batch_count %></td>
             <td><%= winner.price %></td>
-            <td><%= winner.paid_at %></td>
+            <td><%= winner.paid_at&.strftime("%b %d, %Y %I:%M %p") %></td>
             <td><%= winner.admin&.email %></td>
             <td><%= winner.image %></td>
             <td><%= winner.comment %></td>
