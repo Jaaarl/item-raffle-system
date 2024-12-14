@@ -23,20 +23,22 @@ class Client::RegistrationsController < Devise::RegistrationsController
         sign_up(resource_name, resource)
         respond_with resource, location: after_sign_up_path_for(resource)
         promoter_name = cookies[:promoter]
-        promoter = User.find_by(email: promoter_name)
-        promoter.current_invite_counter += 1
-        next_level = promoter.member_level.level + 1
-        next_level_content = MemberLevel.find_by(level: next_level)
-        if next_level_content
-          if next_level_content.required_members <= promoter.current_invite_counter
-            order = Order.create(user: promoter, amount: 0, coin: next_level_content.coins, genre: :member_level)
-            order.save
-            order.pay!
-            promoter.member_level = next_level_content
-            promoter.current_invite_counter = 0
+        if promoter_name
+          promoter = User.find_by(email: promoter_name)
+          promoter.current_invite_counter += 1
+          next_level = promoter.member_level.level + 1
+          next_level_content = MemberLevel.find_by(level: next_level)
+          if next_level_content
+            if next_level_content.required_members <= promoter.current_invite_counter
+              order = Order.create(user: promoter, amount: 0, coin: next_level_content.coins, genre: :member_level)
+              order.save
+              order.pay!
+              promoter.member_level = next_level_content
+              promoter.current_invite_counter = 0
+            end
           end
+          promoter.save
         end
-        promoter.save
       else
         set_flash_message! :notice, :"signed_up_but_#{resource.inactive_message}"
         expire_data_after_sign_in!
