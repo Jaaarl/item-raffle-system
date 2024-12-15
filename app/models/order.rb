@@ -18,7 +18,7 @@ class Order < ApplicationRecord
 
     event :cancel do
       transitions from: :paid, to: :cancelled,
-                  guard: :eligible_to_cancel?,
+                  guard: :enough_coins?,
                   success: :update_value_post_cancel
       transitions from: [:pending, :submitted], to: :cancelled
     end
@@ -83,7 +83,7 @@ class Order < ApplicationRecord
     user.save
   end
 
-  def eligible_to_cancel?
+  def enough_coins?
     user.coins > self.coin
   end
 
