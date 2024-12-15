@@ -29,6 +29,9 @@ class Admin::CategoriesController < Admin::BaseController
     if @category.update(category_params)
       redirect_to admin_categories_path, notice: 'Category was successfully updated.'
     else
+      if @category.errors.any?
+        flash[:alert] = @category.errors.full_messages.to_sentence
+      end
       render :edit
     end
   end

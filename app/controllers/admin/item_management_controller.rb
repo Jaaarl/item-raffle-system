@@ -24,6 +24,9 @@ class Admin::ItemManagementController < Admin::BaseController
     if @item.save
       redirect_to admin_item_management_index_path, notice: 'Item was successfully created.'
     else
+      if @item.errors.any?
+        flash[:alert] = @item.errors.full_messages.to_sentence
+      end
       render :new
     end
   end
@@ -34,8 +37,8 @@ class Admin::ItemManagementController < Admin::BaseController
     if @item.update(item_params)
       redirect_to admin_item_management_index_path, notice: 'Item was successfully updated.'
     else
-      if @offer.errors.any?
-        flash[:alert] = @offer.errors.full_messages.to_sentence
+      if @item.errors.any?
+        flash[:alert] = @item.errors.full_messages.to_sentence
       end
       render :edit
     end
