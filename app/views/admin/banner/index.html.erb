@@ -22,8 +22,8 @@
         <% @banners.each do |banner| %>
           <tr>
             <td><%= image_tag banner.image.url, style: "max-width: 100px; max-height: 100px; object-fit: cover;" if banner.image.present? %></td>
-            <td><%= banner.online_at %></td>
-            <td><%= banner.offline_at %></td>
+            <td><%= banner.online_at&.strftime('%b %d, %Y, %I:%M %p') %>
+            <td><%= banner.offline_at&.strftime('%b %d, %Y, %I:%M %p') %>
             <td><%= banner.status %></td>
             <td><%= banner.sort %></td>
             <td>

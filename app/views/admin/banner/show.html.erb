@@ -16,12 +16,12 @@
 
       <div class="form-group">
         <strong>Online At:</strong>
-        <p><%= @banner.online_at %></p>
+        <p><%= @banner.online_at&.strftime('%b %d, %Y, %I:%M %p') %></p>
       </div>
 
       <div class="form-group">
         <strong>Offline At:</strong>
-        <p><%= @banner.offline_at %></p>
+        <p><%= @banner.offline_at&.strftime('%b %d, %Y, %I:%M %p') %></p>
       </div>
 
       <div class="form-group">
