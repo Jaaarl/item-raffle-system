@@ -4,42 +4,42 @@
 <body>
 <%= render 'admin/shared/sidebar' %>
 
-  <div class="container-fluid mt-4">
-    <h1>User list</h1>
-    <div class="table-responsive">
-      <table class="table table-striped">
-        <thead>
+<div class="container-fluid mt-4">
+  <h1><%= t('user_management.user_list') %></h1>
+  <div class="table-responsive">
+    <table class="table table-striped">
+      <thead>
+      <tr>
+        <th><%= t('user_management.parent_email') %></th>
+        <th><%= t('user_management.email') %></th>
+        <th><%= t('user_management.total_deposit') %></th>
+        <th><%= t('user_management.member_total_deposits') %></th>
+        <th><%= t('user_management.coins') %></th>
+        <th><%= t('user_management.total_used_coins') %></th>
+        <th><%= t('user_management.children_members') %></th>
+        <th><%= t('user_management.phone_number') %></th>
+        <th><%= t('user_management.action') %></th>
+      </tr>
+      </thead>
+      <tbody>
+      <% @clients.each do |client| %>
         <tr>
-          <th>Parent Email</th>
-          <th>Email</th>
-          <th>Total Deposit</th>
-          <th>Member Total Deposits</th>
-          <th>Coins</th>
-          <th>Total Used Coins</th>
-          <th>Children Members</th>
-          <th>Phone Number</th>
-          <th>Action</th>
+          <td><%= client.parent_id.blank? ? "-" : client.parent.email %></td>
+          <td><%= client.email %></td>
+          <td><%= client.total_deposit || 0 %></td>
+          <td><%= client.children.sum(:total_deposit) %> </td>
+          <td><%= client.coins || 0 %></td>
+          <td><%= @all_tickets.where(user: client).count %> </td>
+          <td><%= client.children_members || 0 %></td>
+          <td><%= client.phone %></td>
+          <td><%= link_to t('user_management.manage_coins'), admin_user_management_path(client), class: 'btn btn-success' %></td>
         </tr>
-        </thead>
-        <tbody>
-        <% @clients.each do |client| %>
-          <tr>
-            <td><%= client.parent_id.blank? ? "-" : client.parent.email %></td>
-            <td><%= client.email %></td>
-            <td><%= client.total_deposit || 0 %></td>
-            <td><%= client.children.sum(:total_deposit) %> </td>
-            <td><%= client.coins || 0 %></td>
-            <td><%= @all_tickets.where(user: client).count %> </td>
-            <td><%= client.children_members || 0 %></td>
-            <td><%= client.phone %></td>
-            <td><%= link_to 'Manage Coins', admin_user_management_path(client), class: 'btn btn-success' %></td>
-          </tr>
-        <% end %>
-        </tbody>
-      </table>
-    </div>
-    <%= paginate @clients, theme: 'bootstrap-5', previous_label: "Previous", next_label: "Next", gap: 0, window: nil %>
-    <%= link_to 'Export to CSV', admin_user_management_index_path(format: :csv), class: 'btn btn-primary mb-3' %>
+      <% end %>
+      </tbody>
+    </table>
   </div>
+  <%= paginate @clients, theme: 'bootstrap-5', previous_label: t('user_management.previous'), next_label: t('user_management.next'), gap: 0, window: nil %>
+  <%= link_to t('user_management.export_to_csv'), admin_user_management_index_path(format: :csv), class: 'btn btn-primary mb-3' %>
+</div>
 </div>
 </body>
