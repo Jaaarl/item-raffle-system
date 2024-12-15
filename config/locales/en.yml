@@ -144,3 +144,19 @@ en:
     no_image_available: "No Image Available"
     coins_for: "You can have %{coin} coins for ₱%{amount}"
     buy_offer: "Buy Offer"
+  notices:
+    address_created: 'Address was successfully created.'
+    address_updated: 'Address was successfully updated.'
+    address_destroyed: 'Address was successfully destroyed.'
+    address_default_set: 'Address was successfully set as default.'
+    tickets_purchased: "%{number_of_tickets} tickets purchased successfully!"
+    offer_purchased: "Offer purchased successfully!"
+  alerts:
+    select_ticket: "Please select at least one ticket."
+    not_enough_coins: "You don't have enough coins to purchase this ticket. Please add more coins to proceed."
+    sign_in_required: "You must be signed in to purchase a ticket. Please sign in first."
+    already_purchased_one_time_offer: "You have already purchased this one-time offer."
+    purchase_limit_monthly: "You can only purchase this monthly offer once per month."
+    purchase_limit_weekly: "You can only purchase this weekly offer once per week."
+    purchase_limit_daily: "You can only purchase this daily offer once per day."
+    sign_in_required_shop: "You must be signed in to purchase an offer. Please sign in first."

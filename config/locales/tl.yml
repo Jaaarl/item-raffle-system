@@ -130,3 +130,19 @@ tl:
     no_image_available: "Walang Larawan"
     coins_for: "Makakakuha ka ng %{coin} na barya para sa ₱%{amount}"
     buy_offer: "Bumili ng Alok"
+  notices:
+    address_created: 'Ang address ay matagumpay na nalikha.'
+    address_updated: 'Ang address ay matagumpay na na-update.'
+    address_destroyed: 'Ang address ay matagumpay na nawasak.'
+    address_default_set: 'Ang address ay matagumpay na itinakda bilang default.'
+    tickets_purchased: "Matagumpay na nabili ang %{number_of_tickets} tiket!"
+    offer_purchased: "Matagumpay na nabili ang alok!"
+  alerts:
+    select_ticket: "Mangyaring pumili ng kahit isang tiket."
+    not_enough_coins: "Wala kang sapat na coins upang bumili ng tiket. Mangyaring magdagdag ng coins upang magpatuloy."
+    sign_in_required: "Kailangan mong mag-sign in upang makabili ng tiket. Mangyaring mag-sign in muna."
+    already_purchased_one_time_offer: "Nabili mo na ang alok na ito na may isang beses lang."
+    purchase_limit_monthly: "Maaari mo lamang bilhin ang alok na ito isang beses bawat buwan."
+    purchase_limit_weekly: "Maaari mo lamang bilhin ang alok na ito isang beses bawat linggo."
+    purchase_limit_daily: "Maaari mo lamang bilhin ang alok na ito isang beses bawat araw."
+    sign_in_required_shop: "Kailangan mong mag-sign in upang makabili ng alok. Mangyaring mag-sign in muna."

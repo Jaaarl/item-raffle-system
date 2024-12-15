@@ -13,34 +13,34 @@ class Client::ShopController < ApplicationController
     if current_client_user
       if @offer.one_time?
         if Order.exists?(user: current_client_user, offer: @offer, state: [:pending, :submitted, :paid])
-          flash[:alert] = "You have already purchased this one-time offer."
+          flash[:alert] = t('alerts.already_purchased_one_time_offer')
           redirect_to client_shop_index_path and return
         end
       elsif @offer.monthly?
         if Order.exists?(user: current_client_user, offer: @offer, state: [:pending, :submitted, :paid]) ||
           Order.where(user: current_client_user, offer: @offer).where('created_at >= ?', Time.current.beginning_of_month).exists?
-          flash[:alert] = "You can only purchase this monthly offer once per month."
+          flash[:alert] = t('alerts.purchase_limit_monthly')
           redirect_to client_shop_index_path and return
         end
       elsif @offer.weekly?
         if Order.exists?(user: current_client_user, offer: @offer, state: [:pending, :submitted, :paid]) ||
           Order.where(user: current_client_user, offer: @offer).where('created_at >= ?', Time.current.beginning_of_week).exists?
-          flash[:alert] = "You can only purchase this weekly offer once per week."
+          flash[:alert] = t('alerts.purchase_limit_weekly')
           redirect_to client_shop_index_path and return
         end
       elsif @offer.daily?
         if Order.exists?(user: current_client_user, offer: @offer, state: [:pending, :submitted, :paid]) ||
           Order.where(user: current_client_user, offer: @offer).where('created_at >= ?', Time.current.beginning_of_day).exists?
-          flash[:alert] = "You can only purchase this daily offer once per day."
+          flash[:alert] = t('alerts.purchase_limit_daily')
           redirect_to client_shop_index_path and return
         end
       end
       @order = Order.create(user: current_client_user, offer: @offer, amount: @offer.amount, coin: @offer.coin, genre: :deposit)
       @order.save
-      flash[:notice] = "Offer purchased successfully!"
+      flash[:notice] = t('notices.offer_purchased')
       redirect_to client_shop_index_path
     else
-      flash[:alert] = "You must be signed in to purchase an offer. Please sign in first."
+      flash[:alert] = t('alerts.sign_in_required_shop')
       redirect_to new_client_user_session_path
     end
   end

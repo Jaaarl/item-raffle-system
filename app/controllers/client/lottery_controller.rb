@@ -20,18 +20,18 @@ class Client::LotteryController < ApplicationController
           @ticket = Ticket.create(user: current_client_user, item: @item)
           @ticket.save
         end
-        flash[:notice] = "#{number_of_tickets} tickets purchased successfully!"
+        flash[:notice] = t('notices.tickets_purchased', number_of_tickets: number_of_tickets)
       else
         if number_of_tickets < 0
-          flash[:alert] = "Please select at least one ticket."
+          flash[:alert] = t('alerts.select_ticket')
         elsif current_client_user.coins < number_of_tickets
-          flash[:alert] = "You don't have enough coins to purchase this ticket. Please add more coins to proceed"
+          flash[:alert] = t('alerts.not_enough_coins')
           redirect_to client_shop_index_path and return
         end
       end
       redirect_to client_lottery_path(id: @item.id)
     else
-      flash[:alert] = "You must be signed in to purchase a ticket. Please sign in first."
+      flash[:alert] = t('alerts.sign_in_required')
       redirect_to new_client_user_session_path
     end
   end

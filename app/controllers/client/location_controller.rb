@@ -17,7 +17,7 @@ class Client::LocationController < ApplicationController
     @location = Location.new(location_params)
     @location.user = current_client_user
     if @location.save
-      redirect_to client_location_index_path, notice: 'Address was successfully created.'
+      redirect_to client_location_index_path, notice: t('notices.address_created')
     else
       render :new
     end
@@ -28,7 +28,7 @@ class Client::LocationController < ApplicationController
 
   def update
     if @location.update(location_params)
-      redirect_to client_location_index_path, notice: 'Address was successfully updated.'
+      redirect_to client_location_index_path, notice: t('notices.address_updated')
     else
       render :edit
     end
@@ -36,15 +36,13 @@ class Client::LocationController < ApplicationController
 
   def destroy
     @location.destroy
-    redirect_to client_location_index_path, notice: 'Address was successfully destroyed.'
+    redirect_to client_location_index_path, notice: t('notices.address_destroyed')
   end
 
   def make_default
     @location.update(is_default: true)
-
     @location.user.locations.where.not(id: @location.id).update_all(is_default: false)
-
-    redirect_to client_location_index_path, notice: 'Address was successfully set as default.'
+    redirect_to client_location_index_path, notice: t('notices.address_default_set')
   end
 
   private
