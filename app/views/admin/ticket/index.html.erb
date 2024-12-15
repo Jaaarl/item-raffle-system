@@ -1,7 +1,3 @@
-<head>
-  <title>System Management</title>
-</head>
-<body>
 <%= render 'admin/shared/sidebar' %>
 
   <div class="container-fluid mt-4">
@@ -86,4 +82,3 @@
     <%= link_to 'Export to CSV', admin_ticket_index_path(params.permit(:serial_number, :item_name, :email, :state, :start_date, :end_date).merge(format: :csv)), class: 'btn btn-primary mb-3' %>
   </div>
 </div>
-</body>
