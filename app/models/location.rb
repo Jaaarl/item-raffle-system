@@ -1,6 +1,8 @@
 class Location < ApplicationRecord
   before_save :unset_other_locations_default, if: :is_default?
 
+  default_scope { where(deleted_at: nil) }
+
   enum genre: { home: 0, work: 1 }
 
   validates :genre, presence: true
@@ -15,6 +17,10 @@ class Location < ApplicationRecord
   belongs_to :barangay, class_name: 'Address::Barangay', foreign_key: 'address_barangay_id'
 
   has_many :winners
+
+  def destroy
+    update(deleted_at: Time.current)
+  end
 
   private
 
