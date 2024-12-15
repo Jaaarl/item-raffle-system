@@ -33,6 +33,7 @@ Rails.application.routes.draw do
         end
       end
       resources :share, only: [:index]
+      resources :contact, only: [:index]
     end
     devise_for :users, controllers: {
       sessions: 'client/sessions',

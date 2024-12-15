@@ -23,7 +23,9 @@
     <div class="card mt-4 shadow-sm">
       <ul class="list-group list-group-flush">
         <li class="list-group-item">
-          <a href="/contact" class="btn btn-link text-decoration-none text-dark w-100"><%= t('actions.contact_us') %></a>
+          <%= link_to client_contact_index_path, class: 'btn btn-link text-decoration-none text-dark w-100' do %>
+            <%= t('actions.contact_us') %>
+          <% end %>
         </li>
         <li class="list-group-item">
           <%= link_to client_me_index_path, class: 'btn btn-link text-decoration-none text-dark w-100' do %>
