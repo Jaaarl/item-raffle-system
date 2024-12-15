@@ -9,30 +9,30 @@
           <% end %>
         </div>
         <div class="col-md-10">
-          <h5><strong>Username:</strong> <span id="username"><%= current_client_user&.username %></span></h5>
-          <p class="mb-1"><strong>Email:</strong> <span id="email"> <%= current_client_user.email %></span></p>
-          <p><strong>Coins:</strong> <span id="coins"><%= current_client_user.coins || 0 %></span></p>
+          <h5><strong><%= t('users.username') %>:</strong> <span id="username"><%= current_client_user&.username %></span></h5>
+          <p class="mb-1"><strong><%= t('users.email') %>:</strong> <span id="email"> <%= current_client_user.email %></span></p>
+          <p><strong><%= t('users.coins') %>:</strong> <span id="coins"><%= current_client_user.coins || 0 %></span></p>
         </div>
       </div>
 
       <div class="text-center mt-4">
-        <%= link_to 'Cash In Now', client_shop_index_path, class: 'btn btn-success btn-lg w-100' %>
+        <%= link_to t('actions.cash_in_now'), client_shop_index_path, class: 'btn btn-success btn-lg w-100' %>
       </div>
     </div>
 
     <div class="card mt-4 shadow-sm">
       <ul class="list-group list-group-flush">
         <li class="list-group-item">
-          <a href="/contact" class="btn btn-link text-decoration-none text-dark w-100">Contact Us</a>
+          <a href="/contact" class="btn btn-link text-decoration-none text-dark w-100"><%= t('actions.contact_us') %></a>
         </li>
         <li class="list-group-item">
           <%= link_to client_me_index_path, class: 'btn btn-link text-decoration-none text-dark w-100' do %>
-            My Profile
+            <%= t('actions.my_profile') %>
           <% end %>
         </li>
         <li class="list-group-item">
           <%= button_to destroy_client_user_session_path, method: :delete, class: 'btn btn-link text-decoration-none text-dark w-100' do %>
-            Sign out
+            <%= t('actions.sign_out') %>
           <% end %>
         </li>
       </ul>
@@ -43,10 +43,10 @@
     <div class="card mt-4 shadow-sm">
       <ul class="list-group list-group-flush">
         <li class="list-group-item">
-          <%= link_to 'Sign in', new_client_user_session_path, class: 'btn btn-link text-decoration-none text-dark w-100' %>
+          <%= link_to t('actions.sign_in'), new_client_user_session_path, class: 'btn btn-link text-decoration-none text-dark w-100' %>
         </li>
         <li class="list-group-item">
-          <%= link_to 'Register', new_client_user_registration_path, class: 'btn btn-link text-decoration-none text-dark w-100' %>
+          <%= link_to t('actions.register'), new_client_user_registration_path, class: 'btn btn-link text-decoration-none text-dark w-100' %>
         </li>
       </ul>
     </div>

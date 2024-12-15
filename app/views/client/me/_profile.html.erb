@@ -8,33 +8,33 @@
         <% end %>
       </div>
       <div class="col-md-10">
-        <p class="mb-1"><strong>Username:</strong> <span id="username"><%= current_client_user&.username %></span></p>
-        <p class="mb-1"><strong>Email:</strong> <span id="email"> <%= current_client_user.email %></span></p>
-        <p><strong>Coins:</strong> <span id="coins"><%= current_client_user.coins || 0 %></span></p>
+        <p class="mb-1"><strong><%= t('users.username') %>:</strong> <span id="username"><%= current_client_user&.username %></span></p>
+        <p class="mb-1"><strong><%= t('users.email') %>:</strong> <span id="email"> <%= current_client_user.email %></span></p>
+        <p><strong><%= t('users.coins') %>:</strong> <span id="coins"><%= current_client_user.coins || 0 %></span></p>
       </div>
     </div>
 
     <div class="text-center mt-4">
-      <button class="btn btn-success btn-lg w-100">Cash In Now</button>
+      <button class="btn btn-success btn-lg w-100"><%= t('actions.cash_in_now') %></button>
     </div>
     <div class="text-center mt-4 d-flex justify-content-between gap-2">
-      <%= link_to 'Edit Profile', edit_client_user_registration_path, class: 'btn btn-success btn-lg flex-fill' %>
-      <%= link_to 'Address', client_location_index_path, class: 'btn btn-success btn-lg flex-fill' %>
+      <%= link_to t('actions.edit_profile'), edit_client_user_registration_path, class: 'btn btn-success btn-lg flex-fill' %>
+      <%= link_to t('actions.address'), client_location_index_path, class: 'btn btn-success btn-lg flex-fill' %>
     </div>
   </div>
   <br>
   <ul class="nav nav-tabs d-flex justify-content-between">
     <li class="nav-item">
-      <%= link_to 'Order History', client_me_order_history_index_path, class: "nav-link #{'active' if current_page?(client_me_order_history_index_path)}" %>
+      <%= link_to t('tabs.order_history'), client_me_order_history_index_path, class: "nav-link #{'active' if current_page?(client_me_order_history_index_path)}" %>
     </li>
     <li class="nav-item">
-      <%= link_to 'Lottery History', client_me_lottery_history_index_path, class: "nav-link #{'active' if current_page?(client_me_lottery_history_index_path)}" %>
+      <%= link_to t('tabs.lottery_history'), client_me_lottery_history_index_path, class: "nav-link #{'active' if current_page?(client_me_lottery_history_index_path)}" %>
     </li>
     <li class="nav-item">
-      <%= link_to 'Winning History', client_me_winning_history_index_path, class: "nav-link #{'active' if current_page?(client_me_winning_history_index_path)}" %>
+      <%= link_to t('tabs.winning_history'), client_me_winning_history_index_path, class: "nav-link #{'active' if current_page?(client_me_winning_history_index_path)}" %>
     </li>
     <li class="nav-item">
-      <%= link_to 'Invitation History', client_me_invitation_history_index_path, class: "nav-link #{'active' if current_page?(client_me_invitation_history_index_path)}" %>
-    </li> 
+      <%= link_to t('tabs.invitation_history'), client_me_invitation_history_index_path, class: "nav-link #{'active' if current_page?(client_me_invitation_history_index_path)}" %>
+    </li>
   </ul>
 </div>

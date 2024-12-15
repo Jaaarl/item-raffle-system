@@ -4,11 +4,11 @@
     <div class="card d-flex align-items-center p-3 mb-3 shadow-sm">
       <div class="d-flex flex-wrap w-100 gap-4">
         <div class="me-4 mb-2 mb-sm-0 col-12 col-sm-auto">
-          <strong>Email:</strong><br>
+          <strong><%= t('invited.email') %></strong><br>
           <%= person.email %>
         </div>
       </div>
     </div>
   <% end %>
-  <%= paginate @invited, theme: 'bootstrap-5', previous_label: "Previous", next_label: "Next", gap: 0, window: nil %>
+  <%= paginate @invited, theme: 'bootstrap-5', previous_label: t('invited.previous'), next_label: t('invited.next'), gap: 0, window: nil %>
 </div>

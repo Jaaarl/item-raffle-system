@@ -2,7 +2,7 @@
   <div class="container mt-5 container-mb">
     <div class="card">
       <div class="card-header">
-        <h5 class="card-title">Select an Address</h5>
+        <h5 class="card-title"><%= t('form.select_address') %></h5>
       </div>
       <div class="card-body">
         <div class="form-group">
@@ -10,15 +10,15 @@
             <div class="mb-3">
               <div class="form-check">
                 <%= form.radio_button :location_id, location.id, id: "location_#{location.id}", class: "form-check-input", checked: (location.id == @default_location.id) %>
-                <%= label_tag "location_#{location.id}", "Name: #{location.name}, Region: #{location.region.name}, Province: #{location.province.name}, City: #{location.city.name}, Street: #{location.street_address}, Genre: #{location.genre}", class: "form-check-label" %>
+                <%= label_tag "location_#{location.id}", "#{t('location.name')}: #{location.name}, #{t('location.region')}: #{location.region.name}, #{t('location.province')}: #{location.province.name}, #{t('location.city')}: #{location.city.name}, #{t('location.street')}: #{location.street_address}, #{t('location.genre')}: #{location.genre}", class: "form-check-label" %>
               </div>
             </div>
           <% end %>
         </div>
       </div>
       <div class="card-footer text-center">
-        <%= form.submit 'Select Address', class: 'btn btn-success my-2' if @locations.present? %>
-        <%= link_to 'Add or Edit Address?', client_location_index_path, class: 'btn btn-success my-2' %>
+        <%= form.submit t('form.select_button'), class: 'btn btn-success my-2' if @locations.present? %>
+        <%= link_to t('form.add_edit_address'), client_location_index_path, class: 'btn btn-success my-2' %>
       </div>
     </div>
   </div>

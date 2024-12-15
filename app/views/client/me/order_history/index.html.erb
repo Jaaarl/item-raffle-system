@@ -4,23 +4,23 @@
     <div class="card d-flex align-items-center p-3 mb-3 shadow-sm">
       <div class="d-flex flex-wrap w-100 gap-4">
         <div class="me-4 mb-2 mb-sm-0 col-12 col-sm-auto">
-          <strong>Serial Number:</strong><br>
+          <strong><%= t('order.serial_number') %></strong><br>
           <%= order.serial_number %>
         </div>
         <div class="me-4 mb-2 mb-sm-0 col-12 col-sm-auto">
-          <strong>Amount:</strong><br>
+          <strong><%= t('order.amount') %></strong><br>
           ₱ <%= order.amount %>
         </div>
         <div class="me-4 mb-2 mb-sm-0 col-12 col-sm-auto">
-          <strong>Coins:</strong><br>
+          <strong><%= t('order.coins') %></strong><br>
           <%= order.coin %>
         </div>
         <div class="mb-2 mb-sm-0 col-12 col-sm-auto">
-          <strong>Created at:</strong><br>
+          <strong><%= t('order.created_at') %></strong><br>
           <%= order.created_at.strftime("%Y-%m-%d %I:%M %p") %>
         </div>
         <div class="mb-2 mb-sm-0 col-12 col-sm-auto">
-          <strong>State:</strong><br>
+          <strong><%= t('order.state') %></strong><br>
           <span class="text-success">
             <span class="<%= 'text-danger' if order.cancelled? %>">
                 <%= order.state %>
@@ -29,11 +29,11 @@
         </div>
         <% if order.may_cancel? && order.submitted? %>
           <div class="col-12 col-sm-auto mt-2 mt-sm-0">
-            <%= button_to "Cancel", cancel_client_me_order_history_path(order), method: :patch, class: 'btn btn-success d-flex justify-content-center align-items-center' %>
+            <%= button_to t('order.cancel_button'), cancel_client_me_order_history_path(order), method: :patch, class: 'btn btn-success d-flex justify-content-center align-items-center' %>
           </div>
         <% end %>
       </div>
     </div>
   <% end %>
-  <%= paginate @orders, theme: 'bootstrap-5', previous_label: "Previous", next_label: "Next", gap: 0, window: nil %>
+  <%= paginate @orders, theme: 'bootstrap-5', previous_label: t('order.previous'), next_label: t('order.next'), gap: 0, window: nil %>
 </div>
