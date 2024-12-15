@@ -27,9 +27,11 @@
             <td><%= banner.status %></td>
             <td><%= banner.sort %></td>
             <td>
-              <%= link_to 'Show', admin_banner_path(banner), class: 'btn btn-primary' %>
-              <%= link_to 'Edit', edit_admin_banner_path(banner), class: 'btn btn-primary' %>
-              <%= button_to 'Delete', admin_banner_path(banner), method: :delete, class: 'btn btn-primary' %>
+              <div class="d-flex gap-2">
+                <%= link_to 'Show', admin_banner_path(banner), class: 'btn btn-success' %>
+                <%= link_to 'Edit', edit_admin_banner_path(banner), class: 'btn btn-warning' %>
+                <%= button_to 'Delete', admin_banner_path(banner), method: :delete, class: 'btn btn-danger' %>
+              </div>
             </td>
           </tr>
         <% end %>

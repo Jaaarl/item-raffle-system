@@ -76,7 +76,7 @@
               <%= ticket.created_at.strftime('%b %d, %Y') %><br>
               <%= ticket.created_at.strftime('%I:%M:%S %p') %>
             </td>
-            <td><%= button_to 'Cancel', cancel_admin_ticket_path(ticket), method: :patch, class: 'btn btn-primary' if ticket.may_cancel? %> </td>
+            <td><%= button_to 'Cancel', cancel_admin_ticket_path(ticket), method: :patch, class: 'btn btn-danger' if ticket.may_cancel? %> </td>
           </tr>
         <% end %>
         </tbody>

@@ -44,9 +44,11 @@
             <td><%= offer.coin %></td>
             <td><%= offer.genre.humanize %></td>
             <td>
-              <%= link_to 'Show', admin_offer_path(offer), class: 'btn btn-primary' %>
-              <%= link_to 'Edit', edit_admin_offer_path(offer), class: 'btn btn-primary' %>
-              <%= button_to 'Delete', admin_offer_path(offer), method: :delete, class: 'btn btn-primary' %>
+              <div class="d-flex gap-2">
+                <%= link_to 'Show', admin_offer_path(offer), class: 'btn btn-success' %>
+                <%= link_to 'Edit', edit_admin_offer_path(offer), class: 'btn btn-warning' %>
+                <%= button_to 'Delete', admin_offer_path(offer), method: :delete, class: 'btn btn-danger' %>
+              </div>
             </td>
           </tr>
         <% end %>

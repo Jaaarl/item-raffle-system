@@ -93,9 +93,9 @@
               <%= order.created_at.strftime('%I:%M:%S %p') %>
             </td>
             <td>
-              <%= button_to 'Submit', submit_admin_order_path(order), method: :patch, class: 'btn btn-warning' if order.may_submit? %>
-              <%= button_to 'Pay', pay_admin_order_path(order), method: :patch, class: 'btn btn-primary' if order.may_pay? %>
-              <%= button_to 'Cancel', cancel_admin_order_path(order), method: :patch, class: 'btn btn-danger' if order.may_cancel? %>
+              <%= button_to 'Submit', submit_admin_order_path(order), method: :patch, class: 'btn btn-warning mb-2' if order.may_submit? %>
+              <%= button_to 'Pay', pay_admin_order_path(order), method: :patch, class: 'btn btn-primary mb-2' if order.may_pay? %>
+              <%= button_to 'Cancel', cancel_admin_order_path(order), method: :patch, class: 'btn btn-danger mb-2' if order.may_cancel? %>
             </td>
           </tr>
         <% end %>

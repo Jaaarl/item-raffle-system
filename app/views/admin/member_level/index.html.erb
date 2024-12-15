@@ -23,8 +23,10 @@
             <td><%= member.required_members %></td>
             <td><%= member.coins %></td>
             <td>
-              <%= link_to 'Show', admin_member_level_path(member), class: 'btn btn-primary' %>
-              <%= link_to 'Edit', edit_admin_member_level_path(member), class: 'btn btn-primary' %>
+              <div class="d-flex gap-2">
+              <%= link_to 'Show', admin_member_level_path(member), class: 'btn btn-success' %>
+              <%= link_to 'Edit', edit_admin_member_level_path(member), class: 'btn btn-warning' %>
+              </div>
             </td>
           </tr>
         <% end %>

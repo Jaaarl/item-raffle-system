@@ -46,15 +46,15 @@
               </ul>
             </td>
             <td>
-              <%= link_to 'Show', admin_item_management_path(item), class: 'btn btn-primary' %>
-              <%= link_to 'Edit', edit_admin_item_management_path(item), class: 'btn btn-primary' %>
-              <%= button_to 'Delete', admin_item_management_path(item), method: :delete, class: 'btn btn-primary' %>
+              <%= link_to 'Show', admin_item_management_path(item), class: 'btn btn-info mb-2' %>
+              <%= link_to 'Edit', edit_admin_item_management_path(item), class: 'btn btn-warning mb-2' %>
+              <%= button_to 'Delete', admin_item_management_path(item), method: :delete, class: 'btn btn-danger mb-2' %>
             </td>
             <td>
-              <%= button_to 'Start', start_admin_item_management_path(item), method: :patch, class: 'btn btn-primary' if item.may_start? %>
-              <%= button_to 'Pause', pause_admin_item_management_path(item), method: :patch, class: 'btn btn-primary' if item.may_pause? %>
-              <%= button_to 'End', end_admin_item_management_path(item), method: :patch, class: 'btn btn-primary' if item.may_end? %>
-              <%= button_to 'Cancel', cancel_admin_item_management_path(item), method: :patch, class: 'btn btn-primary' if item.may_cancel? %>
+              <%= button_to 'Start', start_admin_item_management_path(item), method: :patch, class: 'btn btn-success mb-2' if item.may_start? %>
+              <%= button_to 'Pause', pause_admin_item_management_path(item), method: :patch, class: 'btn btn-secondary mb-2' if item.may_pause? %>
+              <%= button_to 'End', end_admin_item_management_path(item), method: :patch, class: 'btn btn-dark mb-2' if item.may_end? %>
+              <%= button_to 'Cancel', cancel_admin_item_management_path(item), method: :patch, class: 'btn btn-danger mb-2' if item.may_cancel? %>
             </td>
           </tr>
         <% end %>
