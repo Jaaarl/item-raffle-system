@@ -21,7 +21,6 @@
       </div>
     <% end %>
 
-    <%= link_to 'New offer', new_admin_offer_path, class: 'btn btn-primary' %>
     <div class="table-responsive">
       <table class="table table-bordered table-striped">
         <thead>
@@ -55,6 +54,7 @@
       </table>
     </div>
     <%= paginate @offers, theme: 'bootstrap-5', previous_label: "Previous", next_label: "Next", gap: 0, window: nil %>
+    <%= link_to 'New offer', new_admin_offer_path, class: 'btn btn-primary my-2' %>
   </div>
 </div>
 </body>

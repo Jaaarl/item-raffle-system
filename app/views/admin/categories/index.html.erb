@@ -27,9 +27,9 @@
         </tr>
       <% end %>
       </tbody>
-      <%= link_to 'Add Categories', new_admin_category_path, class: 'btn btn-success' %>
     </table>
     <%= paginate @categories, theme: 'bootstrap-5', previous_label: "Previous", next_label: "Next", gap: 0, window: nil %>
+    <%= link_to 'Add Categories', new_admin_category_path, class: 'btn btn-success' %>
   </div>
 </div>
 </body>

@@ -6,7 +6,6 @@
 
   <div class="container-fluid mt-4">
     <h1>Banner</h1>
-    <%= link_to 'New Banner', new_admin_banner_path, class: 'btn btn-primary' %>
     <div class="table-responsive">
       <table class="table table-bordered table-striped">
         <thead>
@@ -38,6 +37,7 @@
       </table>
     </div>
     <%= paginate @banners, theme: 'bootstrap-5', previous_label: "Previous", next_label: "Next", gap: 0, window: nil %>
+    <%= link_to 'New Banner', new_admin_banner_path, class: 'btn btn-primary my-2' %>
   </div>
 </div>
 </body>

@@ -30,9 +30,9 @@
         <% end %>
         </tbody>
       </table>
-      <%= link_to 'Add Member Level', new_admin_member_level_path, class: 'btn btn-primary' %>
+      <%= paginate @member_levels, theme: 'bootstrap-5', previous_label: "Previous", next_label: "Next", gap: 0, window: nil %>
     </div>
-    <%= paginate @member_levels, theme: 'bootstrap-5', previous_label: "Previous", next_label: "Next", gap: 0, window: nil %>
+    <%= link_to 'Add Member Level', new_admin_member_level_path, class: 'btn btn-primary mb-2' %>
   </div>
 </div>
 </body>

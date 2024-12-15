@@ -60,9 +60,11 @@
         <% end %>
         </tbody>
       </table>
-      <%= link_to 'Add Item', new_admin_item_management_path, class: 'btn btn-primary mb-2  ' %>
     </div>
     <%= paginate @items, theme: 'bootstrap-5', previous_label: "Previous", next_label: "Next", gap: 0, window: nil %>
+    <div>
+    <%= link_to 'Add Item', new_admin_item_management_path, class: 'btn btn-primary my-2' %>
+    </div>
     <%= link_to 'Export to CSV', admin_item_management_index_path(format: :csv), class: 'btn btn-success mb-3' %>
   </div>
 </div>
