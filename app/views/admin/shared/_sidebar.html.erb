@@ -32,23 +32,41 @@
     </div>
   </div>
 
-  <style>
-      #wrapper {
-          display: flex;
-          width: 100%;
-      }
+  <div id="page-content-wrapper" class="w-100">
+    <nav class="navbar navbar-expand-lg navbar-light bg-light border-bottom">
+      <div class="container-fluid">
+        <div class="ms-auto dropdown">
+          <a class="text-decoration-none text-dark btn border-black">
+            Change Language
+          </a>
+          <a class="text-decoration-none text-dark btn dropdown-toggle border-black" type="button" id="dropdownMenuButton" data-bs-toggle="dropdown" aria-expanded="false">
+            Username
+          </a>
+          <ul class="dropdown-menu dropdown-menu-end" aria-labelledby="dropdownMenuButton">
+            <li><a class="text-dark text-decoration-none btn btn-links" href="#">Profile</a></li>
+            <li><%= button_to 'Sign out', destroy_admin_user_session_path, method: :delete, class: "text-dark text-decoration-none btn btn-links" %></li>
+          </ul>
+        </div>
+      </div>
+    </nav>
 
-      #sidebar-wrapper {
-          min-height: 100vh;
-          min-width: 250px;
-          max-width: 250px;
-      }
+    <style>
+        #wrapper {
+            display: flex;
+            width: 100%;
+        }
 
-      #page-content-wrapper {
-          flex: 1;
-      }
+        #sidebar-wrapper {
+            min-height: 100vh;
+            min-width: 250px;
+            max-width: 250px;
+        }
 
-      .toggled #sidebar-wrapper {
-          margin-left: -250px;
-      }
-  </style>
+        #page-content-wrapper {
+            flex: 1;
+        }
+
+        .toggled #sidebar-wrapper {
+            margin-left: -250px;
+        }
+    </style>
