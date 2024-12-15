@@ -80,6 +80,15 @@ en:
     city: "City"
     street: "Street"
     genre: "Genre"
+    genres:
+      home: "Home"
+      work: "Work"
+    validation:
+      genre: "Genre is required"
+      name: "Name is required"
+      street_address: "Street address is required"
+      phone_number: "Phone number is invalid"
+      phone_number_invalid: "Phone number is invalid"
   winning_history:
     item: "Item"
     batch_count: "Batch count"
@@ -191,3 +200,19 @@ en:
   flash:
     notice:
       user_profile_updated: 'User profile has been updated successfully.'
+  activerecord:
+    models:
+      location: "Location"
+    attributes:
+      location:
+        genre: "Genre"
+        name: "Name"
+        street_address: "Street Address"
+        phone_number: "Phone Number"
+    errors:
+      messages:
+        blank: "can't be blank"
+        invalid: "is invalid"
+        not_a_number: "is not a number"
+        taken: "has already been taken"
+

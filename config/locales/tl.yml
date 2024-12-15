@@ -68,6 +68,15 @@ tl:
     city: "Lungsod"
     street: "Kalsada"
     genre: "Uri"
+    genres:
+      home: "Bahay"
+      work: "Trabaho"
+    validation:
+      genre: "Ang uri ay kinakailangan"
+      name: "Ang pangalan ay kinakailangan"
+      street_address: "Ang tamang address ay kinakailangan"
+      phone_number: "Ang numero ng telepono ay hindi wasto"
+      phone_number_invalid: "Hindi wasto ang numero ng telepono"
   winning_history:
     item: "Aytem"
     batch_count: "Bilang ng Batch"
@@ -176,3 +185,29 @@ tl:
   flash:
     notice:
       user_profile_updated: 'Matagumpay na na-update ang profile ng user.'
+  activerecord:
+    models:
+      location: "Lokasyon"
+    attributes:
+      location:
+        genre: "Uri"
+        name: "Pangalan"
+        street_address: "Tamang Address"
+        phone_number: "Numero ng Telepono"
+    errors:
+      messages:
+        blank: "ay kinakailangan"
+        invalid: "ay hindi wasto"
+        not_a_number: "ay hindi isang numero"
+        taken: "ay kinuha na"
+      models:
+        location:
+          attributes:
+            region:
+              required: "Ang rehiyon ay kinakailangan"
+            province:
+              required: "Ang probinsya ay kinakailangan"
+            city:
+              required: "Ang lungsod ay kinakailangan"
+            barangay:
+              required: "Ang barangay ay kinakailangan"

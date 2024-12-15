@@ -5,10 +5,11 @@ class Location < ApplicationRecord
 
   enum genre: { home: 0, work: 1 }
 
-  validates :genre, presence: true
-  validates :name, presence: true
-  validates :street_address, presence: true
-  validates :phone_number, phone: true
+  validates :genre, presence: { message: I18n.t('location.validation.genre') }
+  validates :name, presence: { message: I18n.t('location.validation.name') }
+  validates :street_address, presence: { message: I18n.t('location.validation.street_address') }
+  validates :phone_number, presence: true, phone: true
+  validate :phone_number_is_valid
 
   belongs_to :user
   belongs_to :region, class_name: 'Address::Region', foreign_key: 'address_region_id'
@@ -26,5 +27,11 @@ class Location < ApplicationRecord
 
   def unset_other_locations_default
     user.locations.where.not(id: id).update_all(is_default: false)
+  end
+
+  def phone_number_is_valid
+    unless Phonelib.valid?(phone_number)
+      errors.add(:phone_number, I18n.t('location.validation.phone_number_invalid'))
+    end
   end
 end
