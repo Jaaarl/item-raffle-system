@@ -29,7 +29,7 @@
         <a class="nav-link dropdown-toggle" href="#" role="button" id="languageDropdown" data-bs-toggle="dropdown" aria-expanded="false">
           <%= t('language') %>
         </a>
-        <ul class="dropdown-menu" aria-labelledby="languageDropdown">
+        <ul class="dropdown-menu dropdown-menu-end" aria-labelledby="languageDropdown">
           <li><%= link_to 'English', params.permit!.merge(locale: 'en'), class: 'dropdown-item' %></li>
           <li><%= link_to 'Tagalog', params.permit!.merge(locale: 'tl'), class: 'dropdown-item' %></li>
         </ul>
