@@ -65,6 +65,7 @@
       <table class="table table-bordered table-striped">
         <thead>
         <tr>
+          <th scope="col">Serial Number</th>
           <th scope="col">Ordered by</th>
           <th scope="col">Offer</th>
           <th scope="col">Genre</th>
@@ -79,6 +80,7 @@
         <tbody>
         <% @orders.each do |order| %>
           <tr>
+            <td><%= order.serial_number %></td>
             <td><%= order.user&.email %></td>
             <td><%= order.offer&.name || "N/A" %></td>
             <td><%= order.genre %></td>

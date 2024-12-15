@@ -65,10 +65,11 @@ class Admin::OrderController < Admin::BaseController
 
   def generate_csv(orders)
     CSV.generate(headers: true) do |csv|
-      csv << ["Ordered by", "Offer", "Genre", "Status", "Amount", "Coins", "Remarks", "Date"]
+      csv << ["Serial Number","Ordered by", "Offer", "Genre", "Status", "Amount", "Coins", "Remarks", "Date"]
 
       orders.each do |order|
         csv << [
+          order.serial_number,
           order.user&.email,
           order.offer&.name,
           order.genre,
