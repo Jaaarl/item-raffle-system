@@ -5,8 +5,7 @@ class Admin::BannerController < Admin::BaseController
     @banners = Banner.all.order(:sort).page(params[:page]).per(10)
   end
 
-  def show
-  end
+  def show; end
 
   def new
     @banner = Banner.new
@@ -24,8 +23,7 @@ class Admin::BannerController < Admin::BaseController
     end
   end
 
-  def edit
-  end
+  def edit; end
 
   def update
     if @banner.update(news_ticker_params)

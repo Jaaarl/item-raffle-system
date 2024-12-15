@@ -13,8 +13,7 @@ class Admin::ItemManagementController < Admin::BaseController
     end
   end
 
-  def show
-  end
+  def show; end
 
   def new
     @item = Item.new
@@ -29,8 +28,7 @@ class Admin::ItemManagementController < Admin::BaseController
     end
   end
 
-  def edit
-  end
+  def edit; end
 
   def update
     if @item.update(item_params)

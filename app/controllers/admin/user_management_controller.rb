@@ -13,9 +13,7 @@ class Admin::UserManagementController < Admin::BaseController
     end
   end
 
-  def show
-
-  end
+  def show; end
 
   def increase
     if params[:coin].nil? || params[:coin].to_i == 0

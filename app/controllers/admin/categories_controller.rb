@@ -5,8 +5,7 @@ class Admin::CategoriesController < Admin::BaseController
     @categories = Category.all.order(:sort).page(params[:page]).per(10)
   end
 
-  def show
-  end
+  def show; end
 
   def new
     @category = Category.new
@@ -24,8 +23,7 @@ class Admin::CategoriesController < Admin::BaseController
     end
   end
 
-  def edit
-  end
+  def edit; end
 
   def update
     if @category.update(category_params)

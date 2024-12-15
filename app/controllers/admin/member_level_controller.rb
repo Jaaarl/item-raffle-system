@@ -5,8 +5,7 @@ class Admin::MemberLevelController < Admin::BaseController
     @member_levels = MemberLevel.all.page(params[:page]).per(10)
   end
 
-  def show
-  end
+  def show; end
 
   def new
     @member_level = MemberLevel.new
@@ -23,8 +22,7 @@ class Admin::MemberLevelController < Admin::BaseController
     end
   end
 
-  def edit
-  end
+  def edit; end
 
   def update
     if @member_level.update(member_levels_params)

@@ -5,8 +5,7 @@ class Admin::NewsTickerController < Admin::BaseController
     @news_tickers = NewsTicker.all.order(:sort).page(params[:page]).per(10)
   end
 
-  def show
-  end
+  def show; end
 
   def new
     @news_ticker = NewsTicker.new
