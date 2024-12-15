@@ -92,6 +92,7 @@ tl:
     submit: "Magdagdag ng Feedback"
   order:
     serial_number: "Serial Number:"
+    genre: "Uri:"
     amount: "Halaga:"
     coins: "Mga Barya:"
     created_at: "Nilikha noong:"

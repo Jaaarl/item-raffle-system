@@ -104,6 +104,7 @@ en:
     submit: "Add Feedback"
   order:
     serial_number: "Serial Number:"
+    genre: "Genre:"
     amount: "Amount:"
     coins: "Coins:"
     created_at: "Created at:"

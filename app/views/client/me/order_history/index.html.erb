@@ -8,6 +8,10 @@
           <%= order.serial_number %>
         </div>
         <div class="me-4 mb-2 mb-sm-0 col-12 col-sm-auto">
+          <strong><%= t('order.genre') %></strong><br>
+          <%= order.genre.humanize %>
+        </div>
+        <div class="me-4 mb-2 mb-sm-0 col-12 col-sm-auto">
           <strong><%= t('order.amount') %></strong><br>
           ₱ <%= order.amount %>
         </div>
