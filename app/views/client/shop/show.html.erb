@@ -5,17 +5,17 @@
         <div class="ratio ratio-16x9 bg-secondary d-flex align-items-center justify-content-center text-white">
           <%= image_tag @offer.image.url, class: "border", size: "60x60" if @offer.image.present? %>
           <% unless @offer.image.present? %>
-            No image
+            <%= t('offer.no_image_available') %>
           <% end %>
         </div>
       </div>
       <h5 class="card-title text-center mb-3"><%= @offer.name %></h5>
       <div class="mb-3">
-        <p class="mb-1"><%= "You can have #{@offer.coin} coins for ₱#{@offer.amount}" %></p>
+        <p class="mb-1"><%= t('offer.coins_for', coin: @offer.coin, amount: @offer.amount) %></p>
       </div>
       <%= form_with url: buy_client_shop_path(@offer), method: :post, local: true do |form| %>
         <div class="d-grid mb-3">
-          <%= form.submit 'Buy Offer', class: 'btn btn-success my-2' %>
+          <%= form.submit t('offer.buy_offer'), class: 'btn btn-success my-2' %>
         </div>
       <% end %>
     </div>

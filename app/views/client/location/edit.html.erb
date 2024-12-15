@@ -7,7 +7,7 @@
 
             <% if @location.errors.any? %>
               <div class="alert alert-danger">
-                <h4 class="alert-heading">There were some problems with your submission:</h4>
+                <h4 class="alert-heading"><%= t('form.errors.header') %></h4>
                 <ul>
                   <% @location.errors.full_messages.each do |message| %>
                     <li><%= message %></li>
@@ -17,75 +17,76 @@
             <% end %>
 
             <div class="mb-3">
-              <%= form.label :name, class: 'form-label' %>
+              <%= form.label :name, t('form.name'), class: 'form-label' %>
               <%= form.text_field :name, id: :place_name, class: 'form-control' %>
             </div>
 
             <div class="mb-3">
-              <%= form.label :phone_number, class: 'form-label' %>
+              <%= form.label :phone_number, t('form.phone_number'), class: 'form-label' %>
               <%= form.text_field :phone_number, id: :place_phone_number, class: 'form-control' %>
             </div>
 
             <div class="mb-3">
-              <%= form.label :genre, class: 'form-label' %>
-              <%= form.select :genre, options_for_select([['Home', :home], ['Work', :work]], @location.genre), { class: 'form-select', prompt: "Select a genre" }, style: 'border: 1px solid #ccc; border-radius: 0.375rem; padding: 10px; font-size: 1rem; width: 100%; box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1);' %>
+              <%= form.label :genre, t('form.genre'), class: 'form-label' %>
+              <%= form.select :genre, options_for_select([[t('form.home'), :home], [t('form.work'), :work]], @location.genre), { class: 'form-select', prompt: t('form.select_genre') }, style: 'border: 1px solid #ccc; border-radius: 0.375rem; padding: 10px; font-size: 1rem; width: 100%; box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1);' %>
             </div>
 
             <div class="mb-3">
-              <%= form.label :address_region_id %>
+              <%= form.label :address_region_id, t('form.address_region'), class: 'form-label' %>
               <%= form.collection_select :address_region_id,
                                          Address::Region.all, :id, :name,
-                                         { prompt: 'Please select region', selected: @location.address_region_id },
+                                         { prompt: t('form.select_region'), selected: @location.address_region_id },
                                          style: 'border: 1px solid #ccc; border-radius: 0.375rem; padding: 10px; font-size: 1rem; width: 100%; box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1);',
                                          data: { location_target: 'selectedRegionId', action: 'change->location#fetchProvinces' } %>
             </div>
+
             <div class="mb-3">
-              <%= form.label :address_province_id %>
+              <%= form.label :address_province_id, t('form.address_province'), class: 'form-label' %>
               <%= form.collection_select :address_province_id,
                                          @location.address_region_id.present? ? @location.region.provinces : [],
                                          :id, :name,
-                                         { prompt: 'Please select province', selected: @location.address_province_id },
+                                         { prompt: t('form.select_province'), selected: @location.address_province_id },
                                          style: 'border: 1px solid #ccc; border-radius: 0.375rem; padding: 10px; font-size: 1rem; width: 100%; box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1);',
                                          data: { location_target: 'selectedProvinceId', action: 'change->location#fetchCities' } %>
             </div>
 
             <div class="mb-3">
-              <%= form.label :address_city_id %>
+              <%= form.label :address_city_id, t('form.address_city'), class: 'form-label' %>
               <%= form.collection_select :address_city_id,
                                          @location.address_province_id.present? ? @location.province.cities : [],
                                          :id, :name,
-                                         { prompt: 'Please select city', selected: @location.address_city_id },
+                                         { prompt: t('form.select_city'), selected: @location.address_city_id },
                                          style: 'border: 1px solid #ccc; border-radius: 0.375rem; padding: 10px; font-size: 1rem; width: 100%; box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1);',
                                          data: { location_target: 'selectedCityId', action: 'change->location#fetchBarangays' } %>
             </div>
 
             <div class="mb-3">
-              <%= form.label :address_barangay_id %>
+              <%= form.label :address_barangay_id, t('form.address_barangay'), class: 'form-label' %>
               <%= form.collection_select :address_barangay_id,
                                          @location.address_city_id.present? ? @location.city.barangays : [],
                                          :id, :name,
-                                         { prompt: 'Please select barangay', selected: @location.address_barangay_id },
+                                         { prompt: t('form.select_barangay'), selected: @location.address_barangay_id },
                                          style: 'border: 1px solid #ccc; border-radius: 0.375rem; padding: 10px; font-size: 1rem; width: 100%; box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1);',
                                          data: { location_target: 'selectedBarangayId' } %>
             </div>
 
             <div class="mb-3">
-              <%= form.label :street_address, class: 'form-label' %>
+              <%= form.label :street_address, t('form.street_address'), class: 'form-label' %>
               <%= form.text_field :street_address, id: :place_street_address, class: 'form-control' %>
             </div>
 
             <div class="mb-3">
-              <%= form.label :remark, class: 'form-label' %>
+              <%= form.label :remark, t('form.remark'), class: 'form-label' %>
               <%= form.text_area :remark, id: :place_remark, class: 'form-control' %>
             </div>
 
             <div class="mb-3 form-check">
               <%= form.check_box :is_default, class: 'form-check-input' %>
-              <%= form.label :is_default, 'Default Address', class: 'form-check-label' %>
+              <%= form.label :is_default, t('form.is_default'), class: 'form-check-label' %>
             </div>
 
             <div class="text-center">
-              <%= form.submit 'Submit', class: 'btn btn-primary' %>
+              <%= form.submit t('form.submit'), class: 'btn btn-primary' %>
             </div>
           <% end %>
         </div>

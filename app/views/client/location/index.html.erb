@@ -1,24 +1,24 @@
 <h1 class="text-center my-5 font-weight-bold">
-  <%= current_client_user.username.present? ? current_client_user.username : current_client_user.email %> Address List
+  <%= current_client_user.username.present? ? current_client_user.username : current_client_user.email %> <%= t('address.list_title') %>
 </h1>
 
 <div class="table-responsive container container-mb">
   <% if @locations.count < 5 %>
-    <%= link_to 'Add Address', new_client_location_path, class: 'btn btn-success mb-4' %>
+    <%= link_to t('address.add_address'), new_client_location_path, class: 'btn btn-success mb-4' %>
   <% end %>
   <table class="table table-hover table-striped table-bordered">
     <thead class="thead-light">
     <tr>
-      <th>Name</th>
-      <th>Genre</th>
-      <th>Phone Number</th>
-      <th>Default Address</th>
-      <th>Region</th>
-      <th>Province</th>
-      <th>City</th>
-      <th>Barangay</th>
-      <th>Street Address</th>
-      <th>Actions</th>
+      <th><%= t('address.name') %></th>
+      <th><%= t('address.genre') %></th>
+      <th><%= t('address.phone_number') %></th>
+      <th><%= t('address.default_address') %></th>
+      <th><%= t('address.region') %></th>
+      <th><%= t('address.province') %></th>
+      <th><%= t('address.city') %></th>
+      <th><%= t('address.barangay') %></th>
+      <th><%= t('address.street_address') %></th>
+      <th><%= t('address.actions') %></th>
     </tr>
     </thead>
     <tbody>
@@ -27,7 +27,7 @@
         <td><%= place.name %></td>
         <td><%= place.genre %></td>
         <td><%= place.phone_number %></td>
-        <td><%= place.is_default ? 'Yes' : 'No' %></td>
+        <td><%= place.is_default ? t('address.yes') : t('address.no') %></td>
         <td><%= place.region.name %></td>
         <td><%= place.province.name %></td>
         <td><%= place.city.name %></td>
@@ -35,10 +35,10 @@
         <td><%= place.street_address %></td>
         <td class="d-flex justify-content-around">
           <% if !(place.is_default) %>
-            <%= button_to 'Make Default', make_default_client_location_path(place), method: :patch, class: 'btn btn-primary btn-sm' %>
+            <%= button_to t('address.make_default'), make_default_client_location_path(place), method: :patch, class: 'btn btn-primary btn-sm' %>
           <% end %>
-          <%= button_to 'Delete', client_location_path(place), method: :delete, class: 'btn btn-danger btn-sm' %>
-          <%= link_to 'Edit', edit_client_location_path(place), class: 'btn btn-info btn-sm' %>
+          <%= button_to t('address.delete'), client_location_path(place), method: :delete, class: 'btn btn-danger btn-sm' %>
+          <%= link_to t('address.edit'), edit_client_location_path(place), class: 'btn btn-info btn-sm' %>
         </td>
       </tr>
     <% end %>

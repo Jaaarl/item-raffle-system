@@ -5,7 +5,7 @@
 
   <div class="container mt-4 container-mb">
     <div class="mb-3">
-      <%= link_to "All Categories", client_lottery_index_path, class: "btn btn-outline-secondary me-2" %>
+      <%= link_to t('lottery.all_categories'), client_lottery_index_path, class: "btn btn-outline-secondary me-2" %>
       <% @categories.each do |category| %>
         <%= link_to category.name.capitalize, client_lottery_index_path(category_id: category.id), class: "btn btn-outline-primary me-2" %>
       <% end %>
@@ -20,14 +20,14 @@
                   <% if item.image.present? %>
                     <%= image_tag item.image.url, style: "max-width: 100px; max-height: 100px; object-fit: cover;" if item.image.present? %>
                   <% else %>
-                    <span class="text-muted">No Image Available</span>
+                    <span class="text-muted"><%= t('lottery.no_image_available') %></span>
                   <% end %>
                 </div>
                 <h5 class="card-title mb-3 text-dark font-weight-bold"><%= item.name %></h5>
                 <div class="d-flex justify-content-between">
                   <button class="btn btn-success d-flex align-items-center px-3 py-2 rounded-pill shadow-sm">
                     <i class="bi bi-record-fill me-2"></i>
-                    <span class="text-white">Online</span>
+                    <span class="text-white"><%= t('lottery.online') %></span>
                   </button>
                 </div>
               </div>
@@ -36,6 +36,6 @@
         </div>
       <% end %>
     </div>
-    <%= paginate @items, theme: 'bootstrap-5', previous_label: "Previous", next_label: "Next", gap: 0, window: nil %>
+    <%= paginate @items, theme: 'bootstrap-5', previous_label: t('lottery.previous'), next_label: t('lottery.next'), gap: 0, window: nil %>
   </div>
 </div>

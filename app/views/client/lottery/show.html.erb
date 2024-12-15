@@ -5,7 +5,7 @@
         <div class="ratio ratio-16x9 bg-secondary d-flex align-items-center justify-content-center text-white">
           <%= image_tag @item.image.url, class: "border", size: "60x60" if @item.image.present? %>
           <% unless @item.image.present? %>
-            No image
+            <%= t('no_image') %>
           <% end %>
         </div>
       </div>
@@ -13,7 +13,9 @@
       <div class="mb-3">
         <div class="d-flex justify-content-between">
           <span><%= @item.name %></span>
-          <span id="progress-percentage"> <%= percentage(@item) %>%</span>
+          <span id="progress-percentage">
+            <%= t('progress_percentage', percentage: percentage(@item)) %>
+          </span>
         </div>
         <div class="progress">
           <div id="progress-bar"
@@ -44,14 +46,13 @@
           </div>
         </div>
 
-
         <div class="d-grid mb-3">
-          <button type="submit" class="btn btn-warning">Buy tickets</button>
+          <button type="submit" class="btn btn-warning"><%= t('buy_tickets') %></button>
         </div>
       <% end %>
       <div class="mb-3" style=" margin-bottom: 550px;">
         <div class="d-flex flex-column">
-          <div class="border p-2">Ticket</div>
+          <div class="border p-2"><%= t('ticket') %></div>
           <% @user_ticket.each do |ticket| %>
             <div class="border p-2"><%= ticket.serial_number %></div>
           <% end %>

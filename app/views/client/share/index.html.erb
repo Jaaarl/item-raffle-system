@@ -13,7 +13,7 @@
               <%= image_tag feedback.image.url, class: "img-fluid", style: "width: 100%; height: 100%; object-fit: cover;" %>
             <% else %>
               <div class="d-flex align-items-center justify-content-center bg-light" style="width: 150px; height: 150px;">
-                <span>No Image</span>
+                <span><%= t('no_image') %></span>
               </div>
             <% end %>
           </div>
@@ -26,5 +26,5 @@
       </div>
     <% end %>
   </div>
-  <%= paginate @feedbacks, theme: 'bootstrap-5', previous_label: "Previous", next_label: "Next", gap: 0, window: nil %>
+  <%= paginate @feedbacks, theme: 'bootstrap-5', previous_label: t('previous'), next_label: t('next'), gap: 0, window: nil %>
 </div>
