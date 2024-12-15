@@ -29,8 +29,8 @@ class Admin::InviteController < Admin::BaseController
 
       clients.each do |client|
         csv << [
-          client.parent_id.blank? ? "N/A" : client.parent.member_level.level,
-          client.parent_id.blank? ? "N/A" : client.parent.email,
+          client.parent.member_level.level,
+          client.parent.email,
           client.email,
           client.total_deposit || 0,
           client.children.sum(:total_deposit),

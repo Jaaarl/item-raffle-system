@@ -27,8 +27,7 @@ class Admin::OfferController < Admin::BaseController
     end
   end
 
-  def edit
-  end
+  def edit; end
 
   def update
     if @offer.update(offer_params)
