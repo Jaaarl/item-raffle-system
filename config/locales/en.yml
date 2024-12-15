@@ -160,3 +160,34 @@ en:
     purchase_limit_weekly: "You can only purchase this weekly offer once per week."
     purchase_limit_daily: "You can only purchase this daily offer once per day."
     sign_in_required_shop: "You must be signed in to purchase an offer. Please sign in first."
+  login:
+    email: "Email"
+    password: "Password"
+    submit: "Log in"
+  register:
+    link: "Register"
+  tabs:
+    login: "Login"
+    register: "Register"
+  registration:
+    username: "Username"
+    email: "Email"
+    password: "Password"
+    password_confirmation: "Confirm Password"
+    submit: "Register"
+    promoter_name: "Promoter's name"
+  profile:
+    email: "Email"
+    username: "Username"
+    phone: "Phone"
+    password: "Password"
+    password_confirmation: "Confirm Password"
+    upload_picture: "Upload Profile Picture"
+    current_password: "Current Password"
+    password_hint: "(leave blank if you don't want to change it)"
+    current_password_hint: "(we need your current password to confirm your changes)"
+    submit: "Update"
+    error: "There was an issue updating your profile."
+  flash:
+    notice:
+      user_profile_updated: 'User profile has been updated successfully.'

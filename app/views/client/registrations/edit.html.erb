@@ -10,23 +10,23 @@
       <div class="col-md-10">
         <%= form_for(resource, as: resource_name, url: client_user_registration_path(resource), html: { method: :put, format: :html, class: "needs-validation", novalidate: true }) do |f| %>
           <div class="mb-3">
-            <%= f.label :email, class: "form-label" %>
+            <%= f.label :email, t('profile.email'), class: "form-label" %>
             <div class="form-control" style="pointer-events: none; background-color: #e9ecef; opacity: 0.5;"><%= resource.email %></div>
           </div>
 
           <div class="mb-3">
-            <%= f.label :username, class: "form-label" %>
+            <%= f.label :username, t('profile.username'), class: "form-label" %>
             <%= f.text_field :username, autofocus: true, class: "form-control" %>
           </div>
 
           <div class="mb-3">
-            <%= f.label :phone, class: "form-label" %>
+            <%= f.label :phone, t('profile.phone'), class: "form-label" %>
             <%= f.text_field :phone, autofocus: true, class: "form-control" %>
           </div>
 
           <div class="mb-3">
-            <%= f.label :password, class: "form-label" %>
-            <small class="text-muted">(leave blank if you don't want to change it)</small>
+            <%= f.label :password, t('profile.password'), class: "form-label" %>
+            <small class="text-muted"><%= t('profile.password_hint') %></small>
             <%= f.password_field :password, autocomplete: "new-password", class: "form-control" %>
             <% if @minimum_password_length %>
               <div class="form-text"><%= @minimum_password_length %> characters minimum</div>
@@ -34,18 +34,18 @@
           </div>
 
           <div class="mb-3">
-            <%= f.label :password_confirmation, class: "form-label" %>
+            <%= f.label :password_confirmation, t('profile.password_confirmation'), class: "form-label" %>
             <%= f.password_field :password_confirmation, autocomplete: "new-password", class: "form-control" %>
           </div>
 
           <div class="mb-3">
-            <%= f.label :Upload_Profile_Picture, class: "form-label" %>
+            <%= f.label :image, t('profile.upload_picture'), class: "form-label" %>
             <%= f.file_field :image, class: "form-control" %>
           </div>
 
           <div class="mb-3">
-            <%= f.label :current_password, class: "form-label" %>
-            <small class="text-muted">(we need your current password to confirm your changes)</small>
+            <%= f.label :current_password, t('profile.current_password'), class: "form-label" %>
+            <small class="text-muted"><%= t('profile.current_password_hint') %></small>
             <%= f.password_field :current_password, autocomplete: "current-password", class: "form-control" %>
           </div>
 
@@ -55,7 +55,7 @@
                 <%= flash[:alert] %>
               </div>
             <% end %>
-            <%= f.submit "Update", class: "btn btn-primary" %>
+            <%= f.submit t('profile.submit'), class: "btn btn-primary" %>
           </div>
         <% end %>
       </div>

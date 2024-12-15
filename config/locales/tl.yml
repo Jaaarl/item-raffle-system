@@ -34,6 +34,8 @@ tl:
     lottery_history: "Kasaysayan ng Lottery"
     winning_history: "Kasaysayan ng Panalo"
     invitation_history: "Kasaysayan ng Imbitasyon"
+    login: "Mag-login"
+    register: "Magrehistro"
   form:
     select_address: "Pumili ng Tinitirahan"
     select_button: "Pumili ng Tinitirahan"
@@ -146,3 +148,31 @@ tl:
     purchase_limit_weekly: "Maaari mo lamang bilhin ang alok na ito isang beses bawat linggo."
     purchase_limit_daily: "Maaari mo lamang bilhin ang alok na ito isang beses bawat araw."
     sign_in_required_shop: "Kailangan mong mag-sign in upang makabili ng alok. Mangyaring mag-sign in muna."
+  login:
+    email: "Email"
+    password: "Password"
+    submit: "Mag-login"
+  register:
+    link: "Magrehistro"
+  registration:
+    username: "Pangalan ng Gumagamit"
+    email: "Email"
+    password: "Password"
+    password_confirmation: "Kumpirmahin ang Password"
+    submit: "Magrehistro"
+    promoter_name: "Pangalan ng Tagapagtaguyod"
+  profile:
+    email: "Email"
+    username: "Pangalan ng Gumagamit"
+    phone: "Telepono"
+    password: "Password"
+    password_confirmation: "Kumpirmahin ang Password"
+    upload_picture: "I-upload ang Larawan ng Profile"
+    current_password: "Kasalukuyang Password"
+    password_hint: "(iwanang blangko kung ayaw mong baguhin ito)"
+    current_password_hint: "(kailangan namin ang iyong kasalukuyang password upang kumpirmahin ang iyong mga pagbabago)"
+    submit: "I-update"
+    error: "Mayroong isyu sa pag-update ng iyong profile."
+  flash:
+    notice:
+      user_profile_updated: 'Matagumpay na na-update ang profile ng user.'

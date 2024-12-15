@@ -2,10 +2,10 @@
   <div class="container mt-4 container-mb">
     <ul class="nav nav-pills nav-justified mb-3" id="ex1" role="tablist">
       <li class="nav-item" role="presentation">
-        <%= link_to 'Login', new_client_user_session_path, class: 'nav-link border border-black', id: 'tab-login', role: 'tab', aria: { controls: 'pills-login', selected: 'true' } %>
+        <%= link_to t('tabs.login'), new_client_user_session_path, class: 'nav-link border border-black', id: 'tab-login', role: 'tab', aria: { controls: 'pills-login', selected: 'true' } %>
       </li>
       <li class="nav-item" role="presentation">
-        <%= link_to 'Register', new_client_user_registration_path, class: 'nav-link active border border-white', id: 'tab-register', role: 'tab', aria: { controls: 'pills-register', selected: 'false' } %>
+        <%= link_to t('tabs.register'), new_client_user_registration_path, class: 'nav-link active border border-white', id: 'tab-register', role: 'tab', aria: { controls: 'pills-register', selected: 'false' } %>
       </li>
     </ul>
     <div class="tab-content">
@@ -13,31 +13,31 @@
         <form>
           <% if cookies[:promoter] %>
             <div data-mdb-input-init class="form-outline mb-4">
-              <label class="form-label" for="loginName">Promoter's name</label>
+              <label class="form-label" for="loginName"><%= t('registration.promoter_name') %></label>
               <input type="text" id="loginName" value="<%= cookies[:promoter] %>" disabled class="form-control"/>
             </div>
           <% end %>
           <div data-mdb-input-init class="form-outline mb-4">
-            <label class="form-label" for="loginName">Username</label>
+            <label class="form-label" for="loginName"><%= t('registration.username') %></label>
             <%= f.text_field :username, autofocus: true, class: 'form-control' %>
           </div>
           <div data-mdb-input-init class="form-outline mb-4">
-            <label class="form-label" for="loginName">Email</label>
+            <label class="form-label" for="loginName"><%= t('registration.email') %></label>
             <%= f.email_field :email, autocomplete: "email", class: 'form-control' %>
           </div>
           <div data-mdb-input-init class="form-outline mb-4">
-            <label class="form-label" for="loginPassword">Password</label>
+            <label class="form-label" for="loginPassword"><%= t('registration.password') %></label>
             <%= f.password_field :password, autocomplete: "current-password", class: 'form-control' %>
           </div>
           <div data-mdb-input-init class="form-outline mb-4">
-            <label class="form-label" for="loginPassword">Confirm Password</label>
+            <label class="form-label" for="loginPassword"><%= t('registration.password_confirmation') %></label>
             <%= f.password_field :password_confirmation, autocomplete: "new-password", class: 'form-control' %>
           </div>
           <div class="row mb-4">
             <div class="col-md-6 d-flex justify-content-center">
             </div>
             <%= f.hidden_field :parent_id, value: parent_id(cookies[:promoter]) %>
-            <%= f.submit "Register", class: 'btn btn-primary btn-block mb-4' %>
+            <%= f.submit t('registration.submit'), class: 'btn btn-primary btn-block mb-4' %>
           </div>
         </form>
       </div>

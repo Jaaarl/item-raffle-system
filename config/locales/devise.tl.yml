@@ -1,0 +1,65 @@
+tl:
+  devise:
+    confirmations:
+      confirmed: "Matagumpay na nakumpirma ang iyong email address."
+      send_instructions: "Makakatanggap ka ng isang email na may mga tagubilin kung paano kumpirmahin ang iyong email address sa loob ng ilang minuto."
+      send_paranoid_instructions: "Kung ang iyong email address ay nasa aming database, makakatanggap ka ng isang email na may mga tagubilin kung paano kumpirmahin ang iyong email address sa loob ng ilang minuto."
+    failure:
+      already_authenticated: "Nakasign in ka na."
+      inactive: "Ang iyong account ay hindi pa na-activate."
+      invalid: "Maling %{authentication_keys} o password."
+      locked: "Ang iyong account ay naka-lock."
+      last_attempt: "Isa na lang na pagtatangka bago mai-lock ang iyong account."
+      not_found_in_database: "Maling %{authentication_keys} o password."
+      timeout: "Nag-expire ang iyong session. Mangyaring mag-sign in muli upang magpatuloy."
+      unauthenticated: "Kailangan mong mag-sign in o mag-sign up bago magpatuloy."
+      unconfirmed: "Kailangan mong kumpirmahin ang iyong email address bago magpatuloy."
+    mailer:
+      confirmation_instructions:
+        subject: "Mga Tagubilin sa Kumpirmasyon"
+      reset_password_instructions:
+        subject: "Mga Tagubilin sa Pag-reset ng Password"
+      unlock_instructions:
+        subject: "Mga Tagubilin sa Pag-unlock"
+      email_changed:
+        subject: "Nagbago ang Email"
+      password_change:
+        subject: "Nagbago ang Password"
+    omniauth_callbacks:
+      failure: "Hindi ka namin ma-authenticate mula sa %{kind} dahil sa \"%{reason}\"."
+      success: "Matagumpay na na-authenticate mula sa %{kind} account."
+    passwords:
+      no_token: "Hindi mo maa-access ang pahinang ito nang hindi dumaan sa isang password reset email. Kung dumaan ka sa isang password reset email, tiyaking ginamit mo ang buong URL na ibinigay."
+      send_instructions: "Makakatanggap ka ng isang email na may mga tagubilin kung paano i-reset ang iyong password sa loob ng ilang minuto."
+      send_paranoid_instructions: "Kung ang iyong email address ay nasa aming database, makakatanggap ka ng link para sa recovery ng password sa iyong email address sa loob ng ilang minuto."
+      updated: "Matagumpay na nabago ang iyong password. Nakalog-in ka na."
+      updated_not_active: "Matagumpay na nabago ang iyong password."
+    registrations:
+      destroyed: "Paalam! Matagumpay na na-kansela ang iyong account. Nawa'y makita ka namin muli sa lalong madaling panahon."
+      signed_up: "Maligayang pagdating! Matagumpay kang nakarehistro."
+      signed_up_but_inactive: "Matagumpay kang nakarehistro. Gayunpaman, hindi ka namin matutulungan mag-sign in dahil ang iyong account ay hindi pa na-activate."
+      signed_up_but_locked: "Matagumpay kang nakarehistro. Gayunpaman, hindi ka namin matutulungan mag-sign in dahil ang iyong account ay naka-lock."
+      signed_up_but_unconfirmed: "Isang mensahe na may confirmation link ay ipinadala na sa iyong email address. Mangyaring sundan ang link upang i-activate ang iyong account."
+      update_needs_confirmation: "Matagumpay mong na-update ang iyong account, ngunit kailangan naming i-verify ang iyong bagong email address. Mangyaring tingnan ang iyong email at sundan ang confirmation link upang kumpirmahin ang iyong bagong email address."
+      updated: "Matagumpay na na-update ang iyong account."
+      updated_but_not_signed_in: "Matagumpay na na-update ang iyong account, ngunit dahil binago ang iyong password, kailangan mong mag-sign in muli."
+    sessions:
+      signed_in: "Matagumpay na nakalog-in."
+      signed_out: "Matagumpay na nakalog-out."
+      not_admin: "Kailangan mong maging admin upang mag-log in."
+      not_client: "Kailangan mong maging client upang mag-log in."
+      already_signed_out: "Matagumpay na nakalog-out."
+    unlocks:
+      send_instructions: "Makakatanggap ka ng isang email na may mga tagubilin kung paano i-unlock ang iyong account sa loob ng ilang minuto."
+      send_paranoid_instructions: "Kung ang iyong account ay umiiral, makakatanggap ka ng isang email na may mga tagubilin kung paano i-unlock ito sa loob ng ilang minuto."
+      unlocked: "Matagumpay na na-unlock ang iyong account. Mangyaring mag-sign in upang magpatuloy."
+    errors:
+      messages:
+        already_confirmed: "ay nakumpirma na, mangyaring subukang mag-sign in."
+        confirmation_period_expired: "kailangan ng kumpirmasyon sa loob ng %{period}, mangyaring humiling ng bago."
+        expired: "nag-expire na, mangyaring humiling ng bago."
+        not_found: "hindi nahanap."
+        not_locked: "hindi naka-lock."
+        not_saved:
+          one: "1 error ang naghadlang sa %{resource} na mai-save:"
+          other: "%{count} errors ang naghadlang sa %{resource} na mai-save:"
