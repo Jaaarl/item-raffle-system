@@ -79,7 +79,7 @@
             <td><%= order.serial_number %></td>
             <td><%= order.user&.email %></td>
             <td><%= order.offer&.name || "N/A" %></td>
-            <td><%= order.genre %></td>
+            <td><%= order.genre.humanize %></td>
             <td><%= order.state %></td>
             <td><%= order.amount %></td>
             <td><%= order.coin %></td>
