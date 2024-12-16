@@ -5,25 +5,29 @@
 </div>
 <div class="container container-mb">
   <div class="row gy-4 mb-2">
-    <% @feedbacks.each do |feedback| %>
-      <div class="col-12">
-        <div class="card d-flex flex-row">
-          <div class="card-img-left" style="width: 150px; height: 150px; overflow: hidden;">
-            <% if feedback.image.present? %>
-              <%= image_tag feedback.image.url, class: "img-fluid", style: "width: 100%; height: 100%; object-fit: cover;" %>
-            <% else %>
-              <div class="d-flex align-items-center justify-content-center bg-light" style="width: 150px; height: 150px;">
-                <span><%= t('no_image') %></span>
-              </div>
-            <% end %>
-          </div>
+    <% if @feedbacks.any? %>
+      <% @feedbacks.each do |feedback| %>
+        <div class="col-12">
+          <div class="card d-flex flex-row">
+            <div class="card-img-left" style="width: 150px; height: 150px; overflow: hidden;">
+              <% if feedback.image.present? %>
+                <%= image_tag feedback.image.url, class: "img-fluid", style: "width: 100%; height: 100%; object-fit: cover;" %>
+              <% else %>
+                <div class="d-flex align-items-center justify-content-center bg-light" style="width: 150px; height: 150px;">
+                  <span><%= t('no_image') %></span>
+                </div>
+              <% end %>
+            </div>
 
-          <div class="card-body">
-            <h6 class="card-title mb-2"><%= feedback.user.email[0] + feedback.user.email[1] + "*" * 3 + feedback.user.email.split('@').last %></h6>
-            <p class="card-text"><%= feedback.comment %></p>
+            <div class="card-body">
+              <h6 class="card-title mb-2"><%= feedback.user.email[0] + feedback.user.email[1] + "*" * 3 + feedback.user.email.split('@').last %></h6>
+              <p class="card-text"><%= feedback.comment %></p>
+            </div>
           </div>
         </div>
-      </div>
+      <% end %>
+    <% else %>
+    <p class="text-center text-muted"><%= t('no_feedback_published') %></p>
     <% end %>
   </div>
   <%= paginate @feedbacks, theme: 'bootstrap-5', previous_label: t('previous'), next_label: t('next'), gap: 0, window: nil %>

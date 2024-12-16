@@ -11,31 +11,35 @@
       <% end %>
     </div>
     <div class="row" id="product-grid">
-      <% @items.each do |item| %>
-        <div class="col-md-6 col-lg-3 mb-4 product-item">
-          <%= link_to client_lottery_path(item), class: "card-link text-decoration-none" do %>
-            <div class="card">
-              <div class="card-body">
-                <div class="card-img-top bg-light d-flex justify-content-center align-items-center" style="height: 150px;">
-                  <% if item.image.present? %>
-                    <div class="d-flex justify-content-center align-items-center" style="width: 250px; height: 150px; overflow: hidden;">
-                      <%= image_tag item.image.url, class: "w-100 h-100 object-fit-cover" if item.image.present? %>
-                    </div>
-                  <% else %>
-                    <span class="text-muted"><%= t('lottery.no_image_available') %></span>
-                  <% end %>
-                </div>
-                <h5 class="card-title mb-3 text-dark font-weight-bold"><%= item.name %></h5>
-                <div class="d-flex justify-content-between">
-                  <button class="btn btn-success d-flex align-items-center px-3 py-2 rounded-pill shadow-sm">
-                    <i class="bi bi-record-fill me-2"></i>
-                    <span class="text-white"><%= t('lottery.online') %></span>
-                  </button>
+      <% if @items.any? %>
+        <% @items.each do |item| %>
+          <div class="col-md-6 col-lg-3 mb-4 product-item">
+            <%= link_to client_lottery_path(item), class: "card-link text-decoration-none" do %>
+              <div class="card">
+                <div class="card-body">
+                  <div class="card-img-top bg-light d-flex justify-content-center align-items-center" style="height: 150px;">
+                    <% if item.image.present? %>
+                      <div class="d-flex justify-content-center align-items-center" style="width: 250px; height: 150px; overflow: hidden;">
+                        <%= image_tag item.image.url, class: "w-100 h-100 object-fit-cover" if item.image.present? %>
+                      </div>
+                    <% else %>
+                      <span class="text-muted"><%= t('lottery.no_image_available') %></span>
+                    <% end %>
+                  </div>
+                  <h5 class="card-title mb-3 text-dark font-weight-bold"><%= item.name %></h5>
+                  <div class="d-flex justify-content-between">
+                    <button class="btn btn-success d-flex align-items-center px-3 py-2 rounded-pill shadow-sm">
+                      <i class="bi bi-record-fill me-2"></i>
+                      <span class="text-white"><%= t('lottery.online') %></span>
+                    </button>
+                  </div>
                 </div>
               </div>
-            </div>
-          <% end %>
-        </div>
+            <% end %>
+          </div>
+        <% end %>
+      <% else %>
+        <p class="text-center text-muted"><%= t('no_items_for_lottery') %></p>
       <% end %>
     </div>
     <%= paginate @items, theme: 'bootstrap-5', previous_label: t('lottery.previous'), next_label: t('lottery.next'), gap: 0, window: nil %>

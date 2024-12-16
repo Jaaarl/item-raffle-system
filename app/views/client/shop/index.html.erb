@@ -5,40 +5,44 @@
 
   <div class="container mt-4 container-mb">
     <div class="row" id="product-grid">
-      <% @offers.each do |offer| %>
-        <div class="col-md-6 col-lg-3 mb-4 product-item">
-          <%= link_to client_shop_path(offer), class: "card-link text-decoration-none" do %>
-            <div class="card">
-              <div class="card-body">
-                <div class="card-img-top bg-light d-flex justify-content-center align-items-center" style="height: 150px;">
-                  <% if offer.image.present? %>
-                    <div class="d-flex justify-content-center align-items-center" style="width: 250px; height: 150px; overflow: hidden;">
-                      <%= image_tag offer.image.url, class: "w-100 h-100 object-fit-cover" if offer.image.present? %>
-                    </div>
-                  <% else %>
-                    <span class="text-muted"><%= t('offer.no_image_available') %></span>
-                  <% end %>
-                </div>
-                <h5 class="card-title mb-2 text-dark font-weight-bold"><%= offer.name %></h5>
+      <% if @offers.any? %>
+        <% @offers.each do |offer| %>
+          <div class="col-md-6 col-lg-3 mb-4 product-item">
+            <%= link_to client_shop_path(offer), class: "card-link text-decoration-none" do %>
+              <div class="card">
+                <div class="card-body">
+                  <div class="card-img-top bg-light d-flex justify-content-center align-items-center" style="height: 150px;">
+                    <% if offer.image.present? %>
+                      <div class="d-flex justify-content-center align-items-center" style="width: 250px; height: 150px; overflow: hidden;">
+                        <%= image_tag offer.image.url, class: "w-100 h-100 object-fit-cover" if offer.image.present? %>
+                      </div>
+                    <% else %>
+                      <span class="text-muted"><%= t('offer.no_image_available') %></span>
+                    <% end %>
+                  </div>
+                  <h5 class="card-title mb-2 text-dark font-weight-bold"><%= offer.name %></h5>
 
-                <div class="d-flex justify-content-between">
-                  <p class="mb-1 text-secondary" style="font-size: 1.1rem;"><%= t('offer.genre') %>:</p>
-                  <p class="mb-1 font-weight-bold text-dark"><%= offer.genre.humanize %></p>
-                </div>
+                  <div class="d-flex justify-content-between">
+                    <p class="mb-1 text-secondary" style="font-size: 1.1rem;"><%= t('offer.genre') %>:</p>
+                    <p class="mb-1 font-weight-bold text-dark"><%= offer.genre.humanize %></p>
+                  </div>
 
-                <div class="d-flex justify-content-between">
-                  <p class="mb-1 text-secondary" style="font-size: 1.1rem;"><%= t('offer.amount') %>:</p>
-                  <p class="mb-1 font-weight-bold text-dark"><%= offer.amount %></p>
-                </div>
+                  <div class="d-flex justify-content-between">
+                    <p class="mb-1 text-secondary" style="font-size: 1.1rem;"><%= t('offer.amount') %>:</p>
+                    <p class="mb-1 font-weight-bold text-dark">₱ <%= offer.amount %></p>
+                  </div>
 
-                <div class="d-flex justify-content-between">
-                  <p class="mb-1 text-secondary" style="font-size: 1.1rem;"><%= t('offer.coin') %>:</p>
-                  <p class="mb-1 font-weight-bold text-dark"><%= offer.coin %></p>
+                  <div class="d-flex justify-content-between">
+                    <p class="mb-1 text-secondary" style="font-size: 1.1rem;"><%= t('offer.coin') %>:</p>
+                    <p class="mb-1 font-weight-bold text-dark"><%= offer.coin %></p>
+                  </div>
                 </div>
               </div>
-            </div>
-          <% end %>
-        </div>
+            <% end %>
+          </div>
+        <% end %>
+      <% else %>
+        <p class="text-center text-muted"><%= t('no_offers_available') %></p>
       <% end %>
     </div>
     <%= paginate @offers, theme: 'bootstrap-5', previous_label: t('previous'), next_label: t('next'), gap: 0, window: nil %>

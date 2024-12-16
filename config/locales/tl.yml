@@ -1,6 +1,9 @@
 tl:
   winners_feedback: "Puna ng mga Nanalo"
   coming_soon: "Darating Na"
+  no_feedback_published: "Walang feedback na nailathala."
+  no_items_for_lottery: "Walang mga item na available para sa lottery."
+  no_offers_available: "Walang mga alok na available."
   more: "Higit Pa..."
   no_image: "Walang Imahe"
   comment_placeholder: "Walang komento"

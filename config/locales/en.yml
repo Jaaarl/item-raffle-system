@@ -30,8 +30,8 @@
 # available at https://guides.rubyonrails.org/i18n.html.
 
 en:
-  winners_feedback: "winner's feedback"
-  coming_soon: "coming soon"
+  winners_feedback: "Winner's feedback"
+  coming_soon: "Coming soon"
   more: "more"
   no_image: "No image"
   comment_placeholder: "No comment"
@@ -216,4 +216,6 @@ en:
         invalid: "is invalid"
         not_a_number: "is not a number"
         taken: "has already been taken"
-
+  no_feedback_published: "No feedback published"
+  no_items_for_lottery: "No items available for lottery."
+  no_offers_available: "No offers available"
