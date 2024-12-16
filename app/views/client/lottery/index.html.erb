@@ -18,7 +18,9 @@
               <div class="card-body">
                 <div class="card-img-top bg-light d-flex justify-content-center align-items-center" style="height: 150px;">
                   <% if item.image.present? %>
-                    <%= image_tag item.image.url, style: "max-width: 100px; max-height: 100px; object-fit: cover;" if item.image.present? %>
+                    <div class="d-flex justify-content-center align-items-center" style="width: 250px; height: 150px; overflow: hidden;">
+                      <%= image_tag item.image.url, class: "w-100 h-100 object-fit-cover" if item.image.present? %>
+                    </div>
                   <% else %>
                     <span class="text-muted"><%= t('lottery.no_image_available') %></span>
                   <% end %>
