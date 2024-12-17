@@ -31,7 +31,7 @@ class Admin::OfferController < Admin::BaseController
 
   def update
     if @offer.update(offer_params)
-      redirect_to admin_offer_path(@offer), notice: 'Offer was successfully updated.'
+      redirect_to admin_offer_path, notice: 'Offer was successfully updated.'
     else
       if @offer.errors.any?
         flash[:alert] = @offer.errors.full_messages.to_sentence

@@ -28,7 +28,7 @@ class Admin::NewsTickerController < Admin::BaseController
 
   def update
     if @news_ticker.update(news_ticker_params)
-      redirect_to admin_news_ticker_path(@news_ticker), notice: 'News ticker was successfully updated.'
+      redirect_to admin_news_ticker_path, notice: 'News ticker was successfully updated.'
     else
       if @news_ticker.errors.any?
         flash[:alert] = @news_ticker.errors.full_messages.to_sentence

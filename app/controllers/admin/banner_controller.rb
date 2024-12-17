@@ -27,7 +27,7 @@ class Admin::BannerController < Admin::BaseController
 
   def update
     if @banner.update(news_ticker_params)
-      redirect_to admin_banner_index_path(@banner), notice: 'Banner was successfully updated.'
+      redirect_to admin_banner_index_path, notice: 'Banner was successfully updated.'
     else
       if @banner.errors.any?
         flash[:alert] = @banner.errors.full_messages.to_sentence
