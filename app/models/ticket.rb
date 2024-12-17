@@ -43,7 +43,7 @@ class Ticket < ApplicationRecord
   end
 
   def refund_coins
-    user.coins = user.coins + self.coins
+    user.coins += 1
     user.save
   end
 
