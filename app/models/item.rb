@@ -102,6 +102,13 @@ class Item < ApplicationRecord
 
   def update_ticket(winner)
     tickets = self.tickets.where(batch_count: self.batch_count)
-    tickets.each { |ticket| ticket.serial_number == winner.serial_number ? (ticket.win! && add_winner(ticket)) : ticket.lose! }
+    tickets.each do |ticket|
+      if winner.serial_number == ticket.serial_number
+        ticket.win!
+        add_winner(ticket)
+      else
+        ticket.lose!
+      end
+    end
   end
 end
