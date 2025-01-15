@@ -73,7 +73,7 @@
             <td><%= winner.price %></td>
             <td><%= winner.paid_at&.strftime("%b %d, %Y %I:%M %p") %></td>
             <td><%= winner.admin&.email %></td>
-            <td><%= winner.image %></td>
+            <td><%= image_tag winner.image.url, style: "max-width: 100px; max-height: 100px; object-fit: cover;" if winner.image.present? %></td>
             <td><%= winner.comment %></td>
             <td>
               <%= button_to 'Submit', submit_admin_winner_path(winner), method: :patch, class: 'btn btn-success' if winner.may_submit? %>
