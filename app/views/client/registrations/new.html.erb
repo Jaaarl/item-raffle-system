@@ -33,11 +33,11 @@
             <label class="form-label" for="loginPassword"><%= t('registration.password_confirmation') %></label>
             <%= f.password_field :password_confirmation, autocomplete: "new-password", class: 'form-control' %>
           </div>
-          <div class="row mb-4">
+          <div class="mb-4">
             <div class="col-md-6 d-flex justify-content-center">
             </div>
             <%= f.hidden_field :parent_id, value: parent_id(cookies[:promoter]) %>
-            <%= f.submit t('registration.submit'), class: 'btn btn-primary btn-block mb-4' %>
+            <%= f.submit t('registration.submit'), class: 'w-100 btn btn-primary btn-block mb-4' %>
           </div>
         </form>
       </div>
