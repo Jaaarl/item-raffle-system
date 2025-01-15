@@ -1,9 +1,15 @@
 <div class="row mb-4">
   <div id="carouselExampleControls" class="carousel slide" data-bs-ride="carousel">
     <div class="carousel-inner">
-      <% @banners.each_with_index do |banner, index| %>
-        <div class="carousel-item <%= 'active' if index == 0 %>">
-          <%= image_tag banner.image.url, class: 'd-block w-100 h-100', alt: "Banner image" %>
+      <% if @banners.present? %>
+        <% @banners.each_with_index do |banner, index| %>
+          <div class="carousel-item <%= 'active' if index == 0 %>">
+            <%= image_tag banner.image.url, class: 'd-block w-100 h-100', alt: "Banner image" %>
+          </div>
+        <% end %>
+      <% else %>
+        <div class="no-banners-message">
+          <%= image_tag 'https://i.imgur.com/zTeoYsm.png', class: 'd-block w-100 h-100', alt: 'Default image' %>
         </div>
       <% end %>
     </div>
